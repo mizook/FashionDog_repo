@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -54,12 +54,11 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" disabled>
-                                <input id="text2" type="text" class="form-control" disabled>
-                                <button type="button" onclick="generateRandomPassword()">Generate A Random Password</button>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off" readonly>
+                                <input id="visible-password" type="text" class="form-control" readonly>
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <button class="btn btn-primary" type="button" onclick="generateRandomPassword()">Generate password</button>
                                 </div>
@@ -80,7 +79,7 @@
 
 
                                         document.getElementById("password").defaultValue = password;
-                                        document.getElementById("text2").defaultValue = password;
+                                        document.getElementById("visible-password").defaultValue = password;
                                         document.getElementById("password-confirm").defaultValue = password;
 
                                     }
@@ -96,24 +95,18 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" disabled>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button onclick="activatePasswordFields()" type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <script>
-                                    function activatePasswordFields(){
-                                        document.getElementById("password").disabled = false;
-                                        document.getElementById("password-confirm").disabled = false;
-                                    }
-                                </script>
                             </div>
                         </div>
                     </form>
