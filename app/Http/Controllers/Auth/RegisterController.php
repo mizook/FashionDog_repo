@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Client;
 
-use App\Providers\RouteServiceProvider; //JUNTO CON ESTO
 
 class RegisterController extends Controller
 {
-
-    protected $redirectTo = RouteServiceProvider::HOME; //ESTO ESTÁ DE PRUEBA, A VER SI ME REDIRECCIONA LUEGO DE REGISTRARME
-
     public function show()
     {
         return view('auth.register');
@@ -20,6 +19,8 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        //dd($request);
         $client = Client::create($request->validated());
+        return redirect('/login')->with('success', 'Account created successfully');
     }
 }
