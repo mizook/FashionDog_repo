@@ -46,7 +46,7 @@
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-0">Fashion Dog</h1>
                     <h2 class="masthead-subheading mb-0">Un perro a la moda</h2>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Mas informacion</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Mas</a>
                 </div>
             </div>
             <div class="bg-circle-1 bg-circle"></div>
