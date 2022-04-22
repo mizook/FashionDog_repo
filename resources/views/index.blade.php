@@ -15,6 +15,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -28,12 +29,11 @@
                           <button type="button" class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
 
                         @else
-
-                       <a href="{{ route('login') }}" class="button ">Iniciar Sesión</a>
+                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesion</button>
                             @if (Route::has('register'))
                             <button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>
 
-                            @endif
+                    @endif
                         @endauth
                     </div>
                 @endif
@@ -46,7 +46,7 @@
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-0">Fashion Dog</h1>
                     <h2 class="masthead-subheading mb-0">Un perro a la moda</h2>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Mas</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Más</a>
                 </div>
             </div>
             <div class="bg-circle-1 bg-circle"></div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
-                            <h2 class="display-4">For those about to rock...</h2>
+                            <h2 class="display-4">Para los amantes de los perros...</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
-                            <h2 class="display-4">We salute you!</h2>
+                            <h2 class="display-4">Entregamos el mejor cuidado!</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
-                            <h2 class="display-4">Let there be rock!</h2>
+                            <h2 class="display-4">Nuevo estilo!</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-black">
-            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2022</p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; FashionDog 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
