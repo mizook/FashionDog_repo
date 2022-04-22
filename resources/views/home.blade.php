@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('Has iniciado sesión!') }}
+                    {{ Auth::user()}}
                 </div>
             </div>
         </div>
