@@ -26,15 +26,34 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+
+        if (auth()->guard('administrator')->attempt([
+            'rut' => $request->rut,
+            'password' => $request->password,
+        ])) {
+            $user = auth()->user();
+
+            return redirect()->intended(url('/AdminDashboard'));
+        }
+
+        if (auth()->guard('stylist')->attempt([
+            'rut' => $request->rut,
+            'password' => $request->password,
+        ])) {
+            $user = auth()->user();
+
+            return redirect()->intended(url('/StylistDashboard'));
+        }
+
         if (auth()->guard('client')->attempt([
             'rut' => $request->rut,
             'password' => $request->password,
         ])) {
             $user = auth()->user();
 
-            return redirect()->intended(url('/home'));
+            return redirect()->intended(url('/ClientDashboard'));
         } else {
-            return redirect()->back()->withError('Credentials doesn\'t match.');
+            return redirect()->back()->withError('El rut o la contraseña son incorrectos.');
         }
     }
 

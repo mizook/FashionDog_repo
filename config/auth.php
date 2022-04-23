@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'administrator' => [ //ARRAY DE PRUEBA PARA LOGIN
+            'driver' => 'session',
+            'provider' => 'administrators',
+        ],
+
+        'stylist' => [ //ARRAY DE PRUEBA PARA LOGIN
+            'driver' => 'session',
+            'provider' => 'stylists',
+        ],
+
         'client' => [ //ARRAY DE PRUEBA PARA LOGIN
             'driver' => 'session',
             'provider' => 'clients',
@@ -68,6 +78,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'administrators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Administrator::class,
+        ],
+
+        'stylists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Stylist::class,
         ],
 
         'clients' => [

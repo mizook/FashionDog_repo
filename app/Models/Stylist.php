@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Stylist extends Model
+//extends Model
+
+class Stylist extends Authenticatable
 {
     use HasFactory;
 
@@ -13,6 +16,9 @@ class Stylist extends Model
     public $incrementing = false;
     protected $primaryKey = 'rut';
 
+    protected $hidden = [
+        'password'
+    ];
 
     protected $fillable = [
         'rut',
@@ -22,4 +28,9 @@ class Stylist extends Model
         'email',
         'phone',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
