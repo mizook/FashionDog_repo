@@ -31,7 +31,7 @@
                           <button type="button" class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
 
                         @else
-                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesion</button>
+                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesión</button>
                             @if (Route::has('register'))
                             <button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>
 

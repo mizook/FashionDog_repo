@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\ClientDashboardController;
 
 
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AdminAuth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,10 +27,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 });
-
 
 
 Route::get('/registerAdmin', [RegisterAdminController::class, 'show']);
@@ -37,17 +38,30 @@ Route::post('/registerAdmin', [RegisterAdminController::class, 'register'])->nam
 
 
 // Login y Register para todos las entidades
-Route::get('/register', [RegisterController::class, 'show']);
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('/register', [RegisterController::class, 'show'])
+    ->middleware('guest');
 
-Route::get('/login', [LoginController::class, 'show'])->name('login');
+Route::post('/register', [RegisterController::class, 'register'])
+    ->middleware('guest')
+    ->name('register');
+
+Route::get('/login', [LoginController::class, 'show'])
+    ->middleware('guest')
+    ->name('login');
+
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'index']);
 
 
 
 // Dashboards
-Route::get('/AdminDashboard', [AdminDashboardController::class, 'show'])->name('admin.dashboard');
-Route::get('/StylistDashboard', [StylistDashboardController::class, 'show'])->name('stylist.dashboard');
-Route::get('/ClientDashboard', [ClientDashboardController::class, 'show'])->name('client.dashboard');
+Route::get('/AdminDashboard', [AdminDashboardController::class, 'show'])
+    ->name('admin.dashboard');
+
+Route::get('/StylistDashboard', [StylistDashboardController::class, 'show'])
+    ->name('stylist.dashboard');
+
+Route::get('/ClientDashboard', [ClientDashboardController::class, 'show'])
+    ->name('client.dashboard');

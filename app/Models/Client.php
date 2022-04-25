@@ -12,9 +12,10 @@ class Client extends Authenticatable
 {
     use HasFactory;
 
-    // protected $keyType = 'string';
-    // public $incrementing = false;
-    // protected $primaryKey = 'rut';
+    protected $guard = 'client';
+    protected $keyType = 'string';
+    protected $primaryKey = 'rut';
+    public $incrementing = false;
 
     protected $hidden = [
         'password'

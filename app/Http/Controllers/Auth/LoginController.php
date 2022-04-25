@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,17 @@ use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'logout']);
+    }
+
     public function show()
     {
+        if (auth()->guard()->check()) {
+            return redirect('/');
+        }
+
         return view('auth.login');
     }
 
@@ -26,30 +36,36 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        if (auth()->guard('administrator')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
 
-        if (auth()->guard('administrator')->attempt([
-            'rut' => $request->rut,
-            'password' => $request->password,
-        ])) {
-            $user = auth()->user();
+            $user = auth()->guard('administrator')->user();
+            $request->session()->regenerate();
+
+            auth()->guard('administrator')->login($user);
+
+            //dd($user);
 
             return redirect()->intended(url('/AdminDashboard'));
         }
 
-        if (auth()->guard('stylist')->attempt([
-            'rut' => $request->rut,
-            'password' => $request->password,
-        ])) {
-            $user = auth()->user();
+        if (auth()->guard('stylist')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
+
+            $user = auth()->guard('stylist')->user();
+            $request->session()->regenerate();
+
+            auth()->guard('stylist')->login($user);
 
             return redirect()->intended(url('/StylistDashboard'));
         }
 
-        if (auth()->guard('client')->attempt([
-            'rut' => $request->rut,
-            'password' => $request->password,
-        ])) {
-            $user = auth()->user();
+        if (auth()->guard('client')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
+
+            $user = auth()->guard('client')->user();
+            $request->session()->regenerate();
+
+            auth()->guard('client')->login($user);
+
+            //dd($user);
 
             return redirect()->intended(url('/ClientDashboard'));
         } else {
@@ -57,7 +73,19 @@ class LoginController extends Controller
         }
     }
 
-    public function authenticated(Request $request, $client)
+    public function logout(Request $request)
+    {
+        auth()->guard()->logout();
+
+        session()->flush();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    public function authenticated(Request $request, $user)
     {
         return redirect('/home');
     }
