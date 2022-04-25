@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('address', 255);
             $table->string('phone', 15)->unique();
             $table->string('password');
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(true)->nullable();
             $table->timestamps();
         });
     }

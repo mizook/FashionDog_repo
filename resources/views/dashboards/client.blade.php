@@ -1,17 +1,24 @@
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+
 <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 <script src="{{ asset('js/navbar.js') }}"></script>
 <nav class="nav">
     <div class="container">
         <div class="logo">
-            <a href="#">Your Logo</a>
-            <h1 id="salu2">afasfsaf</h1>
+            <img src="{{ asset('assets/img/FashionDogLogo.png') }}" alt="Logo fashion dog" style="width: 25%"><a href="/">Fashion Dog</a>
         </div>
         <div id="mainListDiv" class="main_list">
             <ul class="navlinks">
                 <li><a href="#">About</a></li>
-                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Cambiar la contraseña</a></li>
                 <li><a href="#">Profile</a></li>
-                <li><a href="#">Log out</a></li>
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">
+                        {{ __('Cerrar sesión') }}
+                    </button>
+                </form>
             </ul>
         </div>
         <span class="navTrigger">
@@ -23,6 +30,9 @@
 </nav>
 
 <section class="home">
+    <div>
+        <h1>Bienvenido {{Auth::user()->name}}!</h1>
+    </div>
 </section>
 <div style="height: 1000px">
     <!-- just to make scrolling effect possible -->

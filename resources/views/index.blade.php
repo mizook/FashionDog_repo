@@ -26,19 +26,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     @if (Route::has('login'))
-                    <div class="navbar-nav ms-auto">
+                        <div class="navbar-nav ms-auto">
                         @auth
                           <button type="button" class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
 
-                        @else
-                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesion</button>
+                    @else
+                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesión</button>
                             @if (Route::has('register'))
-                            <button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>
+                                <button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>
 
-                    @endif
+                            @endif
                         @endauth
-                    </div>
-                @endif
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>

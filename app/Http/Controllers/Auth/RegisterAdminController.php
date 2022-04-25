@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterAdminRequest;
 use App\Models\Administrator;
 
 class RegisterAdminController extends Controller
@@ -15,10 +16,10 @@ class RegisterAdminController extends Controller
         return view('auth.registerAdmin');
     }
 
-    public function register(Request $request)
+    public function register(RegisterAdminRequest $request)
     {
         //dd($request);
-        $admin = Administrator::create($request);
+        $admin = Administrator::create($request->validated());
         return redirect('/login')->with('success', 'Account created successfully');
     }
 }

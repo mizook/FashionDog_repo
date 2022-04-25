@@ -12,6 +12,7 @@ class Stylist extends Authenticatable
 {
     use HasFactory;
 
+    protected $guard = 'stylist';
     protected $keyType = 'string';
     public $incrementing = false;
     protected $primaryKey = 'rut';

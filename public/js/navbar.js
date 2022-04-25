@@ -5,5 +5,3 @@ $('.navTrigger').click(function () {
     $("#mainListDiv").fadeIn();
 
 });
-
-document.getElementById('xdxds').innerHTML="hola xd"
