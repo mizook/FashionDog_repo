@@ -24,11 +24,37 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" style="background-color: white">
             <div class="container ">
-                 <img src="assets/img/04.jpg" alt="" style="width: 50px">
+                 <img src="assets/img/FashionDogLogo.png" alt="" style="width: 50px">
                 <a style="color: black" class="navbar-brand" href="#page-top">Bienvenido a Fashion dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <!--<div class="navbar-nav ms-auto"><div><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button></div>@auth<h1>Estas loggeado</h1>@endauth@guest<h1>No estas loggeado</h1>@endguest</div>--><div class="navbar-nav ms-auto"><!-- Boton para activar el formulario de registro--><div><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button></div><!-- Boton para activar el formulario de registro--></div>@if (Route::has('login'))@auth<button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button><<<<<<< HEAD@else<button type="button"  class="btn"><a href="{{ route('login') }}" class="button " style="color: black">Iniciar sesión</button>@if (Route::has('register'))<button type="button"  class="btn"><a href="{{ route('register') }}" class="button " style="color: black">Registrarse</a></button>=======@else<button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesión</button>@if (Route::has('register'))<button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>>>>>>>> main@endif@endauth@endif</div>
+
+
+                    <div class="navbar-nav ms-auto">
+                        <!-- Boton para activar el formulario de registro-->
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Registrarse</button>
+                        </div>
+                        <!-- Boton para activar el formulario de registro-->
+
+                    </div>
+
+
+                    @if (Route::has('login'))
+                    <div class="navbar-nav ms-auto">
+                        @auth
+                          <button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
+
+                        @else
+                            <button type="button"  class="btn"><a href="{{ route('login') }}" class="button " style="color: black">Iniciar sesión</button>
+                            @if (Route::has('register'))
+                            <button type="button"  class="btn"><a href="{{ route('register') }}" class="button " style="color: black">Registrarse</a></button>
+
+                    @endif
+                        @endauth
+                    </div>
+                @endif
+                </div>
             </div>
         </nav>
         <!-- Header-->
@@ -88,9 +114,9 @@
             </div>
         </div>
     </div>
-        </section>
+</section>
 
-        <!-- Boton para activar el formulario de registro-->
+<!-- Boton para activar el formulario de registro-->
 
         <!--Formulario de registro modal-->
         <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -212,18 +238,16 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" >Registrarse</button>
+                            <button class="btn btn-primary" >Submit</button>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        FashionDog &copy;
+                        Foooter
                     </div>
                 </div>
             </div>
         </div>
-
-
 
 
 

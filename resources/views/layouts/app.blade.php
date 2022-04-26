@@ -24,7 +24,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
-                <img src="assets/img/04.jpg" alt="" style="width: 50px">
+                <img src="assets/img/FashionDogLogo.png" alt="" style="width: 50px">
+                <a style="color: black" class="navbar-brand" href="/">Fashion dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
