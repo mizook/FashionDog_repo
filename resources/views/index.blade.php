@@ -28,52 +28,7 @@
                 <a style="color: black" class="navbar-brand" href="#page-top">Bienvenido a Fashion dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <!--
-                        <div class="navbar-nav ms-auto">
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button>
-                        </div>
-                        @auth
-                            <h1>Estas loggeado</h1>
-                        @endauth
-
-                        @guest
-                            <h1>No estas loggeado</h1>
-                        @endguest
-
-                    </div>
-
-                    -->
-
-                    <div class="navbar-nav ms-auto">
-                        <!-- Boton para activar el formulario de registro-->
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button>
-                        </div>
-                        <!-- Boton para activar el formulario de registro-->
-
-                    </div>
-                    @if (Route::has('login'))
-                        @auth
-                          <button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
-
-<<<<<<< HEAD
-                        @else
-                            <button type="button"  class="btn"><a href="{{ route('login') }}" class="button " style="color: black">Iniciar sesión</button>
-                            @if (Route::has('register'))
-                            <button type="button"  class="btn"><a href="{{ route('register') }}" class="button " style="color: black">Registrarse</a></button>
-=======
-
-                    @else
-                            <button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesión</button>
-                            @if (Route::has('register'))
-                                <button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>
->>>>>>> main
-
-                            @endif
-                        @endauth
-                    @endif
-                </div>
+                    <!--<div class="navbar-nav ms-auto"><div><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button></div>@auth<h1>Estas loggeado</h1>@endauth@guest<h1>No estas loggeado</h1>@endguest</div>--><div class="navbar-nav ms-auto"><!-- Boton para activar el formulario de registro--><div><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"> Registrarse</button></div><!-- Boton para activar el formulario de registro--></div>@if (Route::has('login'))@auth<button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button><<<<<<< HEAD@else<button type="button"  class="btn"><a href="{{ route('login') }}" class="button " style="color: black">Iniciar sesión</button>@if (Route::has('register'))<button type="button"  class="btn"><a href="{{ route('register') }}" class="button " style="color: black">Registrarse</a></button>=======@else<button type="button" class="btn"><a href="{{ route('login') }}" class="button ">Iniciar sesión</button>@if (Route::has('register'))<button type="button" class="btn"><a href="{{ route('register') }}" class="button ">Registrarse</a></button>>>>>>>> main@endif@endauth@endif</div>
             </div>
         </nav>
         <!-- Header-->
