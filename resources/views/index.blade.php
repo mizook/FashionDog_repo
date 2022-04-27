@@ -16,7 +16,7 @@
         <link href="css/styles.css" rel="stylesheet" />
 
         <title>Fashion Dog - Tu perro a la moda</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
     </head>
 
 
@@ -30,25 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
 
 
-                    <div class="navbar-nav ms-auto">
-                        <!-- Boton para activar el formulario de registro-->
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Registrarse</button>
-                        </div>
-                        <!-- Boton para activar el formulario de registro-->
-
-                    </div>
-
-
                     @if (Route::has('login'))
                     <div class="navbar-nav ms-auto">
                         @auth
                           <button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
 
                         @else
-                            <button type="button"  class="btn"><a href="{{ route('login') }}" class="button " style="color: black">Iniciar sesión</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" href="{{ route('login') }}" style="border: 2px solid black" style="margin: 4%px" >Iniciar sesión</button>
                             @if (Route::has('register'))
-                            <button type="button"  class="btn"><a href="{{ route('register') }}" class="button " style="color: black">Registrarse</a></button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" href="{{ route('register') }}" style="border: 2px solid black">Registrarse</a></button>
 
                     @endif
                         @endauth
@@ -238,12 +228,85 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" >Submit</button>
+                            <button class="btn btn-primary" >Registrarse </button>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        Foooter
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton para activar el formulario de Inicio de secion-->
+
+        <!--Formulario de registro modal 2 -->
+        <div class="modal fade" id="reg-modal2" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"> Iniciar Sesion</h5>
+                    </div>
+                    <div class="card">
+
+
+                        <div class="card-body">
+                            <form method="POST" action="/login">
+                                @csrf
+
+                                <div class="row mb-3">
+                                    <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="rut" autofocus>
+
+                                        @error('rut')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6 offset-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Recordarme?') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-0">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Iniciar Sesión') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                     </div>
                 </div>
             </div>

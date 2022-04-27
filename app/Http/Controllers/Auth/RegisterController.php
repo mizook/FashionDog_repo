@@ -21,6 +21,6 @@ class RegisterController extends Controller
     {
         //dd($request);
         $client = Client::create($request->validated());
-        return redirect('/login')->with('success', 'Account created successfully');
+        return redirect('/')->with('success', 'Account created successfully');
     }
 }
