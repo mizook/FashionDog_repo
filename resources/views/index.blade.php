@@ -33,9 +33,9 @@
                     <div class="navbar-nav ms-auto">
 
                             @if(auth()->guard('administrator')->user() || auth()->guard('client')->user() || auth()->guard('stylist')->user())
-                            <form>
+                            <form action="{{route('client.dashboard')}}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-info" style="border: 2px solid black" href="{{ url('/ClientDashboard') }}" >
+                                <button type="submit" class="btn btn-info" style="border: 2px solid black">
                                     {{ __('Panel de control') }}
                                 </button>
                             </form>
