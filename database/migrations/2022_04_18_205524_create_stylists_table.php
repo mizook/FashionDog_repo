@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("last name", 255);
             $table->string('email', 255)->unique();
             $table->string('phone', 255)->unique();
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

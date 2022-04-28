@@ -27,32 +27,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//Inicio
 Route::get('/', function () {
     return view('index');
 });
 
 
+//Las borraré
 Route::get('/registerAdmin', [RegisterAdminController::class, 'show']);
 Route::post('/registerAdmin', [RegisterAdminController::class, 'register'])->name('registerAdmin');
 
 
-// Login y Register para todos las entidades
+// Login todas las entidades, register cliente y logout
 Route::get('/register', [RegisterController::class, 'show'])
+    ->middleware('guest');
+
+Route::get('/login', [LoginController::class, 'show'])
     ->middleware('guest');
 
 Route::post('/register', [RegisterController::class, 'register'])
     ->middleware('guest')
     ->name('register');
 
-Route::get('/login', [LoginController::class, 'show'])
-    ->middleware('guest')
+Route::post('/login', [LoginController::class, 'login'])
     ->name('login');
 
-Route::post('/login', [LoginController::class, 'login']);
 Route::post('/', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [HomeController::class, 'index']);
+
+
+//Stylists
+Route::post('/AdminDashboard', [StylistController::class, 'store'])
+    ->middleware('auth:administrator')
+    ->name('registerStylist');
+
+Route::post('/AdminDashboard', [StylistController::class, 'update'])
+    ->middleware('auth:administrator')
+    ->name('updateStylist');
 
 
 

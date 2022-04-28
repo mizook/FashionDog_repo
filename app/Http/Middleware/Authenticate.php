@@ -16,12 +16,20 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
 
-        //dd(Auth::user());
-
-        if (!$request->expectsJson()) {
-            return route('login');
+        if (auth()->guard('administrator')->user()) {
+            return '/AdminDashboard';
         }
+        if (auth()->guard('stylist')->user()) {
+            return '/StylistDashboard';
+        }
+        if (auth()->guard('client')->user()) {
+            return '/ClientDashboard';
+        }
+        if (Auth::user() == null) {
+            return '/';
+        }
+        // if (!$request->expectsJson()) {
+        //     return view('index');
+        // }
     }
-
-    //define
 }

@@ -26,7 +26,7 @@ class LoginController extends Controller
             return redirect('/');
         }
 
-        return view('auth.login');
+        return view('index');
     }
 
     public function login(LoginRequest $request)
@@ -39,11 +39,13 @@ class LoginController extends Controller
         if (auth()->guard('administrator')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
 
             $user = auth()->guard('administrator')->user();
+
+            //dd($user);
+
             $request->session()->regenerate();
 
             auth()->guard('administrator')->login($user);
 
-            //dd($user);
 
             return redirect()->intended(url('/AdminDashboard'));
         }
@@ -75,6 +77,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        $user = auth()->guard('administrator')->user();
+
+
         auth()->guard()->logout();
 
         session()->flush();

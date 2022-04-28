@@ -3033,6 +3033,7 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #ee0979;
   border-color: #ee0979;
+  margin-right: 5px;
 }
 .btn-primary:hover {
   color: #fff;
@@ -3123,6 +3124,7 @@ textarea.form-control-lg {
   color: #000;
   background-color: #0dcaf0;
   border-color: #0dcaf0;
+  margin-right: 5px;
 }
 .btn-info:hover {
   color: #000;

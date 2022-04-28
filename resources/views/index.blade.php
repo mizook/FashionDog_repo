@@ -27,26 +27,36 @@
                  <img src="assets/img/FashionDogLogo.png" alt="" style="width: 50px">
                 <a style="color: black" class="navbar-brand" href="#page-top">Bienvenido a Fashion dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
 
-
-                    @if (Route::has('login'))
                     <div class="navbar-nav ms-auto">
-                        @auth
-                          <button type="button"  class="btn"> <a href="{{ url('/home') }}" class="button ">Inicio </a></button>
 
-                        @else
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" href="{{ route('login') }}" style="border: 2px solid black" style="margin: 4%px" >Iniciar sesión</button>
-                            @if (Route::has('register'))
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" href="{{ route('register') }}" style="border: 2px solid black">Registrarse</a></button>
+                            @if(auth()->guard('administrator')->user() || auth()->guard('client')->user() || auth()->guard('stylist')->user())
+                            <form>
+                                @csrf
+                                <button type="submit" class="btn btn-info" style="border: 2px solid black" href="{{ url('/ClientDashboard') }}" >
+                                    {{ __('Panel de control') }}
+                                </button>
+                            </form>
+                            <form action="{{route('logout')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                                    {{ __('Cerrar sesión') }}
+                                </button>
+                            </form>
+                            @else
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" href="{{ route('login') }}" style="border: 2px solid black">Iniciar sesión</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" href="{{ route('register') }}" style="border: 2px solid black" >Registrarse</a></button>
+                            @endif
 
-                    @endif
-                        @endauth
                     </div>
-                @endif
                 </div>
             </div>
+
         </nav>
+
+
         <!-- Header-->
         <header class="masthead text-center text-white" style="background-color:#8DD7BF" >
             <div class="masthead-content"  >
@@ -113,7 +123,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title"> Registrarse</h5>
+                        <h5 class="modal-title" id="modal-title"> Registrarse como cliente</h5>
                     </div>
                     <div class="modal-body">
                         <form action="/register" method="POST">
@@ -122,7 +132,7 @@
                                 <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="Ej: 12345678K" autofocus>
+                                    <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="Ej: 12345678K" autofocus>
 
                                     @error('rut')
                                         <span class="invalid-feedback" role="alert">
@@ -136,7 +146,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="Nombre" autofocus>
+                                    <input id="name" type="text" placeholder="Nombre..." class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="Nombre" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -151,9 +161,9 @@
                                 <label for="last name" class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="last name" type="last name" class="form-control @error('last name') is-invalid @enderror" name="last_name" required autocomplete="last name">
+                                    <input id="last name" type="last name" placeholder="Apellido..." class="form-control @error('last name') is-invalid @enderror" name="last_name" required autocomplete="last name">
 
-                                    @error('last name')
+                                    @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -166,7 +176,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" placeholder="ejemplo@ejemplo.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -180,9 +190,9 @@
                                 <label for="Direccion" class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Direccion" type="Direccion" class="form-control @error('Direccion') is-invalid @enderror" name="address" required autocomplete="Direccion">
+                                    <input id="Direccion" type="Direccion" placeholder="Avenida ejemplo #123" class="form-control @error('Direccion') is-invalid @enderror" name="address" required autocomplete="Direccion">
 
-                                    @error('Direccion')
+                                    @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -195,9 +205,9 @@
                                 <label for="Telefono" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Telefono" type="Telefono" class="form-control @error('Telefono') is-invalid @enderror" name="phone" required autocomplete="Telefono">
+                                    <input id="Telefono" type="Telefono" placeholder="Ej: 987654321" class="form-control @error('Telefono') is-invalid @enderror" name="phone" required autocomplete="Telefono">
 
-                                    @error('Telefono')
+                                    @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -210,7 +220,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" placeholder="Contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -224,15 +234,15 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" placeholder="Confirmar contraseña..." class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary" >Registrarse </button>
-                        </form>
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary" >Registrarse</button>
+                            </div>
 
-                    </div>
-                    <div class="modal-footer">
+                        </form>
 
                     </div>
                 </div>
@@ -246,7 +256,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title"> Iniciar Sesion</h5>
+                        <h5 class="modal-title" id="modal-title"> Iniciar Sesión</h5>
                     </div>
                     <div class="card">
 
@@ -259,7 +269,7 @@
                                     <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="rut" autofocus>
+                                        <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="rut" autofocus>
 
                                         @error('rut')
                                             <span class="invalid-feedback" role="alert">
@@ -273,7 +283,7 @@
                                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <input id="password" type="password" placeholder="Contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -283,23 +293,9 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Recordarme?') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row mb-0">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Iniciar Sesión') }}
-                                        </button>
+                                        <button type="submit" class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>
                                     </div>
                                 </div>
                             </form>

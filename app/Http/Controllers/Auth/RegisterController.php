@@ -14,13 +14,21 @@ class RegisterController extends Controller
 {
     public function show()
     {
-        return view('auth.register');
+        if (auth()->guard()->check()) {
+            return redirect('/');
+        }
+
+        return view('index');
     }
 
     public function register(RegisterRequest $request)
     {
         //dd($request);
         $client = Client::create($request->validated());
-        return redirect('/')->with('success', 'Account created successfully');
+
+        auth()->guard('client')->login($client);
+        return redirect('/ClientDashboard')->with('success', 'Account created successfully');
+
+        //return redirect('/')->with('success', 'Account created successfully');
     }
 }
