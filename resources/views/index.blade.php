@@ -56,7 +56,6 @@
 
         </nav>
 
-
         <!-- Header-->
         <header class="masthead text-center text-white" style="background-color:#8DD7BF" >
             <div class="masthead-content"  >
@@ -67,7 +66,8 @@
                 </div>
             </div>
         </header>
-        <!-- Content section 1-->
+
+<!-- Content section 1-->
 <section id="scroll">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
@@ -117,7 +117,6 @@
 </section>
 
 <!-- Boton para activar el formulario de registro-->
-
         <!--Formulario de registro modal-->
         <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog">

@@ -24,52 +24,52 @@
 </head>
 
 <body>
-  <div class="d-flex" >
-    <div id="sidebar" style="background-color: #74737a">
+  <div class="d-flex">
+    <div id="sidebar" style="background-color: white" >
       <div class="p-2">
-        <a href="#" class="navbar-brand text-center text-light w-100 p-4 border-bottom">
+        <a href="#" class="navbar-brand text-center text-dark w-100 p-4 border-bottom">
             Admin RUT: {{ Auth::user()->rut }}
         </a>
       </div>
-      <div id="sidebar-accordion" class="accordion" style="background-color: #74737a" >
+      <div id="sidebar-accordion" class="accordion" style="background-color: white" >
         <div class="list-group" >
           <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
-            class="list-group-item list-group-item-action  text-light" style="background-color: #74737a">
+            class="list-group-item list-group-item-action  text-dark" style="background-color: white">
             <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilista
           </a>
           <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-            <a href="#" class="list-group-item list-group-item-action  text-light pl-5"  style="background-color: #74737a">
+            <a href="#" class="list-group-item list-group-item-action  text-dark pl-5"  style="background-color: white">
               Agregar
             </a>
-            <a href="#" class="list-group-item list-group-item-action text-light pl-5"  style="background-color: #74737a">
+            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
               Editar
             </a>
           </div>
           <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
-            class="list-group-item list-group-item-action text-light"  style="background-color: #74737a">
+            class="list-group-item list-group-item-action text-dark"  style="background-color: white">
             <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuario
           </a>
           <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-            <a href="#" class="list-group-item list-group-item-action text-light pl-5"  style="background-color: #74737a">
+            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
               Habilitar
             </a>
-            <a href="#" class="list-group-item list-group-item-action text-light pl-5"  style="background-color: #74737a">
+            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
               Desabilitar
             </a>
           </div>
-          <a href="#" class="list-group-item list-group-item-action  text-light"  style="background-color: #74737a">
+          <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
             <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
           </a>
           <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-            class="list-group-item list-group-item-action  text-light"  style="background-color: #74737a">
+            class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
           </a>
           <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
             <div class="d-flex flex-row text-center">
-              <a href="#" class="list-group-item list-group-item-action  text-light"  style="background-color: #74737a">
+              <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
                 Item 1
               </a>
-              <a href="#" class="list-group-item list-group-item-action text-light"  style="background-color: #74737a">
+              <a href="#" class="list-group-item list-group-item-action text-dark"  style="background-color: white">
                 Item 2
               </a>
             </div>
@@ -77,8 +77,8 @@
         </div>
       </div>
     </div>
-    <div class="content w-100">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #74737a">
+    <div class="content w-100"  style="background-color: #8DD7BF">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
         <div class="container-xl">
 
 
@@ -86,17 +86,13 @@
           <div class="collapse navbar-collapse" id="navbarsExample07XL">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-
-                <form action="{{route('logout')}}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger" >
-                        {{ __('Cerrar sesión') }}
-                    </button>
-                </form>
               </li>
             </ul>
-            <form class="form-inline my-2 my-md-0">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                    {{ __('Cerrar sesión') }}
+                </button>
             </form>
           </div>
         </div>
