@@ -6,9 +6,15 @@ use App\Models\Stylist;
 use Illuminate\Http\Request;
 use App\Rules\RutValidator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class StylistController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:administrator', ['except' => 'logout']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,20 +42,27 @@ class StylistController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
             'rut' => ['required', 'unique:clients,rut', new RutValidator],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
             'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
-            'phone' => ['required', 'min:9', 'max:15', 'unique:clients,phone'],
+            'phone' => ['required', 'min:9', 'max:15'],
         ]);
 
-        //AQUI HACER EL ALGORITMO DE LA CLAVE RANDOM
-        $randomPassword = '1232421';
+        $stylist = Stylist::create([
+            'rut' => $request->rut,
+            'password' => bcrypt($request->rut),
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ]);
 
-        $stylist = Stylist::create($request);
+        $stylist->save();
 
-        return redirect('/AdminDashboard');
+        return redirect('/handleStylists');
     }
 
     /**
@@ -58,9 +71,10 @@ class StylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $stylists = DB::select('select * from stylists');
+        return view('dashboards.handleStylists.handleStylists', ['stylists' => $stylists]);
     }
 
     /**
@@ -69,9 +83,10 @@ class StylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($rut)
     {
-        //
+        $stylist = Stylist::where('rut', $rut)->FirstOrFail();
+        return view('dashboards.handleStylists.editStylist')->with('stylist', $stylist);
     }
 
     /**
@@ -83,17 +98,23 @@ class StylistController extends Controller
      */
     public function update(Request $request, $rut)
     {
+        $request->validate([
+            'name' => ['required', 'min:2', 'max:26'],
+            'last_name' => ['required', 'min:2', 'max:26'],
+            'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
+            'phone' => ['required', 'min:9', 'max:15'],
+        ]);
+
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
 
         $stylist->name = $request->name;
         $stylist->last_name = $request->last_name;
         $stylist->email = $request->email;
         $stylist->phone = $request->phone;
-        $stylist->password = Hash::make($request->password);
 
         $stylist->save();
 
-        return view('/ClientDashboard');
+        return redirect('/handleStylists');
     }
 
     /**

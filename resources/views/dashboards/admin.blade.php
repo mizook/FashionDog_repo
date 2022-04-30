@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Panel de control Admin</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -27,27 +27,22 @@
   <div class="d-flex">
     <div id="sidebar" style="background-color: white" >
       <div class="p-2">
-        <a href="#" class="navbar-brand text-center text-dark w-100 p-4 border-bottom">
-            Admin RUT: {{ Auth::user()->rut }}
+        <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+            ¡Bienvenido! <br> RUT: {{ Auth::user()->rut }}
         </a>
       </div>
       <div id="sidebar-accordion" class="accordion" style="background-color: white" >
-        <div class="list-group" >
-          <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
+        <div class="list-group">
+
+          <a href="{{ route('admin.stylists') }}"
             class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilista
+            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilistas
           </a>
-          <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-            <a href="#" class="list-group-item list-group-item-action  text-dark pl-5"  style="background-color: white">
-              Agregar
-            </a>
-            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-              Editar
-            </a>
-          </div>
+
+
           <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
             class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-            <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuario
+            <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
           </a>
           <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
             <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
@@ -57,31 +52,32 @@
               Desabilitar
             </a>
           </div>
+
           <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
             <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
           </a>
+
           <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
             class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
+            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
           </a>
           <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
             <div class="d-flex flex-row text-center">
               <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                Item 1
+                Cambiar contraseña
               </a>
               <a href="#" class="list-group-item list-group-item-action text-dark"  style="background-color: white">
                 Item 2
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
     <div class="content w-100"  style="background-color: #8DD7BF">
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
         <div class="container-xl">
-
-
 
           <div class="collapse navbar-collapse" id="navbarsExample07XL">
             <ul class="navbar-nav mr-auto">
@@ -97,11 +93,12 @@
           </div>
         </div>
       </nav>
+
       <section class="p-3">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h2>Fashion Dog</h2>
+              <h2>Panel de control</h2>
             </div>
           </div>
         </div>

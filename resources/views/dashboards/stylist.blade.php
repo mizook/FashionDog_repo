@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Panel de control Estilista</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -27,15 +27,15 @@
   <div class="d-flex" >
     <div id="sidebar" style="background-color: white">
       <div class="p-2">
-        <a href="#" class="navbar-brand text-center text-dark w-100 p-4 border-bottom">
-            Bienvenido {{Auth::user()->name}}!
+        <a href="#" class="navbar-brand text-center text-dark w-100 p-4">
+            ¡Bienvenido! <br> {{Auth::user()->name}}
         </a>
       </div>
       <div id="sidebar-accordion" class="accordion" style="background-color: white" >
         <div class="list-group" >
           <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
             class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilista
+            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Editar datos
           </a>
           <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
             <a href="#" class="list-group-item list-group-item-action  text-dark pl-5"  style="background-color: white">

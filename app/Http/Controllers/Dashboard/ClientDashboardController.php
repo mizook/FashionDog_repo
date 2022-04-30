@@ -16,4 +16,8 @@ class ClientDashboardController extends Controller
     {
         return view('dashboards.client');
     }
+
+    public function edit()
+    {
+    }
 }

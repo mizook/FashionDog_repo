@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
             'last_name' => ['required', 'min:2', 'max:26'],
             'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
             'address' => ['required', 'max:30'],
-            'phone' => ['required', 'min:9', 'max:15', 'unique:clients,phone'],
+            'phone' => ['required', 'min:9', 'max:15'],
             'password' => ['required', 'min:10', 'max:15'],
             'password_confirmation' => ['required', 'same:password'],
         ];
@@ -59,7 +59,6 @@ class RegisterRequest extends FormRequest
             'phone.required'  => 'El teléfono es obligatorio.',
             'phone.min'  => 'El teléfono debe tener mínimo 9 números.',
             'phone.max'  => 'El teléfono debe tener máximo 15 números',
-            'phone.unique'  => 'El teléfono ya existe en el sistema.',
             'password.required'  => 'La contraseña es obligatoria',
             'password.min'  => 'La contraseña debe tener mínimo 10 carácteres.',
             'password.max'  => 'La contraseña debe tener máximo 15 carácteres.',

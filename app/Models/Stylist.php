@@ -25,13 +25,13 @@ class Stylist extends Authenticatable
         'rut',
         'password',
         'name',
-        "last name",
+        'last_name',
         'email',
         'phone',
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
 }

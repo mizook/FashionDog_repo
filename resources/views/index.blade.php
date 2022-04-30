@@ -46,8 +46,8 @@
                                 </button>
                             </form>
                             @else
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" href="{{ route('login') }}" style="border: 2px solid black">Iniciar sesión</button>
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" href="{{ route('register') }}" style="border: 2px solid black" >Registrarse</a></button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" style="border: 2px solid black">Iniciar sesión</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" style="border: 2px solid black" >Registrarse</a></button>
                             @endif
 
                     </div>
@@ -122,7 +122,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title"> Registrarse como cliente</h5>
+                        <h5 class="modal-title" id="modal-title">Registrarse como cliente</h5>
                     </div>
                     <div class="modal-body">
                         <form action="/register" method="POST">

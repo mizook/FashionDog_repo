@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('last_name', 255);
             $table->string('email', 320)->unique();
             $table->string('address', 255);
-            $table->string('phone', 15)->unique();
+            $table->string('phone', 255);
             $table->string('password');
-            $table->boolean('status')->default(true)->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

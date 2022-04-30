@@ -46,7 +46,6 @@ class LoginController extends Controller
 
             auth()->guard('administrator')->login($user);
 
-
             return redirect()->intended(url('/AdminDashboard'));
         }
 

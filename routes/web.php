@@ -10,6 +10,9 @@ use App\Http\Controllers\Dashboard\AdminDashboardController;
 use App\Http\Controllers\Dashboard\StylistDashboardController;
 use App\Http\Controllers\Dashboard\ClientDashboardController;
 
+//Admin pages
+use App\Http\Controllers\StylistController;
+
 
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminAuth;
@@ -76,3 +79,17 @@ Route::get('/StylistDashboard', [StylistDashboardController::class, 'show'])
 
 Route::get('/ClientDashboard', [ClientDashboardController::class, 'show'])
     ->name('client.dashboard');
+
+// Admin Pages
+
+Route::get('/handleStylists', [StylistController::class, 'show'])
+    ->name('admin.stylists');
+
+Route::post('/handleStylists', [StylistController::class, 'store'])
+    ->name('store.stylist');
+
+Route::get('/editStylist/{rut}', [StylistController::class, 'edit'])
+    ->name('edit.stylist');
+
+Route::post('/editStylist/{rut}', [StylistController::class, 'update'])
+    ->name('update.stylist');

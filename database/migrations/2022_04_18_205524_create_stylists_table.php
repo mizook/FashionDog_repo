@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('stylists', function (Blueprint $table) {
             $table->string('rut', 255)->unique();
-            $table->string('password', 15);
+            $table->string('password', 255);
             $table->string('name', 255);
-            $table->string("last name", 255);
+            $table->string('last_name', 255);
             $table->string('email', 255)->unique();
-            $table->string('phone', 255)->unique();
+            $table->string('phone', 255);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
