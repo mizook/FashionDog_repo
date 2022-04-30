@@ -58,38 +58,26 @@ Route::post('/login', [LoginController::class, 'login'])
 Route::post('/', [LoginController::class, 'logout'])->name('logout');
 
 
-
-//Stylists
-Route::post('/AdminDashboard', [StylistController::class, 'store'])
-    ->middleware('auth:administrator')
-    ->name('registerStylist');
-
-Route::post('/AdminDashboard', [StylistController::class, 'update'])
-    ->middleware('auth:administrator')
-    ->name('updateStylist');
-
-
-
 // Dashboards
-Route::get('/AdminDashboard', [AdminDashboardController::class, 'show'])
+Route::get('/admin', [AdminDashboardController::class, 'show'])
     ->name('admin.dashboard');
 
-Route::get('/StylistDashboard', [StylistDashboardController::class, 'show'])
+Route::get('/estilista', [StylistDashboardController::class, 'show'])
     ->name('stylist.dashboard');
 
-Route::get('/ClientDashboard', [ClientDashboardController::class, 'show'])
+Route::get('/cliente', [ClientDashboardController::class, 'show'])
     ->name('client.dashboard');
 
-// Admin Pages
 
-Route::get('/handleStylists', [StylistController::class, 'show'])
+// Admin Pages
+Route::get('/admin/estilistas', [StylistController::class, 'show'])
     ->name('admin.stylists');
 
-Route::post('/handleStylists', [StylistController::class, 'store'])
+Route::post('/admin/estilistas', [StylistController::class, 'store'])
     ->name('store.stylist');
 
-Route::get('/editStylist/{rut}', [StylistController::class, 'edit'])
+Route::get('/admin/estilistas/editar/{rut}', [StylistController::class, 'edit'])
     ->name('edit.stylist');
 
-Route::post('/editStylist/{rut}', [StylistController::class, 'update'])
+Route::post('/admin/estilistas/editar/{rut}', [StylistController::class, 'update'])
     ->name('update.stylist');

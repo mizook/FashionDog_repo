@@ -62,7 +62,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/handleStylists');
+        return redirect('/estilistas');
     }
 
     /**
@@ -74,7 +74,7 @@ class StylistController extends Controller
     public function show()
     {
         $stylists = DB::select('select * from stylists');
-        return view('dashboards.handleStylists.handleStylists', ['stylists' => $stylists]);
+        return view('dashboards.estilista.estilistas', ['stylists' => $stylists]);
     }
 
     /**
@@ -86,7 +86,7 @@ class StylistController extends Controller
     public function edit($rut)
     {
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
-        return view('dashboards.handleStylists.editStylist')->with('stylist', $stylist);
+        return view('dashboards.estilista.editar')->with('stylist', $stylist);
     }
 
     /**
@@ -114,7 +114,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/handleStylists');
+        return redirect('/estilistas');
     }
 
     /**

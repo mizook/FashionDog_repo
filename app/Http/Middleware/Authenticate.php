@@ -17,13 +17,13 @@ class Authenticate extends Middleware
     {
 
         if (auth()->guard('administrator')->user()) {
-            return '/AdminDashboard';
+            return '/admin';
         }
         if (auth()->guard('stylist')->user()) {
-            return '/StylistDashboard';
+            return '/estilista';
         }
         if (auth()->guard('client')->user()) {
-            return '/ClientDashboard';
+            return '/cliente';
         }
         if (Auth::user() == null) {
             return '/';

@@ -46,7 +46,7 @@ class LoginController extends Controller
 
             auth()->guard('administrator')->login($user);
 
-            return redirect()->intended(url('/AdminDashboard'));
+            return redirect()->intended(url('/admin'));
         }
 
         if (auth()->guard('stylist')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
@@ -56,7 +56,7 @@ class LoginController extends Controller
 
             auth()->guard('stylist')->login($user);
 
-            return redirect()->intended(url('/StylistDashboard'));
+            return redirect()->intended(url('/estilista'));
         }
 
         if (auth()->guard('client')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
@@ -68,7 +68,7 @@ class LoginController extends Controller
 
             //dd($user);
 
-            return redirect()->intended(url('/ClientDashboard'));
+            return redirect()->intended(url('/cliente'));
         } else {
             return redirect()->back()->withError('El rut o la contraseña son incorrectos.');
         }
