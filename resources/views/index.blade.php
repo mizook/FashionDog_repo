@@ -125,7 +125,7 @@
                         <h5 class="modal-title" id="modal-title">Registrarse como cliente</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="/register" method="POST">
+                        <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="row mb-3">
                                 <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
@@ -261,7 +261,7 @@
 
 
                         <div class="card-body">
-                            <form method="POST" action="/login">
+                            <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                 <div class="row mb-3">

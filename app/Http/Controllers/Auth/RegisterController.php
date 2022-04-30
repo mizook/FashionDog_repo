@@ -27,7 +27,7 @@ class RegisterController extends Controller
         $client = Client::create($request->validated());
 
         auth()->guard('client')->login($client);
-        return redirect('/ClientDashboard')->with('success', 'Account created successfully');
+        return redirect('/cliente')->with('success', 'Account created successfully');
 
         //return redirect('/')->with('success', 'Account created successfully');
     }
