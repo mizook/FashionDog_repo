@@ -141,8 +141,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'loginRut' => [
+            'required' => 'Ingrese el rut',
+            'min' => 'Debe ingresar un rut de almenos 9 caracteres',
+            'exists' => 'No existe su rut '
         ],
     ],
 
