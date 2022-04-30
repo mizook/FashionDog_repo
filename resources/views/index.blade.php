@@ -53,10 +53,10 @@
                         </form>
                     @else
                         <!-- Boton para activar el formulario de Inicio de sesión-->
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal2"
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal"
                             style="border: 2px solid black">Iniciar sesión</button>
                         <!-- Boton para activar el formulario de registro-->
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal"
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal"
                             style="border: 2px solid black">Registrarse</a></button>
                     @endif
 
@@ -83,7 +83,7 @@
     </header>
 
     <!--Formulario de registro modal-->
-    <div class="modal hide fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal hide fade" id="registerModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 @if (old('rut'))
@@ -246,7 +246,7 @@
     </div>
 
     <!--Formulario de Inicio de sesión-->
-    <div class="modal fade" id="reg-modal2" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 @if (old('loginRut'))
@@ -335,12 +335,12 @@
     <script src="js/scripts.js"></script>
     @if (old('rut'))
         <script>
-            var myModal = new bootstrap.Modal(document.getElementById('reg-modal'), {})
+            var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {})
             myModal.toggle()
         </script>
     @elseif (old('loginRut'))
         <script>
-            var myModal = new bootstrap.Modal(document.getElementById('reg-modal2'), {})
+            var myModal = new bootstrap.Modal(document.getElementById('loginModal'), {})
             myModal.toggle()
         </script>
     @endif
