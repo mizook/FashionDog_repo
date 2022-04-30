@@ -9,6 +9,7 @@ use App\Http\Controllers\auth\RegisterAdminController;
 use App\Http\Controllers\Dashboard\AdminDashboardController;
 use App\Http\Controllers\Dashboard\StylistDashboardController;
 use App\Http\Controllers\Dashboard\ClientDashboardController;
+use App\Http\Controllers\ChangePasswordController;
 
 //Admin pages
 use App\Http\Controllers\StylistController;
@@ -81,3 +82,19 @@ Route::get('/admin/estilistas/editar/{rut}', [StylistController::class, 'edit'])
 
 Route::post('/admin/estilistas/editar/{rut}', [StylistController::class, 'update'])
     ->name('update.stylist');
+
+
+//Cliente
+Route::get('/cliente/editar', [ClientDashboardController::class, 'show_editar'])
+    ->name('edit.client');
+
+Route::post('/cliente/editar/{rut}', [ClientDashboardController::class, 'update'])
+    ->name('update.client');
+
+
+//Change password
+Route::get('/changepassword', [ChangePasswordController::class, 'show'])
+    ->name('edit.password');
+
+Route::post('/changepassword/{rut}', [ChangePasswordController::class, 'update'])
+    ->name('update.password');

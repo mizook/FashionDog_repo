@@ -28,7 +28,7 @@
     <div id="sidebar" style="background-color: white">
       <div class="p-2">
         <a href="#" class="navbar-brand text-center text-dark w-100 p-4">
-            Bienvenido {{Auth::user()->name}}
+            Bienvenido <br> {{Auth::user()->name}}
         </a>
       </div>
       <div id="sidebar-accordion" class="accordion" style="background-color: white" >
@@ -41,9 +41,8 @@
             class="list-group-item list-group-item-action text-dark"  style="background-color: white">
             <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
           </a>
-          <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-            class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
+          <a href="{{ route('edit.client') }}" class="list-group-item list-group-item-action text-dark" style="background-color: white">
+            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
           </a>
           <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
             <div class="d-flex flex-row text-center">
@@ -62,16 +61,19 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07XL">
                 <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                  </li>
+                  <li class="nav-item active"></li>
                 </ul>
-                <form action="{{route('logout')}}" method="POST">
+                <form action="{{route('logout')}}" method="POST" class="pr-3">
                     @csrf
                     <button type="submit" class="btn btn-danger" style="border: 2px solid black">
                         {{ __('Cerrar sesión') }}
                     </button>
                 </form>
-              </div>
+                @csrf
+                <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
+                    <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
+                </a>
+            </div>
 
         </div>
       </nav>

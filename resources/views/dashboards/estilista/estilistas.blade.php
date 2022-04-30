@@ -82,12 +82,16 @@
               <li class="nav-item active">
               </li>
             </ul>
-            <form action="{{route('logout')}}" method="POST">
+            <form action="{{route('logout')}}" method="POST" class="pr-3">
                 @csrf
                 <button type="submit" class="btn btn-danger" style="border: 2px solid black">
                     {{ __('Cerrar sesión') }}
                 </button>
             </form>
+            @csrf
+            <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
+                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
+            </a>
           </div>
         </div>
       </nav>
@@ -243,100 +247,6 @@
     </div>
 </div>
 
-
-<!--Editar datos del Estilista-->
-<div class="modal fade" id="editStylist" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Editar datos del Estilista</h5>
-            </div>
-            <div class="modal-body">
-                <form action="/handleStylist" method="POST">
-                    @csrf
-                    <div class="row mb-3">
-                        <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ $stylist->rut }}" required autocomplete="Ej: 12345678K" autofocus disabled>
-
-                            @error('rut')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="text" placeholder="Nombre..." class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $stylist->name }}" required autocomplete="Nombre" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="last_name" type="text" placeholder="Apellido..." class="form-control @error('last_name') is-invalid @enderror" name="last_name" required autocomplete="last_name">
-
-                            @error('last_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" placeholder="ejemplo@ejemplo.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <label for="Telefono" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="Telefono" type="Telefono" placeholder="Ej: 987654321" class="form-control @error('Telefono') is-invalid @enderror" name="phone" required autocomplete="Telefono">
-
-                            @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary" >Editar</button>
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

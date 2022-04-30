@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Editar datos de estilista</title>
+  <title>Editar datos de cliente</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -24,86 +24,65 @@
 </head>
 
 <body>
-    <div class="d-flex">
-        <div id="sidebar" style="background-color: white" >
+    <div class="d-flex" >
+        <div id="sidebar" style="background-color: white">
           <div class="p-2">
-            <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                ¡Bienvenido! <br> RUT: {{ Auth::user()->rut }}
+            <a href="{{ route('client.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+                Bienvenido <br> {{Auth::user()->name}}
             </a>
           </div>
           <div id="sidebar-accordion" class="accordion" style="background-color: white" >
-            <div class="list-group">
-
-              <a href="{{ route('admin.stylists') }}" class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilistas
+            <div class="list-group" >
+              <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
+                class="list-group-item list-group-item-action  text-dark" style="background-color: white">
+                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
               </a>
-
               <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
                 class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
+                <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
               </a>
-              <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-                  Habilitar
-                </a>
-                <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-                  Desabilitar
-                </a>
-              </div>
-
-              <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
-              </a>
-
-              <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
+              <a href="{{ route('edit.client') }}" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
+                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
               </a>
               <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
                 <div class="d-flex flex-row text-center">
                   <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                    Cambiar contraseña
+                    Cambio Contraceña
                   </a>
-                  <a href="#" class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-                    Item 2
-                  </a>
+
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-        <div class="content w-100"  style="background-color: #8DD7BF">
+        <div class="content w-100" style="background-color: #8DD7BF">
           <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
             <div class="container-xl">
 
-              <div class="collapse navbar-collapse" id="navbarsExample07XL">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                  </li>
-                </ul>
-                <form action="{{route('logout')}}" method="POST" class="pr-3">
-                    @csrf
-                    <button type="submit" class="btn btn-danger" style="border: 2px solid black">
-                        {{ __('Cerrar sesión') }}
-                    </button>
-                </form>
-                @csrf
-                <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
-                    <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
-                </a>
-              </div>
+                <div class="collapse navbar-collapse" id="navbarsExample07XL">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                      </li>
+                    </ul>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                            {{ __('Cerrar sesión') }}
+                        </button>
+                    </form>
+                  </div>
+
             </div>
           </nav>
-
-      <section class="p-3">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Editar Datos del Estilista</h2>
+          <section class="p-3">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>Editar datos de cuenta</h2>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </section>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -112,7 +91,7 @@
                         <div class="card-header">{{'Editar datos' }}</div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('update.stylist', ['rut'=>$stylist->rut]) }}">
+                            <form method="POST" action="{{ route('update.client', ['rut'=>Auth::user()->rut]) }}">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -120,7 +99,7 @@
 
                                     <div class="col-md-6">
                                         <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror"
-                                            name="rut" required autocomplete="rut" value={{$stylist->rut}} autofocus disabled>
+                                            name="rut" required autocomplete="rut" value={{Auth::user()->rut}} autofocus disabled>
 
                                         @error('rut')
                                             <span class="invalid-feedback" role="alert">
@@ -135,7 +114,7 @@
 
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                            name="name" required autocomplete="name" value={{$stylist->name}} autofocus>
+                                            name="name" required autocomplete="name" value={{Auth::user()->name}} autofocus>
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -152,24 +131,9 @@
 
                                     <div class="col-md-6">
                                         <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
-                                            name="last_name" value="{{ $stylist->last_name }}" required autocomplete="last_name" autofocus>
+                                            name="last_name" value="{{ Auth::user()->last_name }}" required autocomplete="last_name" autofocus>
 
                                         @error('last_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
-                                            name="phone" value="{{ $stylist->phone }}" required autocomplete="phone" autofocus>
-
-                                        @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -182,7 +146,7 @@
 
                                     <div class="col-md-6">
                                         <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ $stylist->email }}" required autocomplete="email" autofocus>
+                                            name="email" value="{{ Auth::user()->email }}" required autocomplete="email" autofocus>
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -191,6 +155,37 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                                            name="address" value="{{ Auth::user()->address }}" required autocomplete="address" autofocus>
+
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                                            name="phone" value="{{ Auth::user()->phone }}" required autocomplete="phone" autofocus>
+
+                                        @error('phone')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
