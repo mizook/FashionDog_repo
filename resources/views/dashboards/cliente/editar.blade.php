@@ -47,7 +47,7 @@
               <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
                 <div class="d-flex flex-row text-center">
                   <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                    Cambio Contraceña
+                    Cambio Contraseña
                   </a>
 
                 </div>

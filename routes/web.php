@@ -91,6 +91,11 @@ Route::get('/cliente/editar', [ClientDashboardController::class, 'show_editar'])
 Route::post('/cliente/editar/{rut}', [ClientDashboardController::class, 'update'])
     ->name('update.client');
 
+//Estilista
+
+Route::post('/handleStylists',[StylistController::class, 'store']);
+Route::post('/admin/editStylistStatus/{rut}',[StylistController::class,'changeStatus']);
+
 
 //Change password
 Route::get('/changepassword', [ChangePasswordController::class, 'show'])

@@ -73,7 +73,7 @@ class ChangePasswordController extends Controller
             $logC = new LoginController();
             $logC->logout($request);
 
-            return redirect()->intended(url('/cliente'));
+            return redirect()->intended(url('/'))->with('message','Se actualizo su contraseña');
         } else {
             return redirect()->intended(url('/cliente'));
         }

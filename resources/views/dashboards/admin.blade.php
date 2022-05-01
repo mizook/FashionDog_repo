@@ -61,6 +61,17 @@
             class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
           </a>
+                              <!---Alerta de exito o fracaso--->
+                              @if (session()->has('message'))
+                              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>{{ session('message') }}</strong>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                          @endif
+                          <!---Alerta de exito o fracaso--->
+
           <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
             <div class="d-flex flex-row text-center">
               <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">

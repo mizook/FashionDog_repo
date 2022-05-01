@@ -139,8 +139,9 @@
                     <td>{{$stylist->phone}}</td>
                     <td>{{$stylist->status}}</td>
                     <td>
-                        @csrf
-                        <button type="button" class="btn btn-danger">Desactivar</button>
+                        <form method="POST" action="/admin/editStylistStatus/{{$stylist->rut}}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Desactivar</button></form>
                         <a href="{{ route('edit.stylist', ['rut'=>$stylist->rut]) }}" class="btn btn-success">Cambiar Datos</a>
                     </td>
                 </tr>

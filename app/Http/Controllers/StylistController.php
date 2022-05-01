@@ -44,7 +44,7 @@ class StylistController extends Controller
     {
         //dd($request);
         $request->validate([
-            'rut' => ['required', 'unique:clients,rut', new RutValidator],
+            'rut' => ['required', 'unique:stylists,rut'],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
             'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
@@ -62,7 +62,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/estilistas');
+        return redirect('/admin');
     }
 
     /**
@@ -114,7 +114,28 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/estilistas');
+        return redirect('/admin');
+    }
+
+    public function changeStatus(Request $request){
+
+
+        $stylist = Stylist::where('rut', $request->rut)->FirstOrFail();
+
+        $message="";
+
+        if($stylist->status == 1){
+            $stylist->status = 0;
+            $message="El usuario se ha desactivado con exito";
+        }else{
+            $stylist->status = 1;
+            $message="El usuario se ha activado con exito";
+        }
+        $stylist->save();
+
+
+        return redirect('/admin')->with('message',$message);
+
     }
 
     /**

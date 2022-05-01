@@ -50,6 +50,7 @@
                             <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#loginModal" style="border: 2px solid black">Iniciar sesión</button>
                             <!-- Boton para activar el formulario de Registro-->
                             <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#registerModal" style="border: 2px solid black" >Registrarse</a></button>
+
                             @endif
 
                     </div>
