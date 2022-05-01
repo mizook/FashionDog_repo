@@ -46,8 +46,10 @@
                                 </button>
                             </form>
                             @else
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal2" style="border: 2px solid black">Iniciar sesión</button>
-                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#reg-modal" style="border: 2px solid black" >Registrarse</a></button>
+                            <!-- Boton para activar el formulario de Inicio de sesión-->
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#loginModal" style="border: 2px solid black">Iniciar sesión</button>
+                            <!-- Boton para activar el formulario de Registro-->
+                            <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#registerModal" style="border: 2px solid black" >Registrarse</a></button>
                             @endif
 
                     </div>
@@ -116,9 +118,8 @@
     </div>
 </section>
 
-<!-- Boton para activar el formulario de registro-->
         <!--Formulario de registro modal-->
-        <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -248,10 +249,8 @@
             </div>
         </div>
 
-        <!-- Boton para activar el formulario de Inicio de secion-->
-
-        <!--Formulario de registro modal 2 -->
-        <div class="modal fade" id="reg-modal2" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <!--Formulario de inicio de sesión modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -268,7 +267,7 @@
                                     <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="rut" autofocus>
+                                        <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="loginRut" value="{{ old('loginRut') }}" required autocomplete="rut" autofocus>
 
                                         @error('rut')
                                             <span class="invalid-feedback" role="alert">
@@ -317,5 +316,16 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        @if (old('rut'))
+            <script>
+                var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {})
+                myModal.toggle()
+            </script>
+        @elseif (old('loginRut'))
+            <script>
+                var myModal = new bootstrap.Modal(document.getElementById('loginModal'), {})
+                myModal.toggle()
+            </script>
+        @endif
     </body>
 </html>
