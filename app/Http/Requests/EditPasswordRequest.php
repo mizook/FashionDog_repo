@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class EditPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,24 +24,19 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'rutLogin' => ['required'],
-            'password' => ['required']
+            'password' => ['required', 'min:10', 'max:15'],
+            'confirm_password' => ['required', 'same:password'],
         ];
-    }
-
-    public function getCredentials()
-    {
-        $rut = $this->get('rut');
-
-        return $this->only('rut', 'password');
     }
 
     public function messages()
     {
         return [
-            'rutLogin.required' => 'El RUT es obligatorio.',
             'password.required'  => 'La contraseña es obligatoria',
-
+            'password.min'  => 'La contraseña debe tener mínimo 10 carácteres.',
+            'password.max'  => 'La contraseña debe tener máximo 15 carácteres.',
+            'confirm_password.required'  => 'La contraseña es obligatoria.',
+            'confirm_password.same'  => 'Las contraseñas no coinciden.',
         ];
     }
 }

@@ -90,64 +90,11 @@
 
                 @endif
                 <!---Alerta de exito o fracaso--->
-                <h1 class="masthead-heading mb-0">Fashion Dog</h1>
-                <h2 class="masthead-subheading mb-0">Un perro a la moda</h2>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Más</a>
+                <h1 class="masthead-heading mb-0 ml-2">Fashion Dog</h1>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
             </div>
         </div>
     </header>
-
-    <!-- Content section 1-->
-    <section id="scroll">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg"
-                            alt="..." /></div>
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                        <h2 class="display-4">Para los amantes de los perros...</h2>
-                        <p>Si quieres que tu perro pase un buen momento esta es tu solucion</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Content section 2-->
-    <section>
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/02.jpg"
-                            alt="..." /></div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="p-5">
-                        <h2 class="display-4">Entregamos el mejor cuidado!</h2>
-                        <p>Con los mejores profesionales al alcance de tu mano.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Content section 3-->
-    <section>
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg"
-                            alt="..." /></div>
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                        <h2 class="display-4">Experiencia pensada para el disfrute de tu mascota</h2>
-                        <p>Que tu mascota no se estrese mas , aqui lo trataremos como un verdadero rey.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!--Formulario de registro modal-->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -160,7 +107,7 @@
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
-                            <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
+                            <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
 
                             <div class="col-md-6">
                                 <input id="rut" type="text" placeholder="Ej: 123456789"
@@ -199,7 +146,7 @@
                             <div class="col-md-6">
                                 <input id="last name" type="last name" placeholder="Apellido..."
                                     class="form-control @error('last name') is-invalid @enderror" name="last_name"
-                                    required autocomplete="last name">
+                                    value="{{ old('last_name') }}" required autocomplete="last name">
 
                                 @error('last_name')
                                     <span class="invalid-feedback" role="alert">
@@ -233,7 +180,7 @@
                             <div class="col-md-6">
                                 <input id="Direccion" type="Direccion" placeholder="Avenida ejemplo #123"
                                     class="form-control @error('Direccion') is-invalid @enderror" name="address"
-                                    required autocomplete="Direccion">
+                                    value="{{ old('address') }}" required autocomplete="Direccion">
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -251,7 +198,7 @@
                             <div class="col-md-6">
                                 <input id="Telefono" type="Telefono" placeholder="Ej: 987654321"
                                     class="form-control @error('Telefono') is-invalid @enderror" name="phone" required
-                                    autocomplete="Telefono">
+                                    value="{{ old('phone') }}" autocomplete="Telefono">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -280,11 +227,11 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm"
+                            <label for="password_confirmation"
                                 class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" placeholder="Confirmar contraseña..."
+                                <input id="password_confirmation" type="password" placeholder="Confirmar contraseña..."
                                     class="form-control" name="password_confirmation" @error('password_confirmation') is-invalid @enderror required
                                     autocomplete="new-password">
                                     @error('password_confirmation')
@@ -321,15 +268,15 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="rut"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
+                                <label for="rutLogin"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="rut" type="text" placeholder="Ej: 123456789"
-                                        class="form-control @error('rut') is-invalid @enderror" name="rut"
-                                        value="{{ old('rut') }}" required autocomplete="rut" autofocus>
+                                    <input id="rutLogin" type="text" placeholder="Ej: 123456789"
+                                        class="form-control @error('rutLogin') is-invalid @enderror" name="rutLogin"
+                                        value="{{ old('rutLogin') }}" required autocomplete="rutLogin" autofocus>
 
-                                    @error('rut')
+                                    @error('rutLogin')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

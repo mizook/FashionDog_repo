@@ -8,7 +8,7 @@ use App\Rules\RutValidator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditStylistRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\RegisterStylistRequest;
 
 class StylistController extends Controller
 {
@@ -42,10 +42,9 @@ class StylistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterStylistRequest $request)
     {
 
-        dd($request);
         //dd($request);
         // $request->validate([
         //     'rut' => ['required', 'unique:stylists,rut'],
@@ -55,20 +54,23 @@ class StylistController extends Controller
         //     'phone' => ['required', 'min:9', 'max:15'],
         // ]);
 
+        //dd($request);
         $request->validated();
+
+        //$stylist = Stylist::create($request->validated());
 
         $stylist = Stylist::create([
             'rut' => $request->rut,
-            'password' => bcrypt($request->rut),
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'password' => $request->rut,
         ]);
 
         $stylist->save();
 
-        return redirect('/admin/estilistas')->with('message','El estilista fue creado exitosamente');
+        return redirect('/admin/estilistas')->with('message', 'El estilista fue creado exitosamente');
     }
 
     /**
@@ -123,27 +125,25 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/admin/estilistas')->with('message','El estilista fue registrado exitosamente');
+        return redirect('/admin/estilistas')->with('message', 'El estilista fue registrado exitosamente');
     }
 
-    public function changeStatus(Request $request){
+    public function changeStatus(Request $request)
+    {
 
         $message = "";
         $stylist = Stylist::where('rut', $request->rut)->FirstOrFail();
 
-        if($stylist->status == 1){
+        if ($stylist->status == 1) {
             $stylist->status = 0;
-            $message= "El usuario fue desactivado exitosamente";
-
-        }else{
+            $message = "El usuario fue desactivado exitosamente";
+        } else {
             $stylist->status = 1;
-            $message= "El usuario fue activado exitosamente";
-
+            $message = "El usuario fue activado exitosamente";
         }
 
         $stylist->save();
-        return redirect('/admin/estilistas')->with('message',$message);
-
+        return redirect('/admin/estilistas')->with('message', $message);
     }
 
     /**

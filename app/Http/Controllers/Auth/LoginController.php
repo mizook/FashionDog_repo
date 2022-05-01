@@ -32,12 +32,13 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $this->validate($request, [
-            'rut' => 'required',
-            'password' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'rut' => 'required',
+        //     'password' => 'required',
+        // ]);
+        $request->validated();
 
-        if (auth()->guard('administrator')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
+        if (auth()->guard('administrator')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
 
             $user = auth()->guard('administrator')->user();
 
@@ -50,7 +51,7 @@ class LoginController extends Controller
             return redirect()->intended(url('/admin'));
         }
 
-        if (auth()->guard('stylist')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
+        if (auth()->guard('stylist')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
 
             $user = auth()->guard('stylist')->user();
             $request->session()->regenerate();
@@ -60,7 +61,7 @@ class LoginController extends Controller
             return redirect()->intended(url('/estilista'));
         }
 
-        if (auth()->guard('client')->attempt(['rut' => $request->rut, 'password' => $request->password])) {
+        if (auth()->guard('client')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
 
             $user = auth()->guard('client')->user();
             $request->session()->regenerate();
@@ -70,7 +71,7 @@ class LoginController extends Controller
 
             return redirect()->intended(url('/cliente'));
         } else {
-            return redirect()->back()->with('error','Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.');
+            return redirect()->back()->with('error', 'Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.');
         }
     }
 
@@ -86,7 +87,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message','Sesión finalizada con exito');
+        return redirect('/')->with('message', 'Sesión finalizada con exito');
     }
 
     public function authenticated(Request $request, $user)

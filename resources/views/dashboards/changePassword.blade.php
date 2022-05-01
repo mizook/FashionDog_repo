@@ -95,7 +95,12 @@
                                     <label for="confirm_password" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="confirm_password" type="password" placeholder="Confirmar contraseña..." class="form-control" name="confirm_password" required autocomplete="new-password">
+                                        <input id="confirm_password" type="password" placeholder="Confirmar contraseña..." class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" required autocomplete="new-password">
+                                        @error('confirm_password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 

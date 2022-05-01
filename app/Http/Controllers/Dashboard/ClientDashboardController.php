@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\EditClientRequest;
 
 class ClientDashboardController extends Controller
 {
@@ -19,19 +20,22 @@ class ClientDashboardController extends Controller
         return view('dashboards.client');
     }
 
-    public function update(Request $request, $rut)
+    public function update(EditClientRequest $request, $rut)
     {
 
-        $request->validate([
-            'name' => ['required', 'min:2', 'max:26'],
-            'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'email'],
-            'address' => ['required', 'max:30', 'unique:clients,email'],
-            'phone' => ['required', 'min:9', 'max:15'],
-        ]);
+        // $request->validate([
+        //     'name' => ['required', 'min:2', 'max:26'],
+        //     'last_name' => ['required', 'min:2', 'max:26'],
+        //     'email' => ['required', 'max:320', 'email'],
+        //     'address' => ['required', 'max:30'],
+        //     'phone' => ['required', 'min:9', 'max:15'],
+        // ]);
+
+        //dd($request->rut);
+
+        $request->validated();
 
         $client = Client::where('rut', $rut)->FirstOrFail();
-
 
         $client->name = $request->name;
         $client->last_name = $request->last_name;
@@ -41,7 +45,7 @@ class ClientDashboardController extends Controller
 
         $client->save();
 
-        return redirect('/cliente')->with('message','Datos actualizados satisfactoriamente');
+        return redirect('/cliente')->with('message', 'Datos actualizados satisfactoriamente');
     }
     public function show_editar()
     {

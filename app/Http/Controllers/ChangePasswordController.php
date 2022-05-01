@@ -7,6 +7,7 @@ use App\Models\Administrator;
 use App\Models\Stylist;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditPasswordRequest;
 
 class ChangePasswordController extends Controller
 {
@@ -19,14 +20,16 @@ class ChangePasswordController extends Controller
     {
         return view('dashboards.changePassword');
     }
-    public function update(Request $request, $rut)
+    public function update(EditPasswordRequest $request, $rut)
     {
-        $request->validate([
-            'password' => ['required', 'min:10', 'max:15'],
-            'confirm_password' => ['required', 'same:password'],
-        ]);
+        // $request->validate([
+        //     'password' => ['required', 'min:10', 'max:15'],
+        //     'confirm_password' => ['required', 'same:password'],
+        // ]);
 
-        //dd($request->confirm_password);
+        //dd($rut);
+        $request->validated();
+
 
         if (auth()->guard('administrator')->user()) {
 
