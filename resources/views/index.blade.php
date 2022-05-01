@@ -62,6 +62,14 @@
         <header class="masthead text-center text-white" style="background-color:#8DD7BF" >
             <div class="masthead-content"  >
                 <div class="container px-5">
+                                                            <!---Alerta de exito o fracaso--->
+                                                            @if (session()->has('message'))
+                                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                                <strong>{{ session('message') }}</strong>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        @endif
+                                                        <!---Alerta de exito o fracaso--->
                     <h1 class="masthead-heading mb-0">Fashion Dog</h1>
                     <h2 class="masthead-subheading mb-0">Un perro a la moda</h2>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5"  href="#scroll">Más</a>
@@ -267,7 +275,7 @@
                                     <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('Rut') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="loginRut" value="{{ old('loginRut') }}" required autocomplete="rut" autofocus>
+                                        <input id="rut" type="text" placeholder="Ej: 123456789" class="form-control @error('rut') is-invalid @enderror" name="rut" value="{{ old('rut') }}" required autocomplete="rut" autofocus>
 
                                         @error('rut')
                                             <span class="invalid-feedback" role="alert">
@@ -321,7 +329,7 @@
                 var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {})
                 myModal.toggle()
             </script>
-        @elseif (old('loginRut'))
+        @elseif (!old('email'))
             <script>
                 var myModal = new bootstrap.Modal(document.getElementById('loginModal'), {})
                 myModal.toggle()

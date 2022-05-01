@@ -12,6 +12,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use App\Rules\RutValidator;
 
 class LoginController extends Controller
 {
@@ -66,7 +67,6 @@ class LoginController extends Controller
 
             auth()->guard('client')->login($user);
 
-            //dd($user);
 
             return redirect()->intended(url('/cliente'));
         } else {
@@ -86,7 +86,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('message','Sesión finalizada con exito');
     }
 
     public function authenticated(Request $request, $user)

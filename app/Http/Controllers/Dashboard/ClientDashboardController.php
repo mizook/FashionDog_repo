@@ -41,7 +41,7 @@ class ClientDashboardController extends Controller
 
         $client->save();
 
-        return redirect('/cliente');
+        return redirect('/cliente')->with('message','Datos actualizados satisfactoriamente');
     }
     public function show_editar()
     {
