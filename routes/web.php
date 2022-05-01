@@ -83,6 +83,8 @@ Route::get('/admin/estilistas/editar/{rut}', [StylistController::class, 'edit'])
 Route::post('/admin/estilistas/editar/{rut}', [StylistController::class, 'update'])
     ->name('update.stylist');
 
+Route::post('/admin/estilistas/cambiarEstado/{rut}', [StylistController::class, 'changeStatus'])
+    ->name('changeStatus.stylist');
 
 //Clientes
 Route::get('/cliente/editar', [ClientDashboardController::class, 'show_editar'])

@@ -70,7 +70,7 @@ class LoginController extends Controller
 
             return redirect()->intended(url('/cliente'));
         } else {
-            return redirect()->back()->withError('El rut o la contraseña son incorrectos.');
+            return redirect()->back()->with('error','Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.');
         }
     }
 

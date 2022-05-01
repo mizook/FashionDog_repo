@@ -35,4 +35,13 @@ class LoginRequest extends FormRequest
 
         return $this->only('rut', 'password');
     }
+
+    public function messages()
+    {
+        return [
+            'rut.required' => 'El RUT es obligatorio.',
+            'password.required'  => 'La contraseña es obligatoria',
+
+        ];
+    }
 }

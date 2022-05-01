@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Rules\RutValidator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\EditStylistRequest;
+use App\Http\Requests\RegisterRequest;
 
 class StylistController extends Controller
 {
@@ -42,14 +44,18 @@ class StylistController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
         //dd($request);
-        $request->validate([
-            'rut' => ['required', 'unique:clients,rut', new RutValidator],
-            'name' => ['required', 'min:2', 'max:26'],
-            'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
-            'phone' => ['required', 'min:9', 'max:15'],
-        ]);
+        // $request->validate([
+        //     'rut' => ['required', 'unique:stylists,rut'],
+        //     'name' => ['required', 'min:2', 'max:26'],
+        //     'last_name' => ['required', 'min:2', 'max:26'],
+        //     'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
+        //     'phone' => ['required', 'min:9', 'max:15'],
+        // ]);
+
+        $request->validated();
 
         $stylist = Stylist::create([
             'rut' => $request->rut,
@@ -62,7 +68,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/estilistas');
+        return redirect('/admin/estilistas')->with('message','El estilista fue creado exitosamente');
     }
 
     /**
@@ -96,14 +102,17 @@ class StylistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $rut)
+    public function update(EditStylistRequest $request, $rut)
     {
-        $request->validate([
-            'name' => ['required', 'min:2', 'max:26'],
-            'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
-            'phone' => ['required', 'min:9', 'max:15'],
-        ]);
+        // $request->validate([
+        //     'name' => ['required', 'min:2', 'max:26'],
+        //     'last_name' => ['required', 'min:2', 'max:26'],
+        //     'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
+        //     'phone' => ['required', 'min:9', 'max:15'],
+        // ]);
+
+        $request->validated();
+
 
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
 
@@ -114,7 +123,27 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/estilistas');
+        return redirect('/admin/estilistas')->with('message','El estilista fue registrado exitosamente');
+    }
+
+    public function changeStatus(Request $request){
+
+        $message = "";
+        $stylist = Stylist::where('rut', $request->rut)->FirstOrFail();
+
+        if($stylist->status == 1){
+            $stylist->status = 0;
+            $message= "El usuario fue desactivado exitosamente";
+
+        }else{
+            $stylist->status = 1;
+            $message= "El usuario fue activado exitosamente";
+
+        }
+
+        $stylist->save();
+        return redirect('/admin/estilistas')->with('message',$message);
+
     }
 
     /**
