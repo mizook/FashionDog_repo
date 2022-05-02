@@ -32,7 +32,7 @@
             </div>
             <div class="d-inline-block pt-5">
                 <a href="{{ route('stylist.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                    Bienvenido<br> {{ Auth::user()->rut }}
+                    Bienvenido<br> {{ Auth::user()->name }}
                 </a>
             </div>
         </div>

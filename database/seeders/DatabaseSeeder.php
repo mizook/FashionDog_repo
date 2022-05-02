@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $admin = \App\Models\Administrator::create([
-            'rut' => "123456789",
-            'password' => "1234567890"
+            'rut' => "17977139K",
+            'password' => "fashionDog"
         ]);
 
         $admin->save();

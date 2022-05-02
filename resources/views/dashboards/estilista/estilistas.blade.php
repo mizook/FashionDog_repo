@@ -62,10 +62,20 @@
 
                     <!---Alerta de exito o fracaso--->
                     @if (session()->has('message'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>{{ session('message') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('message') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    @elseif (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
                     <!---Alerta de exito o fracaso--->
 
@@ -113,7 +123,7 @@
 
 
 
-            <table class="table table-bordered table-dark">
+            <table class="table table-bordered table-dark" style="border: 4px solid black">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -128,9 +138,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{ $numero = 0 }}
+                    @php $numero = 0 @endphp
                     @foreach ($stylists as $stylist)
-                        {{ $numero++ }}
+                            @php $numero++ @endphp
                         <tr>
                             <th scope="row">{{ $numero }}</th>
                             <td>{{ $stylist->rut }}</td>
@@ -155,23 +165,23 @@
                                                 method="POST">
                                                 @csrf
                                                 @if ($stylist->status == 1)
-                                                    <button type="submit" class="btn btn-danger btn-block">Desactivar</button>
+                                                    <button type="submit" class="btn btn-danger btn-block" style="border: 2px solid black">Desactivar</button>
                                                 @elseif($stylist->status == 0)
-                                                    <button type="submit" class="btn btn-primary btn-block">Activar</button>
+                                                    <button type="submit" class="btn btn-primary btn-block" style="border: 2px solid black">Activar</button>
                                                 @endif
 
                                             </form>
                                         </div>
                                         <div class="col">
                                             <a href="{{ route('edit.stylist', ['rut' => $stylist->rut]) }}"
-                                                class="btn btn-success">Cambiar Datos</a>
+                                                class="btn btn-success" style="border: 2px solid black">Cambiar Datos</a>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
-                    {{ $numero = 0 }}
+                    @php $numero = 0 @endphp
 
                 </tbody>
             </table>
