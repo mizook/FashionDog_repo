@@ -23,13 +23,25 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        $request->validated();
 
-        //dd($request);
-        $client = Client::create($request->validated());
+        $rutCorrecto = preg_replace('/[\.\-]/i', '', $request->rut);
+        $request->rut = $rutCorrecto;
+
+        $client = Client::create([
+            'rut' => $rutCorrecto,
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'password' => $request->password,
+        ]);
+
+        $client->save();
 
         auth()->guard('client')->login($client);
-        return redirect('/cliente')->with('success', 'Account created successfully');
 
-        //return redirect('/')->with('success', 'Account created successfully');
+        return redirect('/cliente')->with('success', 'Account created successfully');
     }
 }

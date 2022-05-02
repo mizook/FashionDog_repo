@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => ['required', 'unique:clients,rut',new RutValidator('rut')],
+            'rut' => ['required', 'unique:clients,rut', 'cl_rut'],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
             'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
@@ -41,6 +41,7 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
+            'rut.cl_rut' => 'RUT inválido.',
             'rut.string' => 'RUT inválido.',
             'rut.required' => 'El RUT es obligatorio.',
             'rut.unique' => 'El RUT ya existe en el sistema.',

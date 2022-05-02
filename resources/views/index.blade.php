@@ -192,13 +192,13 @@
 
 
                         <div class="row mb-3">
-                            <label for="Telefono"
+                            <label for="phone"
                                 class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Telefono" type="Telefono" placeholder="Ej: 987654321"
-                                    class="form-control @error('Telefono') is-invalid @enderror" name="phone" required
-                                    value="{{ old('phone') }}" autocomplete="Telefono">
+                                <input id="phone" type="phone" placeholder="Ej: 987654321"
+                                    class="form-control @error('phone') is-invalid @enderror" name="phone" required
+                                    value="{{ old('phone') }}" autocomplete="phone">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
