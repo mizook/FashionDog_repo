@@ -27,44 +27,53 @@
 <body>
     <div class="d-flex">
         <div id="sidebar" style="background-color: white">
-            <div class="p-2">
-                <a href="#" class="navbar-brand text-center text-dark w-100 p-4">
-                    Bienvenido <br> {{ Auth::user()->name }}
-                </a>
+            <div id="topSideBar" class="p-2">
+                <div class="d-inline-block">
+                    <img class="pb-5" src="assets/img/FashionDogLogo.png" alt="" style="width: 100px">
+                </div>
+                <div class="d-inline-block pt-5">
+                    <a href="#" class="navbar-brand text-center text-dark w-100 p-4">
+                        Bienvenido <br> {{ Auth::user()->name }}
+                    </a>
+                </div>
             </div>
             <div id="sidebar-accordion" class="accordion" style="background-color: white">
                 <div class="list-group">
-                    <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
+
+                    <a href="{{ route('client.dashboard') }}"
                         class="list-group-item list-group-item-action  text-dark" style="background-color: white">
                         <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
                     </a>
-                    <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
+
+                    <a href="{{ route('client.dashboard') }}"
                         class="list-group-item list-group-item-action text-dark" style="background-color: white">
                         <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
                     </a>
-                    <a href="{{ route('edit.client') }}" class="list-group-item list-group-item-action text-dark"
-                        style="background-color: white">
+
+                    <a href="{{ route('edit.client') }}"
+                        class="list-group-item list-group-item-action text-dark" style="background-color: white">
                         <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
                     </a>
-                    <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
-                        <div class="d-flex flex-row text-center">
-                            <a href="#" class="list-group-item list-group-item-action  text-dark"
-                                style="background-color: white">
-                                Cambio Contraseña
-                            </a>
 
-                        </div>
-                    </div>
                     <!---Alerta de exito o fracaso--->
                     @if (session()->has('message'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>{{ session('message') }}</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('message') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    @elseif (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
                     <!---Alerta de exito o fracaso--->
+
                 </div>
             </div>
         </div>
@@ -78,13 +87,10 @@
                         </ul>
                         <form action="{{ route('logout') }}" method="POST" class="pr-3">
                             @csrf
-                            <button type="submit" class="btn btn-danger" style="border: 2px solid black">
-                                {{ __('Cerrar sesión') }}
-                            </button>
+                            <button type="submit" class="btn btn-danger" style="border: 2px solid black"> {{ __('Cerrar sesión') }}</button>
                         </form>
                         @csrf
-                        <a href="{{ route('edit.password') }}" class="btn btn-warning"
-                            style="border: 2px solid black">
+                        <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
                             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
                         </a>
                     </div>
@@ -94,25 +100,27 @@
             <section class="p-3">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h2>Fashion Dog</h2>
+                        <div class="col-md-12 pt-4">
+                            <h2>Panel de Cliente</h2>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
 
 </body>
 

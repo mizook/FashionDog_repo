@@ -26,19 +26,26 @@
 <body>
     <div class="d-flex" >
         <div id="sidebar" style="background-color: white">
-          <div class="p-2">
-            <a href="{{ route('client.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                Editar contraseña <br> Cuenta RUT: {{Auth::user()->rut}}
-            </a>
-          </div>
+            <div id="topSideBar" class="p-2">
+                <div class="d-inline-block">
+                    <img class="pb-5" src="assets/img/FashionDogLogo.png" alt="" style="width: 100px">
+                </div>
+                <div class="d-inline-block pt-5">
+                    <a href="{{ route('client.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+                        Cuenta RUT <br> {{ Auth::user()->rut }}
+                    </a>
+                </div>
+            </div>
+
           <div id="sidebar-accordion" class="accordion" style="background-color: white" >
             <div class="list-group" >
-              <a href="{{ route('client.dashboard') }}" class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Inicio
-              </a>
+                <a href="{{ route('client.dashboard') }}" class="list-group-item list-group-item-action  text-dark" style="background-color: white">
+                    <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Inicio
+                </a>
             </div>
           </div>
         </div>
+
         <div class="content w-100" style="background-color: #8DD7BF">
           <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
             <div class="container-xl">

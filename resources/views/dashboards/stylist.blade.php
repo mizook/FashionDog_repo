@@ -26,54 +26,29 @@
 <body>
   <div class="d-flex" >
     <div id="sidebar" style="background-color: white">
-      <div class="p-2">
-        <a href="#" class="navbar-brand text-center text-dark w-100 p-4">
-            ¡Bienvenido! <br> {{Auth::user()->name}}
-        </a>
-      </div>
-      <div id="sidebar-accordion" class="accordion" style="background-color: white" >
+        <div id="topSideBar" class="p-2">
+            <div class="d-inline-block">
+                <img class="pb-5" src="assets/img/FashionDogLogo.png" alt="" style="width: 100px">
+            </div>
+            <div class="d-inline-block pt-5">
+                <a href="{{ route('stylist.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+                    Bienvenido<br> {{ Auth::user()->rut }}
+                </a>
+            </div>
+        </div>
+        <div id="sidebar-accordion" class="accordion" style="background-color: white" >
         <div class="list-group" >
-          <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
+
+        <a href="{{ route('stylist.dashboard') }}"
             class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Editar datos
-          </a>
-          <div id="dashboard-items" class="collapse" data-parent="#sidebar-accordion">
-            <a href="#" class="list-group-item list-group-item-action  text-dark pl-5"  style="background-color: white">
-              Agregar
-            </a>
-            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-              Editar
-            </a>
-          </div>
-          <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
-            class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-            <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuario
-          </a>
-          <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-              Habilitar
-            </a>
-            <a href="#" class="list-group-item list-group-item-action text-dark pl-5"  style="background-color: white">
-              Desabilitar
-            </a>
-          </div>
-          <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-            <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
-          </a>
-          <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+            <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Solicitudes
+        </a>
+
+          <a href="{{ route('stylist.dashboard') }}"
             class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
           </a>
-          <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
-            <div class="d-flex flex-row text-center">
-              <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                Item 1
-              </a>
-              <a href="#" class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-                Item 2
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -104,7 +79,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h2>Fashion Dog</h2>
+                <h2>Panel Estilista</h2>
               </div>
             </div>
           </div>

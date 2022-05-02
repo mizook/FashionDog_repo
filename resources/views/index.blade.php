@@ -23,17 +23,20 @@
 
 
 <body id="page-top" style=" background-color:#8DD7BF">
-    <!-- Navigation-->
+    <!--Barra de navegación-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" style="background-color: white">
+
+        <!--Logo y texto-->
         <div class="container ">
             <img src="assets/img/FashionDogLogo.png" alt="" style="width: 50px">
             <a style="color: black" class="navbar-brand" href="#page-top">Bienvenido a Fashion dog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
-
+                    class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
 
+            <!--Opciones de la barra de navegación-->
                 <div class="navbar-nav ms-auto">
 
                     @if (auth()->guard('administrator')->user() ||
@@ -61,40 +64,40 @@
                     @endif
 
                 </div>
+
             </div>
         </div>
-
     </nav>
 
     <!-- Header-->
     <header class="masthead text-center text-white" style="background-color:#8DD7BF">
+
+        <!---Alerta de exito o fracaso--->
+        @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('message') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        @elseif (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session('error') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        <!---Alerta de exito o fracaso--->
+
         <div class="masthead-content">
             <div class="container px-5">
-                <!---Alerta de exito o fracaso--->
-                @if (session()->has('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{ session('message') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                            aria-label="Close"></button>
-                    </div>
-
-                @elseif (session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{{ session('error') }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                        aria-label="Close"></button>
-                </div>
-
-
-
-
-                @endif
-                <!---Alerta de exito o fracaso--->
                 <h1 class="masthead-heading mb-0 ml-2">Fashion Dog</h1>
                 <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
             </div>
         </div>
+
     </header>
+
+
+
 
     <!--Formulario de registro modal-->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -106,9 +109,9 @@
                 <div class="modal-body">
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
+
                         <div class="row mb-3">
                             <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
-
                             <div class="col-md-6">
                                 <input id="rut" type="text" placeholder="Ej: 123456789"
                                     class="form-control @error('rut') is-invalid @enderror" name="rut"
@@ -124,7 +127,6 @@
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
-
                             <div class="col-md-6">
                                 <input id="name" type="text" placeholder="Nombre..."
                                     class="form-control @error('name') is-invalid @enderror" name="name"
@@ -138,11 +140,8 @@
                             </div>
                         </div>
 
-
                         <div class="row mb-3">
-                            <label for="last name"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
-
+                            <label for="last name" class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
                             <div class="col-md-6">
                                 <input id="last name" type="last name" placeholder="Apellido..."
                                     class="form-control @error('last name') is-invalid @enderror" name="last_name"
@@ -159,7 +158,6 @@
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
-
                             <div class="col-md-6">
                                 <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
@@ -174,9 +172,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="Direccion"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
-
+                            <label for="Direccion" class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
                             <div class="col-md-6">
                                 <input id="Direccion" type="Direccion" placeholder="Avenida ejemplo #123"
                                     class="form-control @error('Direccion') is-invalid @enderror" name="address"
@@ -190,11 +186,8 @@
                             </div>
                         </div>
 
-
                         <div class="row mb-3">
-                            <label for="phone"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
-
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
                             <div class="col-md-6">
                                 <input id="phone" type="phone" placeholder="Ej: 987654321"
                                     class="form-control @error('phone') is-invalid @enderror" name="phone" required
@@ -208,11 +201,8 @@
                             </div>
                         </div>
 
-
                         <div class="row mb-3">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
-
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" placeholder="Contraseña..."
                                     class="form-control @error('password') is-invalid @enderror" name="password"
@@ -227,9 +217,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password_confirmation"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
-
+                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
                             <div class="col-md-6">
                                 <input id="password_confirmation" type="password" placeholder="Confirmar contraseña..."
                                     class="form-control" name="password_confirmation" @error('password_confirmation') is-invalid @enderror required
@@ -260,17 +248,14 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-title"> Iniciar Sesión</h5>
                 </div>
+
                 <div class="card">
-
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="rutLogin"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
-
+                                <label for="rutLogin" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
                                 <div class="col-md-6">
                                     <input id="rutLogin" type="text" placeholder="Ej: 123456789"
                                         class="form-control @error('rutLogin') is-invalid @enderror" name="rutLogin"
@@ -285,9 +270,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
-
+                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
                                 <div class="col-md-6">
                                     <input id="password" type="password" placeholder="Contraseña..."
                                         class="form-control @error('password') is-invalid @enderror" name="password"
@@ -303,18 +286,17 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit"
-                                        class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>
                                 </div>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
             </div>
 
         </div>
-    </div>
-    </div>
     </div>
 
 

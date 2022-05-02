@@ -22,20 +22,19 @@ class ClientDashboardController extends Controller
 
     public function update(EditClientRequest $request, $rut)
     {
-
-        // $request->validate([
-        //     'name' => ['required', 'min:2', 'max:26'],
-        //     'last_name' => ['required', 'min:2', 'max:26'],
-        //     'email' => ['required', 'max:320', 'email'],
-        //     'address' => ['required', 'max:30'],
-        //     'phone' => ['required', 'min:9', 'max:15'],
-        // ]);
-
-        //dd($request->rut);
-
         $request->validated();
 
-        $client = Client::where('rut', $rut)->FirstOrFail();
+        $client = Client::where('rut', $rut)->first();
+
+        if ($client == null) {
+            return redirect('/cliente')->with('error', 'El cliente no existe');
+        }
+
+        $clientWithSameEmail = Client::where('email', $request->email)->first();
+
+        if ($clientWithSameEmail != null && $client->rut != $clientWithSameEmail->rut) {
+            return redirect('/cliente/editar')->with('error', 'Este email ya está registrado.');
+        }
 
         $client->name = $request->name;
         $client->last_name = $request->last_name;

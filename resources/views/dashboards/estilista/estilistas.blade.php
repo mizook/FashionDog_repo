@@ -27,43 +27,39 @@
 <body>
     <div class="d-flex">
         <div id="sidebar" style="background-color: white">
-            <div class="p-2">
-                <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                    ¡Bienvenido! <br> RUT: {{ Auth::user()->rut }}
-                </a>
+            <div id="topSideBar" class="p-2">
+                <div class="d-inline-block">
+                    <img class="pb-5" src="../assets/img/FashionDogLogo.png" alt="" style="width: 100px">
+                </div>
+                <div class="d-inline-block pt-5">
+                    <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+                        Administrar<br> {{ Auth::user()->rut }}
+                    </a>
+                </div>
             </div>
             <div id="sidebar-accordion" class="accordion" style="background-color: white">
                 <div class="list-group">
 
-                    <a href="{{ route('admin.stylists') }}" class="list-group-item list-group-item-action  text-dark"
-                        style="background-color: white">
+                    <a href="{{ route('admin.stylists') }}"
+                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
                         <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilistas
                     </a>
 
-                    <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
+                    <a href="{{ route('admin.dashboard') }}"
                         class="list-group-item list-group-item-action text-dark" style="background-color: white">
                         <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
                     </a>
-                    <div id="profile-items" class="collapse" data-parent="#sidebar-accordion">
-                        <a href="#" class="list-group-item list-group-item-action text-dark pl-5"
-                            style="background-color: white">
-                            Habilitar
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action text-dark pl-5"
-                            style="background-color: white">
-                            Desabilitar
-                        </a>
-                    </div>
 
-                    <a href="#" class="list-group-item list-group-item-action  text-dark"
-                        style="background-color: white">
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
                         <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
                     </a>
 
-                    <a href="#setting-items" data-toggle="collapse" aria-expanded="false"
+                    <a href="{{ route('admin.dashboard') }}"
                         class="list-group-item list-group-item-action  text-dark" style="background-color: white">
                         <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
                     </a>
+
                     <!---Alerta de exito o fracaso--->
                     @if (session()->has('message'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -72,18 +68,6 @@
                         </div>
                     @endif
                     <!---Alerta de exito o fracaso--->
-                    <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
-                        <div class="d-flex flex-row text-center">
-                            <a href="#" class="list-group-item list-group-item-action  text-dark"
-                                style="background-color: white">
-                                Cambiar contraseña
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action text-dark"
-                                style="background-color: white">
-                                Item 2
-                            </a>
-                        </div>
-                    </div>
 
                 </div>
             </div>

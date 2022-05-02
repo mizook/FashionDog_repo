@@ -26,35 +26,38 @@
 <body>
     <div class="d-flex" >
         <div id="sidebar" style="background-color: white">
-          <div class="p-2">
-            <a href="{{ route('client.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                Bienvenido <br> {{Auth::user()->name}}
-            </a>
-          </div>
+            <div id="topSideBar" class="p-2">
+                <div class="d-inline-block">
+                    <img class="pb-5" src="../assets/img/FashionDogLogo.png" alt="" style="width: 100px">
+                </div>
+                <div class="d-inline-block pt-5">
+                    <a href="{{ route('client.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
+                        Bienvenido <br> {{ Auth::user()->name }}
+                    </a>
+                </div>
+            </div>
           <div id="sidebar-accordion" class="accordion" style="background-color: white" >
             <div class="list-group" >
-              <a href="#dashboard-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
-              </a>
-              <a href="#profile-items" data-toggle="collapse" aria-expanded="false"
-                class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
-              </a>
-              <a href="{{ route('edit.client') }}" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
-              </a>
-              <div id="setting-items" class="collapse" data-parent="#sidebar-accordion">
-                <div class="d-flex flex-row text-center">
-                  <a href="#" class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                    Cambio Contraceña
-                  </a>
 
-                </div>
-              </div>
+                <a href="{{ route('client.dashboard') }}"
+                    class="list-group-item list-group-item-action  text-dark" style="background-color: white">
+                    <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
+                </a>
+
+                <a href="{{ route('client.dashboard') }}"
+                    class="list-group-item list-group-item-action text-dark"  style="background-color: white">
+                    <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
+                </a>
+
+                <a href="{{ route('edit.client') }}"
+                    class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
+                    <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
+                </a>
+
             </div>
           </div>
         </div>
+
         <div class="content w-100" style="background-color: #8DD7BF">
           <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
             <div class="container-xl">
@@ -87,6 +90,7 @@
               </div>
             </div>
           </section>
+
 
         <div class="container">
             <div class="row justify-content-center">
@@ -193,11 +197,28 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('Editar') }}
-                                        </button>
+                                        <button type="submit" class="btn btn-success">{{ __('Editar') }}</button>
                                     </div>
                                 </div>
+                                <div>
+                                    <h1></h1>
+                                </div>
+
+                                <!---Alerta de exito o fracaso--->
+                                @if (session()->has('message'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>{{ session('message') }}</strong>
+                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+                                @elseif (session()->has('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{{ session('error') }}</strong>
+                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
+                                <!---Alerta de exito o fracaso--->
+
                             </form>
                         </div>
                     </div>
