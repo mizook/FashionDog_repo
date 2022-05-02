@@ -189,7 +189,7 @@
                         <div class="row mb-3">
                             <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
                             <div class="col-md-6">
-                                <input id="phone" type="phone" placeholder="Ej: 987654321"
+                                <input id="phone" type="number" placeholder="Ej: 987654321"
                                     class="form-control @error('phone') is-invalid @enderror" name="phone" required
                                     value="{{ old('phone') }}" autocomplete="phone">
 

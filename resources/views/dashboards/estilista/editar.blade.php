@@ -155,7 +155,7 @@
                                     <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                                        <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror"
                                             name="phone" value="{{ $stylist->phone }}" required autocomplete="phone" autofocus>
 
                                         @error('phone')
