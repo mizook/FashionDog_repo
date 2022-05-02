@@ -24,7 +24,7 @@ class RegisterStylistRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => ['required', 'unique:clients,rut'],
+            'rut' => ['required', 'unique:clients,rut', 'cl_rut'],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
             'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
@@ -37,6 +37,7 @@ class RegisterStylistRequest extends FormRequest
         return [
             'rut.required' => 'El RUT es obligatorio.',
             'rut.unique' => 'El RUT ya existe en el sistema.',
+            'rut.cl_rut' => 'RUT inválido.',
             'name.required'  => 'El nombre es obligatorio.',
             'name.min'  => 'El campo nombre deben tener más de 2 caracteres.',
             'name.max'  => 'El nombre debe tener máximo 26 letras.',
