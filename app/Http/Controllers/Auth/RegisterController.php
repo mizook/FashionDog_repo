@@ -23,6 +23,7 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+
         //dd($request);
         $client = Client::create($request->validated());
 
