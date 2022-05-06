@@ -98,11 +98,11 @@
 <!---Alerta de exito o fracaso--->
 @if (session()->has('goodEdit'))
 <script>
-    swal("Datos cambiados!", "Datos actualizados con éxito.", "success");
+    swal("Datos actualizados!", "Datos actualizados con éxito.", "success");
 </script>
 @elseif (session()->has('clientError'))
 <script>
-    swal("Error!", "1El cliente no existe!", "error");
+    swal("Error!", "El cliente no existe!", "error");
 </script>
 @endif
 <!---Alerta de exito o fracaso--->

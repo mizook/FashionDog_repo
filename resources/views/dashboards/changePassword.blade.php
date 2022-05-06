@@ -2,25 +2,29 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    <!-- Sweet Alerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-  <title>Cambiar contraseña</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <style>
+    <title>Cambiar contraseña</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
     #sidebar {
-      width: 20%;
-      height: 100vh;
-      background: #343a40;
+        width: 20%;
+        height: 100vh;
+        background: #343a40;
     }
-  </style>
-  <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
+    </style>
+    <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
 </head>
 
 <body>
@@ -81,7 +85,7 @@
                     <div class="card">
                         <div class="card-header">{{'Cambiar contraseña' }}</div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('update.password', ['rut'=>Auth::user()->rut]) }}">
+                                <form id="changePasswordForm" method="POST" action="{{ route('update.password', ['rut'=>Auth::user()->rut]) }}">
                                     @csrf
                                     <div class="row mb-3">
                                         <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
@@ -112,7 +116,7 @@
 
                                     <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-success">
+                                            <button type="submit" class="btn btn-success" onclick="ConfirmationPopUp('changePasswordForm')">
                                                 {{ __('Cambiar contraseña') }}
                                             </button>
                                         </div>

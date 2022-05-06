@@ -44,20 +44,9 @@ class StylistController extends Controller
      */
     public function store(RegisterStylistRequest $request)
     {
-
-        //dd($request);
-        // $request->validate([
-        //     'rut' => ['required', 'unique:stylists,rut'],
-        //     'name' => ['required', 'min:2', 'max:26'],
-        //     'last_name' => ['required', 'min:2', 'max:26'],
-        //     'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
-        //     'phone' => ['required', 'min:9', 'max:15'],
-        // ]);
-
-        //dd($request);
         $request->validated();
 
-        //$stylist = Stylist::create($request->validated());
+
 
         $stylist = Stylist::create([
             'rut' => $request->rut,

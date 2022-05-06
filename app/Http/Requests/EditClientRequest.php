@@ -26,7 +26,7 @@ class EditClientRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'email'],
+            'email' => ['required', 'max:320', 'email', 'unique:clients,email', 'unique:stylists,email'],
             'address' => ['required', 'max:30'],
             'phone' => ['required', 'min:9', 'max:15'],
         ];

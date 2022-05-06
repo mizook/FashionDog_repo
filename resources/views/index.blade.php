@@ -163,7 +163,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form @submit.stop.prevent="handleSubmit" action="{{ route('register') }}" method="POST">
+            <form id="registerClientForm" action="{{ route('register') }}" method="POST">
                 @csrf
                 <div class="row mb-3">
                     <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
@@ -285,7 +285,7 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="submit" class="btn btn-primary" onclick="ConfirmationPopUp('registerClientForm')">Registrarse</button>
                 </div>
 
             </form>

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-
     <!-- Sweet Alerts -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/scripts.js"></script>
 
 
     <title>Editar datos de estilista</title>
@@ -25,7 +25,7 @@
         background: #343a40;
     }
     </style>
-    <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../assets/FashionDogLogo.ico" />
 </head>
 
 <body>
@@ -106,7 +106,7 @@
                                 <div class="card-header">{{'Editar datos' }}</div>
 
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('update.stylist', ['rut'=>$stylist->rut]) }}">
+                                        <form id="editStylistForm" method="POST" action="{{ route('update.stylist', ['rut'=>$stylist->rut]) }}">
                                             @csrf
 
                                             <div class="row mb-3">
@@ -188,9 +188,7 @@
 
                                             <div class="row mb-0">
                                                 <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-success">
-                                                        {{ __('Editar') }}
-                                                    </button>
+                                                    <button type="submit" class="btn btn-primary" onclick="ConfirmationPopUp('editStylistForm')">Editar</button>
                                                 </div>
                                             </div>
                                         </form>

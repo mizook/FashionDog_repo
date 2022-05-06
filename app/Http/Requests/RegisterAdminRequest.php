@@ -25,7 +25,7 @@ class RegisterAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => ['required', 'unique:clients,rut', new RutValidator('rut')],
+            'rut' => ['required', 'unique:clients,rut'],
             'password' => ['required', 'min:10', 'max:15'],
         ];
     }

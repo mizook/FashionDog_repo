@@ -8,6 +8,7 @@
 
     <!-- Sweet Alerts -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/scripts.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -23,7 +24,7 @@
             background: #343a40;
         }
     </style>
-    <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/FashionDogLogo.ico" />
 </head>
 
 <body>
@@ -182,7 +183,7 @@
                 <h5 class="modal-title" id="modal-title">Registrar nuevo Estilista</h5>
             </div>
             <div class="modal-body">
-                <form action="{{ route('store.stylist') }}" method="POST">
+                <form id="addStylistForm" action="{{ route('store.stylist') }}" method="POST">
                     @csrf
                     <div class="row mb-3">
                         <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
@@ -269,7 +270,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary" onclick="ConfirmationPopUp('addStylistForm')">Registrar</button>
                     </div>
 
                 </form>

@@ -24,10 +24,10 @@ class RegisterStylistRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => ['required', 'unique:clients,rut', 'cl_rut'],
+            'rut' => ['required', 'unique:clients,rut', 'unique:stylists,rut', 'cl_rut'],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
+            'email' => ['required', 'max:320', 'unique:stylists,email', 'unique:clients,email', 'email'],
             'phone' => ['required', 'min:9', 'max:15'],
         ];
     }

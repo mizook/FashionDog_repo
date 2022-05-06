@@ -27,10 +27,10 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => ['required', 'unique:clients,rut', 'cl_rut'],
+            'rut' => ['required', 'unique:clients,rut', 'unique:stylists,rut', 'cl_rut'],
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
+            'email' => ['required', 'max:320', 'unique:clients,email', 'unique:stylists,email', 'email'],
             'address' => ['required', 'max:30'],
             'phone' => ['required', 'min:9', 'max:15'],
             'password' => ['required', 'min:10', 'max:15', 'same:password_confirmation'],

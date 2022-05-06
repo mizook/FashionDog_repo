@@ -12,6 +12,7 @@
 
     <!-- Sweet Alerts -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/scripts.js"></script>
 
 
   <title>Editar datos de cliente</title>
@@ -103,7 +104,7 @@
                         <div class="card-header">{{'Editar datos' }}</div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('update.client', ['rut'=>Auth::user()->rut]) }}">
+                            <form id="editClientForm" method="POST" action="{{ route('update.client', ['rut'=>Auth::user()->rut]) }}">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -201,7 +202,7 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">{{ __('Editar') }}</button>
+                                        <button type="submit" class="btn btn-success" onclick="ConfirmationPopUp('editClientForm')">{{ __('Editar') }}</button>
                                     </div>
                                 </div>
                                 <div>
