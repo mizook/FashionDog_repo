@@ -7,6 +7,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -17,11 +24,13 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 
+
+
     <title>Fashion Dog - Tu perro a la moda</title>
     <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
 </head>
 
-
+<!-- Cuerpo -->
 <body id="page-top" style=" background-color:#8DD7BF">
     <!--Barra de navegación-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" style="background-color: white">
@@ -67,57 +76,58 @@
 
             </div>
         </div>
+
     </nav>
 
-    <!-- Header-->
-    <header class="masthead text-center text-white" style="background-color:#8DD7BF">
 
-        <!---Alerta de exito o fracaso--->
-        @if (session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session('message') }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!-- Header-->
+<header class="masthead text-center text-white" style="background-color:#8DD7BF">
+
+    <!---Alerta de exito o fracaso--->
+    @if (session()->has('message'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ session('message') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    @elseif (session()->has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ session('error') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    <!---Alerta de exito o fracaso--->
+
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0 ml-2">Fashion Dog</h1>
+            <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
         </div>
+    </div>
 
-        @elseif (session()->has('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>{{ session('error') }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-        <!---Alerta de exito o fracaso--->
-
-        <div class="masthead-content">
-            <div class="container px-5">
-                <h1 class="masthead-heading mb-0 ml-2">Fashion Dog</h1>
-                <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
-            </div>
-        </div>
-
-    </header>
+</header>
 
 
-
-
-    <!--Formulario de registro modal-->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Registrarse como cliente</h5>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('register') }}" method="POST">
+<!-- Modal Form Login -->
+<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Iniciar Sesión</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
+                            <label for="rutLogin" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
                             <div class="col-md-6">
-                                <input id="rut" type="text" placeholder="Ej: 123456789"
-                                    class="form-control @error('rut') is-invalid @enderror" name="rut"
-                                    value="{{ old('rut') }}" required autocomplete="Ej: 12345678K" autofocus>
+                                <input id="rutLogin" type="text" placeholder="Ej: 123456789"
+                                    class="form-control @error('rutLogin') is-invalid @enderror" name="rutLogin"
+                                    value="{{ old('rutLogin') }}" autofocus>
 
-                                @error('rut')
+                                @error('rutLogin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -126,13 +136,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
+                            <label for="passwordLogin" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" placeholder="Nombre..."
-                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="Nombre" autofocus>
+                                <input id="passwordLogin" type="password" placeholder="Contraseña..."
+                                    class="form-control @error('passwordLogin') is-invalid @enderror" name="passwordLogin">
 
-                                @error('name')
+                                @error('passwordLogin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -140,98 +149,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="last name" class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
-                            <div class="col-md-6">
-                                <input id="last name" type="last name" placeholder="Apellido..."
-                                    class="form-control @error('last name') is-invalid @enderror" name="last_name"
-                                    value="{{ old('last_name') }}" required autocomplete="last name">
-
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>
                             </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
-                            <div class="col-md-6">
-                                <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
-                                    class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Direccion" class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
-                            <div class="col-md-6">
-                                <input id="Direccion" type="Direccion" placeholder="Avenida ejemplo #123"
-                                    class="form-control @error('Direccion') is-invalid @enderror" name="address"
-                                    value="{{ old('address') }}" required autocomplete="Direccion">
-
-                                @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
-                            <div class="col-md-6">
-                                <input id="phone" type="number" placeholder="Ej: 987654321"
-                                    class="form-control @error('phone') is-invalid @enderror" name="phone" required
-                                    value="{{ old('phone') }}" autocomplete="phone">
-
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" placeholder="Contraseña..."
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
-                            <div class="col-md-6">
-                                <input id="password_confirmation" type="password" placeholder="Confirmar contraseña..."
-                                    class="form-control" name="password_confirmation" @error('password_confirmation') is-invalid @enderror required
-                                    autocomplete="new-password">
-                                    @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
                         </div>
 
                     </form>
@@ -239,89 +160,179 @@
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 
-    <!--Formulario de inicio de sesión modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title"> Iniciar Sesión</h5>
-                </div>
 
-                <div class="card">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
+<!-- Modal Form Registro -->
+<div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Registrar nuevo cliente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form @submit.stop.prevent="handleSubmit" action="{{ route('register') }}" method="POST">
+                @csrf
+                <div class="row mb-3">
+                    <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
+                    <div class="col-md-6">
+                        <input id="rut" type="text" placeholder="Ej: 123456789"
+                            class="form-control @error('rut') is-invalid @enderror" name="rut"
+                            value="{{ old('rut') }}" autofocus>
 
-                            <div class="row mb-3">
-                                <label for="rutLogin" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
-                                <div class="col-md-6">
-                                    <input id="rutLogin" type="text" placeholder="Ej: 123456789"
-                                        class="form-control @error('rutLogin') is-invalid @enderror" name="rutLogin"
-                                        value="{{ old('rutLogin') }}" required autocomplete="rutLogin" autofocus>
-
-                                    @error('rutLogin')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
-                                <div class="col-md-6">
-                                    <input id="password" type="password" placeholder="Contraseña..."
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>
-                                </div>
-                            </div>
-
-                        </form>
-
+                        @error('rut')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <div class="row mb-3">
+                    <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
+                    <div class="col-md-6">
+                        <input id="name" type="text" placeholder="Nombre..."
+                            class="form-control @error('name') is-invalid @enderror" name="name"
+                            value="{{ old('name') }}" autofocus>
+
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
+                    <div class="col-md-6">
+                        <input id="last_name" type="text" placeholder="Apellido..."
+                            class="form-control @error('last_name') is-invalid @enderror" name="last_name"
+                            value="{{ old('last_name') }}">
+
+                        @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
+                    <div class="col-md-6">
+                        <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
+                            class="form-control @error('email') is-invalid @enderror" name="email"
+                            value="{{ old('email') }}">
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Dirección') }}</label>
+                    <div class="col-md-6">
+                        <input id="address" type="text" placeholder="Avenida ejemplo #123"
+                            class="form-control @error('address') is-invalid @enderror" name="address"
+                            value="{{ old('address') }}">
+
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
+                    <div class="col-md-6">
+                        <input id="phone" type="number" placeholder="Ej: 987654321"
+                            class="form-control @error('phone') is-invalid @enderror" name="phone"
+                            value="{{ old('phone') }}">
+
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
+                    <div class="col-md-6">
+                        <input id="password" type="password" placeholder="Contraseña..."
+                            class="form-control @error('password') is-invalid @enderror" name="password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
+                    <div class="col-md-6">
+                        <input id="password_confirmation" type="password" placeholder="Confirmar contraseña..."
+                            class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" >
+
+                        @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+
+            </form>
+      </div>
     </div>
+  </div>
+</div>
 
 
 
-    <!-- Footer-->
-    <footer class="py-5 bg-black">
-        <div class="container px-5">
-            <p class="m-0 text-center text-white small">Copyright &copy; FashionDog 2022</p>
-        </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    @if (old('rut'))
+
+<!-- Footer-->
+<footer class="py-5 bg-black">
+    <div class="container px-5">
+        <p class="m-0 text-center text-white small">Copyright &copy; FashionDog 2022</p>
+    </div>
+</footer>
+
+
+<!-- Abrir Modal Form Login si hay algún error -->
+@if($errors->get('rutLogin') || $errors->get('passwordLogin'))
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('loginModal'), {})
+        myModal.toggle()
+    </script>
+@endif
+
+<!-- Abrir Modal Form Register si hay algún error -->
+@if($errors->get('rut') || $errors->get('name') || $errors->get('last_name') || $errors->get('email') ||
+    $errors->get('phone') || $errors->get('address') || $errors->get('password') || $errors->get('password_confirmation'))
         <script>
             var myModal = new bootstrap.Modal(document.getElementById('registerModal'), {})
             myModal.toggle()
         </script>
-    @elseif (old('rut') && !old('email') && session()->has('message'))
-        <script>
-            var myModal = new bootstrap.Modal(document.getElementById('loginModal'), {})
-            myModal.toggle()
-        </script>
-    @endif
+@endif
+
 </body>
 
 </html>

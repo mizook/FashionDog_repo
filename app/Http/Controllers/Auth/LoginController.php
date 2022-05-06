@@ -38,7 +38,7 @@ class LoginController extends Controller
         // ]);
         $request->validated();
 
-        if (auth()->guard('administrator')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
+        if (auth()->guard('administrator')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
 
             $user = auth()->guard('administrator')->user();
 
@@ -51,7 +51,7 @@ class LoginController extends Controller
             return redirect()->intended(url('/admin'));
         }
 
-        if (auth()->guard('stylist')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
+        if (auth()->guard('stylist')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
 
             $user = auth()->guard('stylist')->user();
             $request->session()->regenerate();
@@ -61,7 +61,7 @@ class LoginController extends Controller
             return redirect()->intended(url('/estilista'));
         }
 
-        if (auth()->guard('client')->attempt(['rut' => $request->rutLogin, 'password' => $request->password])) {
+        if (auth()->guard('client')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
 
             $user = auth()->guard('client')->user();
             $request->session()->regenerate();

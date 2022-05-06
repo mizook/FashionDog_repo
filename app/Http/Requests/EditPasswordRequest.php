@@ -33,8 +33,8 @@ class EditPasswordRequest extends FormRequest
     {
         return [
             'password.required'  => 'La contraseña es obligatoria',
-            'password.min'  => 'La contraseña debe tener mínimo 10 carácteres.',
-            'password.max'  => 'La contraseña debe tener máximo 15 carácteres.',
+            'password.min'  => 'El largo de la contraseña debe estar entre 10 y 15 carácteres.',
+            'password.max'  => 'El largo de la contraseña debe estar entre 10 y 15 carácteres.',
             'confirm_password.required'  => 'La contraseña es obligatoria.',
             'confirm_password.same'  => 'Las contraseñas no coinciden.',
         ];
