@@ -87,10 +87,10 @@
                         </ul>
                         <form action="{{ route('logout') }}" method="POST" class="pr-3">
                             @csrf
-                            <button type="submit" class="btn btn-danger" style="border: 2px solid black"> {{ __('Cerrar sesión') }}</button>
+                            <button type="submit" class="btn btn-danger" style="background-color: #FF5768" style="border: 2px solid black"> {{ __('Cerrar sesión') }}</button>
                         </form>
                         @csrf
-                        <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
+                        <a href="{{ route('edit.password') }}" class="btn btn-danger" style="background-color: #FF5768" style="border: 2px solid black">
                             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
                         </a>
                     </div>

@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <script>
+        //Cuadro de diálogo de confirmación en JavaScript
+        function AREYOUSURE ()
+        {
+           return confirm("¿Está seguro?");
+        }
+  </script>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,7 +64,7 @@
                     </ul>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                        <button type="submit" class="btn btn-danger" style="background-color: #FF5768" style="border: 2px solid black">
                             {{ __('Cerrar sesión') }}
                         </button>
                     </form>
@@ -113,7 +120,7 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success" style="background-color: #FF5768" onclick="return AREYOUSURE()">
                                             {{ __('Cambiar contraseña') }}
                                         </button>
                                     </div>
