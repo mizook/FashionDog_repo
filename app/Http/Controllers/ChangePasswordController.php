@@ -22,12 +22,6 @@ class ChangePasswordController extends Controller
     }
     public function update(EditPasswordRequest $request, $rut)
     {
-        // $request->validate([
-        //     'password' => ['required', 'min:10', 'max:15'],
-        //     'confirm_password' => ['required', 'same:password'],
-        // ]);
-
-        //dd($rut);
         $request->validated();
 
 
@@ -44,7 +38,8 @@ class ChangePasswordController extends Controller
             $logC = new LoginController();
             $logC->logout($request);
 
-            return redirect()->intended(url('/admin'));
+            return redirect('/')->with('passwordChanged', 'Contraseña cambiada correctamente.');
+            //return redirect()->intended(url('/admin'));
         }
 
 
@@ -61,7 +56,8 @@ class ChangePasswordController extends Controller
             $logC = new LoginController();
             $logC->logout($request);
 
-            return redirect()->intended(url('/estilista'));
+            return redirect('/')->with('passwordChanged', 'Contraseña cambiada correctamente.');
+            //return redirect()->intended(url('/estilista'));
         }
 
         if (auth()->guard('client')->user()) {
@@ -76,9 +72,11 @@ class ChangePasswordController extends Controller
             $logC = new LoginController();
             $logC->logout($request);
 
-            return redirect()->intended(url('/cliente'));
+            return redirect('/')->with('passwordChanged', 'Contraseña cambiada correctamente.');
+            //return redirect()->intended(url('/cliente'));
         } else {
-            return redirect()->intended(url('/cliente'));
+            return redirect('/cliente')->with('passwordChangedError', 'Error al cambiar la contraseña.');
+            //return redirect()->intended(url('/cliente'));
         }
     }
 }

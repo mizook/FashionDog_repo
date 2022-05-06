@@ -47,80 +47,79 @@
         </div>
 
         <div class="content w-100" style="background-color: #8DD7BF">
-          <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
-            <div class="container-xl">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
+                <div class="container-xl">
 
-                <div class="collapse navbar-collapse" id="navbarsExample07XL">
-                    <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                      </li>
-                    </ul>
-                    <form action="{{route('logout')}}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-danger" style="border: 2px solid black">
-                            {{ __('Cerrar sesión') }}
-                        </button>
-                    </form>
-                  </div>
+                    <div class="collapse navbar-collapse" id="navbarsExample07XL">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                            </li>
+                        </ul>
+                        <form action="{{route('logout')}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                                {{ __('Cerrar sesión') }}
+                            </button>
+                        </form>
+                        </div>
 
-            </div>
-          </nav>
-          <section class="p-3">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2>Cambiar contraseña</h2>
                 </div>
-              </div>
+            </nav>
+        <section class="p-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Cambiar contraseña</h2>
+                    </div>
+                </div>
             </div>
-          </section>
+        </section>
 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">{{'Cambiar contraseña' }}</div>
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('update.password', ['rut'=>Auth::user()->rut]) }}">
+                                    @csrf
+                                    <div class="row mb-3">
+                                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('update.password', ['rut'=>Auth::user()->rut]) }}">
-                                @csrf
-                                <div class="row mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
+                                        <div class="col-md-6">
+                                            <input id="password" type="password" placeholder="Nueva contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" placeholder="Nueva contraseña..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row mb-3">
-                                    <label for="confirm_password" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
+                                    <div class="row mb-3">
+                                        <label for="confirm_password" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="confirm_password" type="password" placeholder="Confirmar contraseña..." class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" required autocomplete="new-password">
-                                        @error('confirm_password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <div class="col-md-6">
+                                            <input id="confirm_password" type="password" placeholder="Confirmar contraseña..." class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" required autocomplete="new-password">
+                                            @error('confirm_password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('Cambiar contraseña') }}
-                                        </button>
+                                    <div class="row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-success">
+                                                {{ __('Cambiar contraseña') }}
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -129,17 +128,19 @@
       </section>
     </div>
   </div>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-  </script>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+
 </body>
 
 </html>

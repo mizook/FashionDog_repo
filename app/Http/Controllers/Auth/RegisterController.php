@@ -42,6 +42,6 @@ class RegisterController extends Controller
 
         auth()->guard('client')->login($client);
 
-        return redirect('/cliente')->with('success', 'Account created successfully');
+        return redirect('/cliente')->with('clientCreated', 'Cuenta creada correctamente');
     }
 }

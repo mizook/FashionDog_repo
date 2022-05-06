@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <!-- Sweet Alerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
     <!-- Font Awesome icons (free version)-->
@@ -83,21 +85,6 @@
 <!-- Header-->
 <header class="masthead text-center text-white" style="background-color:#8DD7BF">
 
-    <!---Alerta de exito o fracaso--->
-    @if (session()->has('message'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{ session('message') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-    @elseif (session()->has('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{ session('error') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    <!---Alerta de exito o fracaso--->
-
     <div class="masthead-content">
         <div class="container px-5">
             <h1 class="masthead-heading mb-0 ml-2">Fashion Dog</h1>
@@ -106,6 +93,8 @@
     </div>
 
 </header>
+
+
 
 
 <!-- Modal Form Login -->
@@ -315,6 +304,26 @@
     </div>
 </footer>
 
+
+
+<!---Alerta de exito o fracaso--->
+@if (session()->has('logoutMessage'))
+<script>
+    swal("Sesión finalizada!", "Has cerrado sesión con éxito.", "success");
+</script>
+
+@elseif (session()->has('loginError'))
+<script>
+    swal("Error!", "Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.", "error");
+</script>
+
+@elseif (session()->has('clientCreated'))
+<script>
+    swal("Cliente creado!", "¡Has creado tu cuenta con éxito!", "success");
+</script>
+
+@endif
+<!---Alerta de exito o fracaso--->
 
 <!-- Abrir Modal Form Login si hay algún error -->
 @if($errors->get('rutLogin') || $errors->get('passwordLogin'))

@@ -27,13 +27,13 @@ class ClientDashboardController extends Controller
         $client = Client::where('rut', $rut)->first();
 
         if ($client == null) {
-            return redirect('/cliente')->with('error', 'El cliente no existe');
+            return redirect('/cliente')->with('clientError', 'El cliente no existe');
         }
 
         $clientWithSameEmail = Client::where('email', $request->email)->first();
 
         if ($clientWithSameEmail != null && $client->rut != $clientWithSameEmail->rut) {
-            return redirect('/cliente/editar')->with('error', 'Este email ya está registrado.');
+            return redirect('/cliente/editar')->with('emailError', 'Este email ya está registrado.');
         }
 
         $client->name = $request->name;
@@ -44,7 +44,7 @@ class ClientDashboardController extends Controller
 
         $client->save();
 
-        return redirect('/cliente')->with('message', 'Datos actualizados satisfactoriamente');
+        return redirect('/cliente')->with('goodEdit', 'Datos actualizados satisfactoriamente');
     }
     public function show_editar()
     {

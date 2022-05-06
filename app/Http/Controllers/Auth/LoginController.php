@@ -32,10 +32,6 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        // $this->validate($request, [
-        //     'rut' => 'required',
-        //     'password' => 'required',
-        // ]);
         $request->validated();
 
         if (auth()->guard('administrator')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
@@ -71,7 +67,7 @@ class LoginController extends Controller
 
             return redirect()->intended(url('/cliente'));
         } else {
-            return redirect()->back()->with('error', 'Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.');
+            return redirect()->back()->with('loginError', 'Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.');
         }
     }
 
@@ -87,7 +83,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Sesión finalizada con exito');
+        return redirect('/')->with('logoutMessage', 'Sesión finalizada con exito');
     }
 
     public function authenticated(Request $request, $user)

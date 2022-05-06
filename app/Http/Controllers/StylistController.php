@@ -70,7 +70,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/admin/estilistas')->with('message', 'El estilista fue creado exitosamente');
+        return redirect('/admin/estilistas')->with('goodAddStylist', 'El estilista fue creado exitosamente');
     }
 
     /**
@@ -106,17 +106,20 @@ class StylistController extends Controller
      */
     public function update(EditStylistRequest $request, $rut)
     {
-        // $request->validate([
-        //     'name' => ['required', 'min:2', 'max:26'],
-        //     'last_name' => ['required', 'min:2', 'max:26'],
-        //     'email' => ['required', 'max:320', 'unique:clients,email', 'email'],
-        //     'phone' => ['required', 'min:9', 'max:15'],
-        // ]);
-
         $request->validated();
 
 
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
+
+        if ($stylist == null) {
+            return redirect('/admin')->with('clientError', 'El cliente no existe');
+        }
+
+        $stylistWithSameEmail = Stylist::where('email', $request->email)->first();
+
+        if ($stylistWithSameEmail != null && $stylist->rut != $stylistWithSameEmail->rut) {
+            return redirect('/admin/estilistas')->with('emailError', 'Este email ya está registrado.');
+        }
 
         $stylist->name = $request->name;
         $stylist->last_name = $request->last_name;
@@ -125,7 +128,7 @@ class StylistController extends Controller
 
         $stylist->save();
 
-        return redirect('/admin/estilistas')->with('message', 'El estilista fue registrado exitosamente');
+        return redirect('/admin/estilistas')->with('goodEditStylist', 'El estilista fue registrado exitosamente');
     }
 
     public function changeStatus(Request $request)
@@ -143,7 +146,7 @@ class StylistController extends Controller
         }
 
         $stylist->save();
-        return redirect('/admin/estilistas')->with('message', $message);
+        return redirect('/admin/estilistas')->with('goodEditStatusStylist', $message);
     }
 
     /**

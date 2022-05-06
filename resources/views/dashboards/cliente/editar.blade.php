@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <!-- Sweet Alerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
   <title>Editar datos de cliente</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
@@ -36,60 +40,60 @@
                     </a>
                 </div>
             </div>
-          <div id="sidebar-accordion" class="accordion" style="background-color: white" >
-            <div class="list-group" >
+            <div id="sidebar-accordion" class="accordion" style="background-color: white" >
+                <div class="list-group" >
 
-                <a href="{{ route('client.dashboard') }}"
-                    class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                    <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
-                </a>
+                    <a href="{{ route('client.dashboard') }}"
+                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
+                        <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Solicitar servicio
+                    </a>
 
-                <a href="{{ route('client.dashboard') }}"
-                    class="list-group-item list-group-item-action text-dark"  style="background-color: white">
-                    <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
-                </a>
+                    <a href="{{ route('client.dashboard') }}"
+                        class="list-group-item list-group-item-action text-dark"  style="background-color: white">
+                        <i class="fa fa-user mr-3" aria-hidden="true"></i>Administrar Solicitudes
+                    </a>
 
-                <a href="{{ route('edit.client') }}"
-                    class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
-                    <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
-                </a>
+                    <a href="{{ route('edit.client') }}"
+                        class="list-group-item list-group-item-action  text-dark"  style="background-color: white">
+                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Editar datos de cuenta
+                    </a>
 
+                </div>
             </div>
-          </div>
         </div>
 
         <div class="content w-100" style="background-color: #8DD7BF">
-          <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
-            <div class="container-xl">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
+                <div class="container-xl">
 
-                <div class="collapse navbar-collapse" id="navbarsExample07XL">
-                    <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                      </li>
-                    </ul>
-                    <form action="{{route('logout')}}" method="POST" class="pr-3">
+                    <div class="collapse navbar-collapse" id="navbarsExample07XL">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                            </li>
+                        </ul>
+                        <form action="{{route('logout')}}" method="POST" class="pr-3">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="border: 2px solid black">
+                                {{ __('Cerrar sesión') }}
+                            </button>
+                        </form>
                         @csrf
-                        <button type="submit" class="btn btn-danger" style="border: 2px solid black">
-                            {{ __('Cerrar sesión') }}
-                        </button>
-                    </form>
-                    @csrf
-                    <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
-                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
-                    </a>
-                  </div>
+                        <a href="{{ route('edit.password') }}" class="btn btn-warning" style="border: 2px solid black">
+                            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
+                        </a>
+                    </div>
 
-            </div>
-          </nav>
-          <section class="p-3">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2>Editar datos de cuenta</h2>
                 </div>
-              </div>
-            </div>
-          </section>
+            </nav>
+            <section class="p-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Editar datos de cuenta</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
         <div class="container">
@@ -204,21 +208,6 @@
                                     <h1></h1>
                                 </div>
 
-                                <!---Alerta de exito o fracaso--->
-                                @if (session()->has('message'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>{{ session('message') }}</strong>
-                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-
-                                @elseif (session()->has('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>{{ session('error') }}</strong>
-                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                                @endif
-                                <!---Alerta de exito o fracaso--->
-
                             </form>
                         </div>
                     </div>
@@ -226,20 +215,18 @@
             </div>
         </div>
 
-      </section>
     </div>
-  </div>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-  </script>
+
+
+<!---Alerta de exito o fracaso--->
+@if (session()->has('emailError'))
+<script>
+    swal("Email duplicado!", "Este email ya está registrado en el sistema.", "error");
+</script>
+@endif
+<!---Alerta de exito o fracaso--->
+
+
 </body>
 
 </html>

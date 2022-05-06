@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Sweet Alerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,7 +22,6 @@
             height: 100vh;
             background: #343a40;
         }
-
     </style>
     <link rel="icon" type="image/x-icon" href="assets/FashionDogLogo.ico" />
 </head>
@@ -60,24 +62,7 @@
                         <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
                     </a>
 
-                    <!---Alerta de exito o fracaso--->
-                    @if (session()->has('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{ session('message') }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
 
-                    @elseif (session()->has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>{{ session('error') }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    @endif
-                    <!---Alerta de exito o fracaso--->
 
                 </div>
             </div>
@@ -189,131 +174,152 @@
         </div>
     </div>
 
-    <!--Formulario de registro modal Estilista-->
-    <div class="modal fade" id="addStylist" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Registrar nuevo Estilista</h5>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('store.stylist') }}" method="POST">
-                        @csrf
-                        <div class="row mb-3">
-                            <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
+<!--Formulario de registro modal Estilista-->
+<div class="modal fade" id="addStylist" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Registrar nuevo Estilista</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('store.stylist') }}" method="POST">
+                    @csrf
+                    <div class="row mb-3">
+                        <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="rut" type="text" placeholder="Ej: 123456789"
-                                    class="form-control @error('rut') is-invalid @enderror" name="rut"
-                                    value="{{ old('rut') }}" required autocomplete="Ej: 12345678K" autofocus>
+                        <div class="col-md-6">
+                            <input id="rut" type="text" placeholder="Ej: 123456789"
+                                class="form-control @error('rut') is-invalid @enderror" name="rut"
+                                value="{{ old('rut') }}" autofocus>
 
-                                @error('rut')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('rut')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" placeholder="Nombre..."
-                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="Nombre" autofocus>
+                        <div class="col-md-6">
+                            <input id="name" type="text" placeholder="Nombre..."
+                                class="form-control @error('name') is-invalid @enderror" name="name"
+                                value="{{ old('name') }}" autofocus>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
 
-                        <div class="row mb-3">
-                            <label for="last_name"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
+                    <div class="row mb-3">
+                        <label for="last_name"
+                            class="col-md-4 col-form-label text-md-end">{{ __('Apellido') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" placeholder="Apellido..."
-                                    class="form-control @error('last_name') is-invalid @enderror" name="last_name"
-                                    required autocomplete="last_name" value="{{old('last_name')}}">
+                        <div class="col-md-6">
+                            <input id="last_name" type="text" placeholder="Apellido..."
+                                class="form-control @error('last_name') is-invalid @enderror" name="last_name"
+                                value="{{old('last_name')}}" autofocus>
 
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('last_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
+                    <div class="row mb-3">
+                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
-                                    class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email">
+                        <div class="col-md-6">
+                            <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
+                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
 
-                        <div class="row mb-3">
-                            <label for="phone"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
+                    <div class="row mb-3">
+                        <label for="phone"
+                            class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="phone" type="number" placeholder="Ej: 987654321"
-                                    class="form-control @error('phone') is-invalid @enderror" name="phone" required
-                                    autocomplete="phone" value="{{old('phone')}}">
+                        <div class="col-md-6">
+                            <input id="phone" type="number" placeholder="Ej: 987654321"
+                                class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}">
 
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                    </div>
 
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </div>
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
 
-                    </form>
+                </form>
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
 
-@if (old('email'))
+
+@if (session()->has('goodAddStylist'))
 <script>
-    var myModal = new bootstrap.Modal(document.getElementById('addStylist'), {})
-    myModal.toggle()
+    swal("Estilista agregado!", "El estilista se creó con éxito.", "success");
+</script>
+@elseif (session()->has('goodEditStylist'))
+<script>
+    swal("Datos actualizados!", "Los datos se guardaron con éxito.", "success");
+</script>
+@elseif (session()->has('goodEditStatusStylist'))
+<script>
+    swal("Estatus actualizado!", "Se cambio el estatus del estilista con éxito.", "success");
+</script>
+@elseif (session()->has('emailError'))
+<script>
+    swal("Email duplicado!", "Este email ya está registrado en el sistema.", "error");
 </script>
 @endif
+
+
+<!-- Abrir Modal Form Login si hay algún error -->
+@if($errors->get('rut') || $errors->get('name') || $errors->get('last_name') || $errors->get('email') || $errors->get('phone'))
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('addStylist'), {})
+        myModal.toggle()
+    </script>
+@endif
+
 </body>
 
 </html>
