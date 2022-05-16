@@ -33,10 +33,10 @@ class RegisterAdminRequest extends FormRequest
     public function messages()
     {
         return [
-            'rut.string' => 'El rut es obligatorio.',
-            'rut.required' => 'El rut es obligatorio.',
-            'rut.unique' => 'El rut ya existe en el sistema.',
-            'password.required'  => 'La contraseña es obligatoria',
+            'rut.string' => 'El RUT es obligatorio.',
+            'rut.required' => 'El RUT es obligatorio.',
+            'rut.unique' => 'El RUT ya existe en el sistema.',
+            'password.required'  => 'La contraseña es obligatoria.',
             'password.min'  => 'La contraseña debe tener mínimo 10 carácteres.',
             'password.max'  => 'La contraseña debe tener máximo 15 carácteres.',
         ];

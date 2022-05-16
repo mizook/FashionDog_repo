@@ -102,15 +102,15 @@
                 </div>
                 <form action="" method="GET" class="text-right mr-3 pr-5">
                     @csrf
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addStylist"
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addStylist"
                         style="border: 2px solid black">Agregar Estilista</button>
                 </form>
             </section>
 
 
 
-            <table class="table table-bordered table-dark" style="border: 4px solid black">
-                <thead>
+            <table class="table table-light table-bordered">
+                <thead style="background-color: #ff5768">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Rut</th>
@@ -118,12 +118,12 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Teléfono</th>
-                        <th scope="col">Estatus</th>
+                        <th scope="col">Estado</th>
                         <th scope="col"></th>
 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #ff828b">
                     @php $numero = 0 @endphp
                     @foreach ($stylists as $stylist)
                             @php $numero++ @endphp
@@ -153,14 +153,14 @@
                                                 @if ($stylist->status == 1)
                                                     <button type="submit" class="btn btn-danger btn-block" style="border: 2px solid black">Desactivar</button>
                                                 @elseif($stylist->status == 0)
-                                                    <button type="submit" class="btn btn-primary btn-block" style="border: 2px solid black">Activar</button>
+                                                    <button type="submit" class="btn btn-success btn-block" style="border: 2px solid black">Activar</button>
                                                 @endif
 
                                             </form>
                                         </div>
                                         <div class="col">
                                             <a href="{{ route('edit.stylist', ['rut' => $stylist->rut]) }}"
-                                                class="btn btn-success" style="border: 2px solid black">Cambiar Datos</a>
+                                                class="btn btn-warning" style="border: 2px solid black">Cambiar Datos</a>
                                         </div>
                                     </div>
                                 </div>
@@ -296,19 +296,19 @@
 
 @if (session()->has('goodAddStylist'))
 <script>
-    swal("Estilista agregado!", "El estilista se creó con éxito.", "success");
+    swal("¡Estilista agregado!", "El estilista se creó con éxito.", "success");
 </script>
 @elseif (session()->has('goodEditStylist'))
 <script>
-    swal("Datos actualizados!", "Los datos se guardaron con éxito.", "success");
+    swal("¡Datos actualizados!", "Los datos se guardaron con éxito.", "success");
 </script>
 @elseif (session()->has('goodEditStatusStylist'))
 <script>
-    swal("Estatus actualizado!", "Se cambio el estatus del estilista con éxito.", "success");
+    swal("¡Estado actualizado!", "Se cambio el estatus del estilista con éxito.", "success");
 </script>
 @elseif (session()->has('emailError'))
 <script>
-    swal("Email duplicado!", "Este email ya está registrado en el sistema.", "error");
+    swal("¡Correo electrónico duplicado!", "Este correo electrónico ya está registrado en el sistema.", "error");
 </script>
 @endif
 

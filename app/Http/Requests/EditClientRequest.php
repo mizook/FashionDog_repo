@@ -26,7 +26,7 @@ class EditClientRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'max:26'],
             'last_name' => ['required', 'min:2', 'max:26'],
-            'email' => ['required', 'max:320', 'email', 'unique:clients,email', 'unique:stylists,email'],
+            'email' => ['required', 'max:320', 'email'],
             'address' => ['required', 'max:30'],
             'phone' => ['required', 'min:9', 'max:15'],
         ];
@@ -36,10 +36,10 @@ class EditClientRequest extends FormRequest
     {
         return [
             'name.required'  => 'El nombre es obligatorio.',
-            'name.min'  => 'El nombre debe tener más de 2 caracteres.',
+            'name.min'  => 'El nombre debe tener más de 2 carácteres.',
             'name.max'  => 'El nombre debe tener máximo 26 letras.',
             'last_name.required'  => 'El apellido es obligatorio.',
-            'last_name.min'  => 'El apellido debe tener más de 2 caracteres.',
+            'last_name.min'  => 'El apellido debe tener más de 2 carácteres.',
             'last_name.max'  => 'El apellido debe tener máximo 26 letras.',
             'email.required'  => 'El correo electrónico es obligatorio.',
             'email.max'  => 'El correo electrónico debe tener máximo 320 carácteres.',
@@ -49,7 +49,7 @@ class EditClientRequest extends FormRequest
             'address.max'  => 'La dirección debe tener máximo 30 carácteres.',
             'phone.required'  => 'El teléfono es obligatorio.',
             'phone.min'  => 'El teléfono debe tener mínimo 9 números. El teléfono móvil ingresado no es válido.',
-            'phone.max'  => 'El teléfono debe tener máximo 15 números. El teléfono móvil ingresado no es válido',
+            'phone.max'  => 'El teléfono debe tener máximo 15 números. El teléfono móvil ingresado no es válido.',
         ];
     }
 }

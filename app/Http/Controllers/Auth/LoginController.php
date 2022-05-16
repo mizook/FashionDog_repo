@@ -83,7 +83,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('logoutMessage', 'Sesión finalizada con exito');
+        return redirect('/')->with('logoutMessage', '¡Sesión finalizada con exito!');
     }
 
     public function authenticated(Request $request, $user)

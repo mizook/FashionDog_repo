@@ -103,7 +103,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">{{'Editar datos' }}</div>
+                                <div class="card-header" style="background-color: #ff828b">{{'Editar datos' }}</div>
 
                                     <div class="card-body">
                                         <form id="editStylistForm" method="POST" action="{{ route('update.stylist', ['rut'=>$stylist->rut]) }}">
@@ -113,7 +113,7 @@
                                                 <label for="rut" class="col-md-4 col-form-label text-md-end">{{ __('RUT') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror"
+                                                    <input id="rut" type="text" style="background-color: #ffffff" class="form-control @error('rut') is-invalid @enderror"
                                                         name="rut" required autocomplete="rut" value={{$stylist->rut}} autofocus disabled>
 
                                                     @error('rut')
@@ -172,7 +172,7 @@
                                             </div>
 
                                             <div class="row mb-3">
-                                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo Electrónico') }}</label>
 
                                                 <div class="col-md-6">
                                                     <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
@@ -188,7 +188,7 @@
 
                                             <div class="row mb-0">
                                                 <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-primary" onclick="ConfirmationPopUp('editStylistForm')">Editar</button>
+                                                    <button type="submit" style="background-color: #ff828b" class="btn btn-dark" onclick="ConfirmationPopUp('editStylistForm')">Editar</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -216,7 +216,7 @@ integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0J
 
 @if (session()->has('emailError'))
 <script>
-    swal("Email duplicado!", "Este email ya está registrado en el sistema.", "error");
+    swal("¡Correo electrónico duplicado!", "Este correo electrónico ya está registrado en el sistema.", "error");
 </script>
 @endif
 

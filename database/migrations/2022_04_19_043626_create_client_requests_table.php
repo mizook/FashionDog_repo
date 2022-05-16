@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('client_requests', function (Blueprint $table) {
             $table->string('client_rut', 255);
             $table->string('request_id', 255);
-            $table->timestamps();
         });
     }
 

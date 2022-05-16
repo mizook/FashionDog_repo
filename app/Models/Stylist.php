@@ -16,6 +16,7 @@ class Stylist extends Authenticatable
     protected $keyType = 'string';
     public $incrementing = false;
     protected $primaryKey = 'rut';
+    public $timestamps = false;
 
     protected $hidden = [
         'password'

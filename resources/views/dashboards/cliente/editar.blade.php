@@ -101,7 +101,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{'Editar datos' }}</div>
+                        <div class="card-header" style="background-color: #ff828b">{{'Editar datos' }}</div>
 
                         <div class="card-body">
                             <form id="editClientForm" method="POST" action="{{ route('update.client', ['rut'=>Auth::user()->rut]) }}">
@@ -112,7 +112,7 @@
 
                                     <div class="col-md-6">
                                         <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror"
-                                            name="rut" required autocomplete="rut" value={{Auth::user()->rut}} autofocus disabled>
+                                            name="rut" required autocomplete="rut" style="background-color: #ffffff" value={{Auth::user()->rut}} autofocus disabled>
 
                                         @error('rut')
                                             <span class="invalid-feedback" role="alert">
@@ -202,7 +202,7 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-success" onclick="ConfirmationPopUp('editClientForm')">{{ __('Editar') }}</button>
+                                        <button type="submit" class="btn btn-dark" style="background-color: #ff828b" onclick="ConfirmationPopUp('editClientForm')">{{ __('Editar') }}</button>
                                     </div>
                                 </div>
                                 <div>
@@ -222,7 +222,7 @@
 <!---Alerta de exito o fracaso--->
 @if (session()->has('emailError'))
 <script>
-    swal("Email duplicado!", "Este email ya está registrado en el sistema.", "error");
+    swal("¡Correo electrónico duplicado!", "Este correo electrónico ya está registrado en el sistema.", "error");
 </script>
 @endif
 <!---Alerta de exito o fracaso--->

@@ -12,6 +12,7 @@ class Service extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $primaryKey = ['stylist_rut', 'request_id'];
+    public $timestamps = false;
 
     protected $fillable = [
         'stylist_rut',

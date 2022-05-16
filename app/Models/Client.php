@@ -16,6 +16,7 @@ class Client extends Authenticatable
     protected $keyType = 'string';
     protected $primaryKey = 'rut';
     public $incrementing = false;
+    public $timestamps = false;
 
     protected $hidden = [
         'password'

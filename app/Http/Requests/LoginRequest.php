@@ -40,7 +40,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'rutLogin.required' => 'El RUT es obligatorio.',
-            'passwordLogin.required'  => 'La contraseña es obligatoria',
+            'passwordLogin.required'  => 'La contraseña es obligatoria.',
 
         ];
     }

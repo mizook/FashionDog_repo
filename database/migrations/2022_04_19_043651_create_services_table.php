@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('stylist_rut', 255);
             $table->string('request_id', 255);
             $table->string('comment', 255)->nullable();
-            $table->timestamps();
         });
     }
 

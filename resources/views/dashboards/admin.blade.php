@@ -35,7 +35,7 @@
                 </div>
                 <div class="d-inline-block pt-5">
                     <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                        Bienvenido <br> {{ Auth::user()->rut }}
+                        Bienvenido <br> Administrador
                     </a>
                 </div>
             </div>
@@ -102,7 +102,7 @@
 
 @if (session()->has('clientError'))
 <script>
-    swal("Error!", "1El cliente no existe!", "error");
+    swal("¡Error!", "¡El cliente no existe!", "error");
 </script>
 @endif
 

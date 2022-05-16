@@ -32,7 +32,7 @@ class EditPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required'  => 'La contraseña es obligatoria',
+            'password.required'  => 'La contraseña es obligatoria.',
             'password.min'  => 'El largo de la contraseña debe estar entre 10 y 15 carácteres.',
             'password.max'  => 'El largo de la contraseña debe estar entre 10 y 15 carácteres.',
             'confirm_password.required'  => 'La contraseña es obligatoria.',

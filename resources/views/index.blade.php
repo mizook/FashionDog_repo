@@ -309,17 +309,17 @@
 <!---Alerta de exito o fracaso--->
 @if (session()->has('logoutMessage'))
 <script>
-    swal("Sesión finalizada!", "Has cerrado sesión con éxito.", "success");
+    swal("¡Sesión finalizada!", "Has cerrado sesión con éxito.", "success");
 </script>
 
 @elseif (session()->has('loginError'))
 <script>
-    swal("Error!", "Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.", "error");
+    swal("¡Error!", "Las credenciales de acceso son incorrectas o el usuario no esta registrado en el sistema.", "error");
 </script>
 
 @elseif (session()->has('clientCreated'))
 <script>
-    swal("Cliente creado!", "¡Has creado tu cuenta con éxito!", "success");
+    swal("¡Cliente creado!", "¡Has creado tu cuenta con éxito!", "success");
 </script>
 
 @endif

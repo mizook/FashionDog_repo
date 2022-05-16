@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('administrators', function (Blueprint $table) {
             $table->string('rut', 255)->unique();
             $table->string('password');
-            $table->timestamps();
         });
     }
 

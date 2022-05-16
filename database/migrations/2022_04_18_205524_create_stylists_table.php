@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('phone', 255);
             $table->boolean('status')->default(true);
-            $table->timestamps();
         });
     }
 

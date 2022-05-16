@@ -38,8 +38,8 @@ Route::get('/', function () {
 
 
 //Las borraré
-// Route::get('/registerAdmin', [RegisterAdminController::class, 'show']);
-// Route::post('/registerAdmin', [RegisterAdminController::class, 'register'])->name('registerAdmin');
+Route::get('/registerAdmin', [RegisterAdminController::class, 'show']);
+Route::post('/registerAdmin', [RegisterAdminController::class, 'register'])->name('registerAdmin');
 
 
 // Login todas las entidades, register cliente y logout

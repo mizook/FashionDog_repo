@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('phone', 255);
             $table->string('password');
             $table->boolean('status')->default(true);
-            $table->timestamps();
         });
     }
 
