@@ -212,7 +212,7 @@
 
 
                 <div class="row mb-3">
-                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo') }}</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Correo electrónico') }}</label>
                     <div class="col-md-6">
                         <input id="email" type="email" placeholder="ejemplo@ejemplo.com"
                             class="form-control @error('email') is-invalid @enderror" name="email"
@@ -271,7 +271,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Contraseña') }}</label>
+                    <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar contraseña') }}</label>
                     <div class="col-md-6">
                         <input id="password_confirmation" type="password" placeholder="Confirmar contraseña..."
                             class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" >
