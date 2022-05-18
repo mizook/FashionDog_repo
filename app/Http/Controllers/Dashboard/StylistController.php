@@ -5,14 +5,14 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StylistDashboardController extends Controller
+class StylistController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:stylist', ['except' => 'logout']);
     }
 
-    public function show()
+    public function show_dashboard()
     {
         return view('dashboards.stylist');
     }

@@ -8,19 +8,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditClientRequest;
 
-class ClientDashboardController extends Controller
+class ClientController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:client', ['except' => 'logout']);
     }
 
-    public function show()
+    public function show_dashboard()
     {
         return view('dashboards.client');
     }
 
-    public function update(EditClientRequest $request, $rut)
+    public function show_edit_page()
+    {
+        return view('dashboards.cliente.editar');
+    }
+
+    public function update_client(EditClientRequest $request, $rut)
     {
         $request->validated();
 
@@ -45,9 +50,5 @@ class ClientDashboardController extends Controller
         $client->save();
 
         return redirect('/cliente')->with('goodEdit', 'Datos actualizados satisfactoriamente');
-    }
-    public function show_editar()
-    {
-        return view('dashboards.cliente.editar');
     }
 }

@@ -22,4 +22,9 @@ class RegisterAdminController extends Controller
         $admin = Administrator::create($request->validated());
         return redirect('/login')->with('success', 'Account created successfully');
     }
+
+    public function showTestPage()
+    {
+        return view('dashboards.testpage');
+    }
 }

@@ -1,48 +1,40 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\dashboard;
 
 use App\Models\Stylist;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Rules\RutValidator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditStylistRequest;
 use App\Http\Requests\RegisterStylistRequest;
 
-class StylistController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:administrator', ['except' => 'logout']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function show_dashboard()
     {
-        //
+        return view('dashboards.admin');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function show_stylists_page()
     {
+        $stylists = DB::select('select * from stylists');
+        return view('dashboards.estilista.estilistas', ['stylists' => $stylists]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(RegisterStylistRequest $request)
+    public function show_edit_stylists_page($rut)
+    {
+        $stylist = Stylist::where('rut', $rut)->FirstOrFail();
+        return view('dashboards.estilista.editar')->with('stylist', $stylist);
+    }
+
+    public function create_stylist(RegisterStylistRequest $request)
     {
         $request->validated();
 
@@ -62,38 +54,7 @@ class StylistController extends Controller
         return redirect('/admin/estilistas')->with('goodAddStylist', 'El estilista fue creado exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $stylists = DB::select('select * from stylists');
-        return view('dashboards.estilista.estilistas', ['stylists' => $stylists]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($rut)
-    {
-        $stylist = Stylist::where('rut', $rut)->FirstOrFail();
-        return view('dashboards.estilista.editar')->with('stylist', $stylist);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(EditStylistRequest $request, $rut)
+    public function update_stylist(EditStylistRequest $request, $rut)
     {
         $request->validated();
 
@@ -120,7 +81,7 @@ class StylistController extends Controller
         return redirect('/admin/estilistas')->with('goodEditStylist', 'El estilista fue registrado exitosamente');
     }
 
-    public function changeStatus(Request $request)
+    public function status_stylist(Request $request)
     {
 
         $message = "";
@@ -136,16 +97,5 @@ class StylistController extends Controller
 
         $stylist->save();
         return redirect('/admin/estilistas')->with('goodEditStatusStylist', $message);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

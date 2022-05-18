@@ -1,0 +1,19 @@
+.stylist-table:hover {
+    background-color: #F2D4CC;
+}
+
+.stylist-table-options {
+    padding-left: 20%;
+    height: 30px;
+}
+
+.stylist-table-buttons {
+    border: 2px solid black;
+    height: 30px;
+    text-align: center;
+}
+
+.stylist-table-text {
+
+    text-align: center;
+}

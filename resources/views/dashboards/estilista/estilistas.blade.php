@@ -1,179 +1,93 @@
-<!doctype html>
-<html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Sweet Alerts -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/scripts.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <title>Administrar estilistas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        #sidebar {
-            width: 20%;
-            height: 100vh;
-            background: #343a40;
-        }
-    </style>
+    <title>FashionDog - Panel de Admin</title>
     <link rel="icon" type="image/x-icon" href="../assets/FashionDogLogo.ico" />
 </head>
 
 <body>
-    <div class="d-flex">
-        <div id="sidebar" style="background-color: white">
-            <div id="topSideBar" class="p-2">
-                <div class="d-inline-block">
-                    <img class="pb-5" src="../assets/img/FashionDogLogo.png" alt="" style="width: 100px">
-                </div>
-                <div class="d-inline-block pt-5">
-                    <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center text-dark w-100 p-4">
-                        Administrar<br> {{ Auth::user()->rut }}
-                    </a>
-                </div>
-            </div>
-            <div id="sidebar-accordion" class="accordion" style="background-color: white">
-                <div class="list-group">
+    @include('layouts.navbar')
 
-                    <a href="{{ route('admin.stylists') }}"
-                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                        <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Administral Estilistas
-                    </a>
+    <div class="content">
 
-                    <a href="{{ route('admin.dashboard') }}"
-                        class="list-group-item list-group-item-action text-dark" style="background-color: white">
-                        <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
-                    </a>
+        <section class="p-3">
+            <h1>Administrar Estilistas</h1>
+            <form action="" method="GET" class="text-right mr-3 pr-5">
+                @csrf
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addStylist" style="border: 2px solid black">Agregar Estilista
+                </button>
+            </form>
 
-                    <a href="{{ route('admin.dashboard') }}"
-                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                        <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Administrar Solicitudes
-                    </a>
-
-                    <a href="{{ route('admin.dashboard') }}"
-                        class="list-group-item list-group-item-action  text-dark" style="background-color: white">
-                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuración
-                    </a>
-
-
-
-                </div>
-            </div>
-        </div>
-        <div class="content w-100" style="background-color: #8DD7BF">
-            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: white">
-                <div class="container-xl">
-
-                    <div class="collapse navbar-collapse" id="navbarsExample07XL">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                            </li>
-                        </ul>
-                        <form action="{{ route('logout') }}" method="POST" class="pr-3">
-                            @csrf
-                            <button type="submit" class="btn btn-danger" style="border: 2px solid black">
-                                {{ __('Cerrar sesión') }}
-                            </button>
-                        </form>
-                        @csrf
-                        <a href="{{ route('edit.password') }}" class="btn btn-warning"
-                            style="border: 2px solid black">
-                            <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
-                        </a>
-                    </div>
-                </div>
-            </nav>
-
-            <section class="p-3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Administrar Estilistas</h2>
-                        </div>
-                    </div>
-                </div>
-                <form action="" method="GET" class="text-right mr-3 pr-5">
-                    @csrf
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addStylist"
-                        style="border: 2px solid black">Agregar Estilista</button>
-                </form>
-            </section>
-
-
-
-            <table class="table table-light table-bordered">
-                <thead style="background-color: #ff5768">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Rut</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Teléfono</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col"></th>
-
-                    </tr>
-                </thead>
-                <tbody style="background-color: #ff828b">
-                    @php $numero = 0 @endphp
-                    @foreach ($stylists as $stylist)
-                            @php $numero++ @endphp
+            <div class="container">
+                <table class="table table-sm table-bordered">
+                    <thead style="background-color: #ff828b">
                         <tr>
-                            <th scope="row">{{ $numero }}</th>
-                            <td>{{ $stylist->rut }}</td>
-                            <td>{{ $stylist->name }}</td>
-                            <td>{{ $stylist->last_name }}</td>
-                            <td>{{ $stylist->email }}</td>
-                            <td>{{ $stylist->phone }}</td>
-                            <td>
-                                @if ($stylist->status == 1)
-                                    Activo
-                                @elseif($stylist->status == 0)
-                                    No activo
-                                @endif
+                            <th scope="col" style="text-align: center">#</th>
+                            <th scope="col" style="text-align: center">RUT</th>
+                            <th scope="col" style="text-align: center">Nombre</th>
+                            <th scope="col" style="text-align: center">Apellido</th>
+                            <th scope="col" style="text-align: center">Correo electrónico</th>
+                            <th scope="col" style="text-align: center">Teléfono</th>
+                            <th scope="col" style="text-align: center">Estado</th>
+                            <th scope="col" style="text-align: center">Opciones</th>
 
-                            </td>
-                            <td>
-
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form action="/admin/estilistas/cambiarEstado/{{ $stylist->rut }}"
-                                                method="POST">
-                                                @csrf
-                                                @if ($stylist->status == 1)
-                                                    <button type="submit" class="btn btn-danger btn-block" style="border: 2px solid black">Desactivar</button>
-                                                @elseif($stylist->status == 0)
-                                                    <button type="submit" class="btn btn-success btn-block" style="border: 2px solid black">Activar</button>
-                                                @endif
-
-                                            </form>
-                                        </div>
-                                        <div class="col">
-                                            <a href="{{ route('edit.stylist', ['rut' => $stylist->rut]) }}"
-                                                class="btn btn-warning" style="border: 2px solid black">Cambiar Datos</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
                         </tr>
-                    @endforeach
-                    @php $numero = 0 @endphp
+                    </thead>
 
-                </tbody>
-            </table>
+                    <tbody style="background-color: white">
+                        @php $numero = 0 @endphp
+                        @foreach ($stylists as $stylist)
+                                @php $numero++ @endphp
+                            <tr class="stylist-table">
+                                <th scope="row" style="text-align: center">{{ $numero }}</th>
+                                <td style="text-align: center">{{ $stylist->rut }}</td>
+                                <td style="text-align: center">{{ $stylist->name }}</td>
+                                <td style="text-align: center">{{ $stylist->last_name }}</td>
+                                <td style="text-align: center">{{ $stylist->email }}</td>
+                                <td style="text-align: center">{{ $stylist->phone }}</td>
+                                <td style="text-align: center">
+                                    @if ($stylist->status == 1)
+                                        Activo
+                                    @elseif($stylist->status == 0)
+                                        No activo
+                                    @endif
 
-        </div>
+                                </td>
+                                <td>
+
+                                    <div class="container stylist-table-options">
+                                        <form action="/admin/estilistas/cambiarEstado/{{ $stylist->rut }}" method="POST" class="d-inline-block">
+                                            @csrf
+                                            @if ($stylist->status == 1)
+                                                <button type="submit" class="btn btn-danger btn-block stylist-table-buttons">
+                                                    <h6 class="stylist-table-text">Desactivar</h6>
+                                                </button>
+                                            @elseif($stylist->status == 0)
+                                                <button type="submit" class="btn btn-success btn-block stylist-table-buttons">
+                                                    <h6 class="stylist-table-text">Activar</h6>
+                                                </button>
+                                            @endif
+
+                                        </form>
+
+                                        <form action="{{ route('edit.stylist', ['rut' => $stylist->rut]) }}" method="GET" class="d-inline-block">
+                                            @csrf
+                                            <button type="submit" class="btn btn-warning btn-block stylist-table-buttons">
+                                                <h6 class="stylist-table-text">Editar datos</h6>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @php $numero = 0 @endphp
+
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
     </div>
+
 
 <!--Formulario de registro modal Estilista-->
 <div class="modal fade" id="addStylist" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">

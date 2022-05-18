@@ -16,11 +16,11 @@ class ChangePasswordController extends Controller
         $this->middleware('auth:client,administrator,stylist', ['except' => 'logout']);
     }
 
-    public function show()
+    public function show_page()
     {
         return view('dashboards.changePassword');
     }
-    public function update(EditPasswordRequest $request, $rut)
+    public function update_password(EditPasswordRequest $request, $rut)
     {
         $request->validated();
 
