@@ -115,6 +115,9 @@
             <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar Solicitudes
 
         </a>
+        <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#disableUserForm">
+            <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios T
+        </button>
         <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action disabled sidebar-options">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
         </a>
@@ -158,5 +161,43 @@
 </div>
 @endif
 
+
+
+<!-- ADMIN DisableUserForm -->
+<!-- Modal -->
+<div class="modal fade" id="disableUserForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disableUserFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header pt-2 pb-2" style="background-color: #ff828b">
+                <h5 class="modal-title font-weight-bold" id="disableUserFormLabel">Habilitar/Deshabilitar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container d-flex justify-content-center" style="margin-top: 10%">
+                    <img class="align-self-center mr-3 mb-4" src="/../assets/img/FashionDogLogo.png" style="width: 50px">
+                    <h3 class="font-weight-bold mt-2" style="text-align: center">Buscar usuario</h3>
+                </div>
+
+                <div class="container d-flex" style="margin-top: 10%">
+                    <label for="disableUserRut" class="col-md-4 col-form-label text-md-end font-weight-bold">{{ __('Ingrese RUT') }}</label>
+                    <div class="col-md-6">
+                        <input id="disableUserRut" type="text" placeholder="EJ: 12345678K"
+                            class="form-control rounded @error('disableUserRut') is-invalid @enderror" name="disableUserRut">
+
+                        @error('disableUserRut')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>

@@ -9,9 +9,8 @@ use App\Http\Controllers\auth\RegisterAdminController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\StylistController;
 use App\Http\Controllers\Dashboard\ClientController;
-use App\Http\Controllers\ChangePasswordController;
 
-//Admin pages
+use App\Http\Controllers\ChangePasswordController;
 
 
 use App\Http\Controllers\HomeController;
