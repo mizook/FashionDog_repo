@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Sweet Alerts -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -108,16 +110,13 @@
         <a href="{{ route('admin.stylists') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-address-book-o mr-3" aria-hidden="true"></i>Administrar Estilistas
         </a>
-        <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+        <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#disableUserForm">
             <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
-        </a>
+        </button>
         <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar Solicitudes
 
         </a>
-        <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#disableUserForm">
-            <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios T
-        </button>
         <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action disabled sidebar-options">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
         </a>
@@ -163,8 +162,9 @@
 
 
 
+
+
 <!-- ADMIN DisableUserForm -->
-<!-- Modal -->
 <div class="modal fade" id="disableUserForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disableUserFormLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -181,14 +181,17 @@
                     <h3 class="font-weight-bold mt-2" style="text-align: center">Buscar usuario</h3>
                 </div>
 
-                <form action=" {{ route('admin.dashboard') }}" method="POST">
-                    <div class="container d-flex" style="margin-top: 5%">
-                        <label for="disableUserRut" class="col-md-4 col-form-label text-md-end font-weight-bold">{{ __('Ingrese RUT') }}</label>
-                        <div class="col-md-6">
-                            <input id="disableUserRut" type="text" placeholder="EJ: 12345678K"
-                                class="form-control rounded @error('disableUserRut') is-invalid @enderror" name="disableUserRut">
+                <form action="{{ route('find.user') }}" method="POST">
+                    @csrf
 
-                            @error('disableUserRut')
+                    <div class="container d-flex" style="margin-top: 5%">
+                        <label for="userRut" class="col-md-4 col-form-label text-md-end font-weight-bold">{{ __('Ingrese RUT') }}</label>
+                        <div class="col-md-6">
+                            <input id="userRut" type="text" placeholder="EJ: 12345678K"
+                                class="form-control rounded @error('userRut') is-invalid @enderror" name="userRut"
+                                value="{{ old('userRut') }}" autofocus>
+
+                            @error('userRut')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -208,5 +211,14 @@
         </div>
     </div>
 </div>
+
+
+<!-- Abrir Modal DisableForm si hay algún error -->
+@if($errors->get('userRut'))
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('disableUserForm'), {})
+    myModal.toggle()
+</script>
+@endif
 
 </html>

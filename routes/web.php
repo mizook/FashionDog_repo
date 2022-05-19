@@ -63,6 +63,7 @@ Route::get('/admin/estilistas/editar/{rut}', [AdminController::class, 'show_edit
 Route::post('/admin/estilistas', [AdminController::class, 'create_stylist'])->name('store.stylist');
 Route::post('/admin/estilistas/editar/{rut}', [AdminController::class, 'update_stylist'])->name('update.stylist');
 Route::post('/admin/estilistas/cambiarEstado/{rut}', [AdminController::class, 'status_stylist'])->name('changeStatus.stylist');
+Route::post('/admin', [AdminController::class, 'find_user'])->name('find.user');
 
 
 

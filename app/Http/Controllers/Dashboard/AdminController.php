@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Stylist;
+use App\Models\Client;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditStylistRequest;
 use App\Http\Requests\RegisterStylistRequest;
+use App\Http\Requests\DisableUserRequest;
+
+
+
 
 class AdminController extends Controller
 {
@@ -79,6 +85,57 @@ class AdminController extends Controller
         $stylist->save();
 
         return redirect('/admin/estilistas')->with('goodEditStylist', 'El estilista fue registrado exitosamente');
+    }
+
+    public function change_status_user($stylist, $client)
+    {
+        if ($stylist != null) {
+            if ($stylist->status == 1) {
+                $stylist->status = 0;
+
+                $stylist->save();
+                return redirect()->route('admin.dashboard')->with('disableStylist', 'msg');
+            } else {
+                $stylist->status = 1;
+
+                $stylist->save();
+                return redirect()->route('admin.dashboard')->with('enableStylist', 'msg');
+            }
+        }
+        if ($client != null) {
+            if ($client->status == 1) {
+                $client->status = 0;
+
+                $client->save();
+                return redirect()->route('admin.dashboard')->with('disableClient', 'msg');
+            } else {
+                $client->status = 1;
+
+                $client->save();
+                return redirect()->route('admin.dashboard')->with('enableClient', 'msg');
+            }
+        }
+
+        return redirect()->route('admin.dashboard')->with('disableUserError', 'msg');
+    }
+
+    public function find_user(DisableUserRequest $request)
+    {
+        //dd($request);
+        $request->validated();
+
+        $stylist = Stylist::where('rut', $request->userRut)->first();
+        $client = Client::where('rut', $request->userRut)->first();
+
+
+        if ($stylist == null) {
+            if ($client == null) {
+                return redirect()->route('admin.dashboard')->with('userNotFind', 'Error');
+            }
+            $this->change_status_user(null, $client);
+        }
+        $this->change_status_user($stylist, null);
+        return redirect()->route('admin.dashboard')->with('userNotFind', 'Error');
     }
 
     public function status_stylist(Request $request)
