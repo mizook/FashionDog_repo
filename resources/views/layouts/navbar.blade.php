@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/script.js') }}" defer></script>
+    <script src="js/scripts.js"></script>
 
     <!-- Title -->
     <link rel="icon" type="image/x-icon" href="../assets/FashionDogLogo.ico" />
@@ -83,14 +84,14 @@
 
                 <form action="{{ route('edit.password') }}" method="GET">
                     @csrf
-                    <button class="btn btn-warning navbar-button" type="submit">
-                        <i class="fa fa-power-off mr-3" aria-hidden="true"></i>Cambiar contraseña
+                    <button class="btn btn-warning navbar-button" style="background-color: #FFD872" type="submit">
+                        <i class="fa fa-cog mr-3" aria-hidden="true"></i>Cambiar contraseña
                     </button>
                 </form>
 
                 <form action="{{ route('logout') }}" method="POST" class="pl-2">
                     @csrf
-                    <button class="btn btn-danger navbar-button" type="submit">
+                    <button class="btn btn-danger navbar-button" style="background-color: #FC6238" type="submit">
                         <i class="fa fa-power-off mr-3" aria-hidden="true"></i>Cerrar Sesión
                     </button>
                 </form>
@@ -102,6 +103,9 @@
     </div>
 
 </header>
+
+
+
 
 <!-- Admin Sidebar -->
 @if (auth()->guard('administrator')->user())
@@ -164,7 +168,7 @@
 
 
 
-<!-- ADMIN DisableUserForm -->
+<!-- ADMIN DisableUserForm (Modal para buscar usuario habilitar-deshabilitar) -->
 <div class="modal fade" id="disableUserForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disableUserFormLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -213,7 +217,8 @@
 </div>
 
 
-<!-- Abrir Modal DisableForm si hay algún error -->
+
+<!-- Abrir Modal de Buscar Usuario para deshabilitar/habilitar si hay algún error -->
 @if($errors->get('userRut'))
 <script>
     var myModal = new bootstrap.Modal(document.getElementById('disableUserForm'), {})

@@ -322,6 +322,11 @@
     swal("¡Cliente creado!", "¡Has creado tu cuenta con éxito!", "success");
 </script>
 
+@elseif (session()->has('disabledUser'))
+<script>
+    swal("¡Usuario deshabilitado!", "El usuario ha sido deshabilitado.", "error");
+</script>
+
 @endif
 <!---Alerta de exito o fracaso--->
 

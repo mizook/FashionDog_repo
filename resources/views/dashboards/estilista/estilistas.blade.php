@@ -57,11 +57,13 @@
                                         <form action="/admin/estilistas/cambiarEstado/{{ $stylist->rut }}" method="POST" class="d-inline-block">
                                             @csrf
                                             @if ($stylist->status == 1)
-                                                <button type="submit" class="btn btn-danger btn-block stylist-table-buttons">
+                                                <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238">
+                                                    <i class="fa fa-times mr-3" aria-hidden="true"></i>
                                                     <h6 class="stylist-table-text">Desactivar</h6>
                                                 </button>
                                             @elseif($stylist->status == 0)
-                                                <button type="submit" class="btn btn-success btn-block stylist-table-buttons">
+                                                <button type="submit" class="btn btn-success btn-block stylist-table-buttons d-flex" style="background-color: #4DD091">
+                                                    <i class="fa fa-check mr-3" aria-hidden="true"></i>
                                                     <h6 class="stylist-table-text">Activar</h6>
                                                 </button>
                                             @endif
@@ -70,7 +72,8 @@
 
                                         <form action="{{ route('edit.stylist', ['rut' => $stylist->rut]) }}" method="GET" class="d-inline-block">
                                             @csrf
-                                            <button type="submit" class="btn btn-warning btn-block stylist-table-buttons">
+                                            <button type="submit" class="btn btn-warning btn-block stylist-table-buttons d-flex" style="background-color: #FFD872">
+                                                <i class="fa fa-pencil mr-3" aria-hidden="true"></i>
                                                 <h6 class="stylist-table-text">Editar datos</h6>
                                             </button>
                                         </form>

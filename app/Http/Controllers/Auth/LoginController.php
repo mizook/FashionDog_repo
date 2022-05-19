@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-use App\Models\User;
 use App\Models\Client;
+use App\Models\Stylist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
@@ -49,9 +50,15 @@ class LoginController extends Controller
 
         if (auth()->guard('stylist')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
 
+            $stylist = Stylist::where('rut', $request->rutLogin)->first();
+            if ($stylist->status == 0) {
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()->with('disabledUser', 'msg');
+            }
+
             $user = auth()->guard('stylist')->user();
             $request->session()->regenerate();
-
             auth()->guard('stylist')->login($user);
 
             return redirect()->intended(url('/estilista'));
@@ -59,11 +66,16 @@ class LoginController extends Controller
 
         if (auth()->guard('client')->attempt(['rut' => $request->rutLogin, 'password' => $request->passwordLogin])) {
 
+            $client = Client::where('rut', $request->rutLogin)->first();
+            if ($client->status == 0) {
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()->with('disabledUser', 'msg');
+            }
+
             $user = auth()->guard('client')->user();
             $request->session()->regenerate();
-
             auth()->guard('client')->login($user);
-
 
             return redirect()->intended(url('/cliente'));
         } else {
