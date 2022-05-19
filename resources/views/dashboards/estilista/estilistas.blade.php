@@ -92,6 +92,34 @@
     </div>
 
 
+
+
+
+
+
+
+<!-- Alertas agregar/editar/cambiar-estatus/cambio-email -->
+@if (session()->has('goodAddStylist'))
+<script>
+    swal("¡Estilista agregado!", "El estilista se creó con éxito.", "success");
+</script>
+@elseif (session()->has('goodEditStylist'))
+<script>
+    swal("¡Datos actualizados!", "Los datos se guardaron con éxito.", "success");
+</script>
+@elseif (session()->has('goodEditStatusStylist'))
+<script>
+    swal("¡Estado actualizado!", "Se cambio el estatus del estilista con éxito.", "success");
+</script>
+@elseif (session()->has('emailError'))
+<script>
+    swal("¡Correo electrónico duplicado!", "Este correo electrónico ya está registrado en el sistema.", "error");
+</script>
+@endif
+
+
+
+
 <!--Formulario de registro modal Estilista-->
 <div class="modal fade" id="addStylist" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
     <div class="modal-dialog">
@@ -197,40 +225,7 @@
     </div>
 </div>
 
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-</script>
-
-
-@if (session()->has('goodAddStylist'))
-<script>
-    swal("¡Estilista agregado!", "El estilista se creó con éxito.", "success");
-</script>
-@elseif (session()->has('goodEditStylist'))
-<script>
-    swal("¡Datos actualizados!", "Los datos se guardaron con éxito.", "success");
-</script>
-@elseif (session()->has('goodEditStatusStylist'))
-<script>
-    swal("¡Estado actualizado!", "Se cambio el estatus del estilista con éxito.", "success");
-</script>
-@elseif (session()->has('emailError'))
-<script>
-    swal("¡Correo electrónico duplicado!", "Este correo electrónico ya está registrado en el sistema.", "error");
-</script>
-@endif
-
-
-<!-- Abrir Modal Form Login si hay algún error -->
+<!-- Abrir Modal Form de agregar Estilista si hay algún error -->
 @if($errors->get('rut') || $errors->get('name') || $errors->get('last_name') || $errors->get('email') || $errors->get('phone'))
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('addStylist'), {})

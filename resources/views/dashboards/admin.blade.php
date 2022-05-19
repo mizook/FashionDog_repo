@@ -20,8 +20,6 @@
 
 
 
-
-
 <!-- Alertas -->
 @if (session()->has('clientError'))
 <script>
@@ -54,7 +52,6 @@
     swal("¡El usuario no existe!", "El RUT ingresado no existe en sistema o no es un cliente o estilista.", "error");
 </script>
 @endif
-
 
 
 

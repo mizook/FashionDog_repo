@@ -44,8 +44,6 @@ class AdminController extends Controller
     {
         $request->validated();
 
-
-
         $stylist = Stylist::create([
             'rut' => $request->rut,
             'name' => $request->name,
@@ -63,7 +61,6 @@ class AdminController extends Controller
     public function update_stylist(EditStylistRequest $request, $rut)
     {
         $request->validated();
-
 
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
 
@@ -89,7 +86,6 @@ class AdminController extends Controller
 
     public function change_status_user($stylist, $client)
     {
-
         $selectedStylist = Stylist::where('rut', $stylist)->first();
         $selectedClient = Client::where('rut', $client)->first();
 
@@ -147,7 +143,6 @@ class AdminController extends Controller
         $client = Client::where('rut', $request->userRut)->first();
 
         if ($stylist != null) {
-
             session()->put('stylist', $stylist);
             session()->put('client', 00000);
             return redirect()->route('admin.dashboard')->with('stylistFound', $stylist);
@@ -159,13 +154,10 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.dashboard')->with('userNotFound', 'Error');
-        //$this->change_status_user($stylist, null);
-        //return redirect()->route('admin.dashboard')->with('userNotFind', 'Error');
     }
 
     public function status_stylist(Request $request)
     {
-
         $message = "";
         $stylist = Stylist::where('rut', $request->rut)->FirstOrFail();
 
