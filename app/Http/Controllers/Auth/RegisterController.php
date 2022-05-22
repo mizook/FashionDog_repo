@@ -35,7 +35,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'phone' => $request->phone,
-            'password' => $request->password,
+            'password' => $request->password
         ]);
 
         $client->save();

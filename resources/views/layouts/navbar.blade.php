@@ -141,7 +141,7 @@
 @if (auth()->guard('client')->user())
 <div class="sidebar" style="width: 12.5%">
     <ul class="list-group list-group-flush" style="width: 100%">
-        <a href="{{ route('client.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+        <a href="{{ route('add.request') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-calendar mr-3" aria-hidden="true"></i>Solicitar Servicio
         </a>
         <a href="{{ route('client.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">

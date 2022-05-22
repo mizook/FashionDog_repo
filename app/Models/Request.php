@@ -15,6 +15,6 @@ class Request extends Model
     protected $fillable = [
         'status',
         'date',
-        'time',
+        'time'
     ];
 }

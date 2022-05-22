@@ -59,17 +59,16 @@ Route::get('/cliente', [ClientController::class, 'show_dashboard'])->name('clien
 
 // Admin Pages
 Route::get('/admin/estilistas', [AdminController::class, 'show_stylists_page'])->name('admin.stylists');
-Route::get('/admin/estilistas/editar/{rut}', [AdminController::class, 'show_edit_stylists_page'])->name('edit.stylist');
 
 Route::post('/admin/estilistas', [AdminController::class, 'create_stylist'])->name('store.stylist');
 Route::post('/admin/estilistas/editar/{rut}', [AdminController::class, 'update_stylist'])->name('update.stylist');
 Route::post('/admin/estilistas/cambiarEstado/{rut}', [AdminController::class, 'status_stylist'])->name('changeStatus.stylist');
 
-
-
 //Clientes
 Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name('edit.client');
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');
+Route::get('/cliente/request', [ClientController::class, 'add_requests_page'])->name('add.request');
+Route::post('/cliente/request/{rut}', [ClientController::class, 'create_request'])->name('add.request.post');
 
 
 //Change password

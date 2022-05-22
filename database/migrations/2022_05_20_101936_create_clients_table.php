@@ -1,11 +1,10 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('rut', 255)->unique();
-            $table->string('name', 255);
-            $table->string('last_name', 255);
+            $table->string('rut')->unique();
+            $table->string('name');
+            $table->string('last_name');
             $table->string('email', 320)->unique();
-            $table->string('address', 255);
-            $table->string('phone', 255);
+            $table->string('address');
+            $table->string('phone');
             $table->string('password');
             $table->boolean('status')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -35,4 +35,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('clients');
     }
-};
+}

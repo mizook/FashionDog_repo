@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditClientRequest;
+use App\Http\Requests\MakeServiceRequest;
 
 class ClientController extends Controller
 {
@@ -23,6 +24,11 @@ class ClientController extends Controller
     public function show_edit_page()
     {
         return view('dashboards.cliente.editar');
+    }
+
+    public function add_requests_page()
+    {
+        return view('dashboards.cliente.add_request');
     }
 
     public function update_client(EditClientRequest $request, $rut)
@@ -50,5 +56,20 @@ class ClientController extends Controller
         $client->save();
 
         return redirect('/cliente')->with('goodEdit', 'Datos actualizados satisfactoriamente');
+    }
+
+    public function create_request(MakeServiceRequest $request, $rut)
+    {
+        $request->validated();
+
+        $service_request = Request::create([
+            'date' => $request->input_date,
+            'time' => $request->input_time,
+            'status' => "INGRESADA"
+        ]);
+
+        $service_request->save();
+
+        return redirect('/cliente')->with('goodEdit', 'Solicitud enviada correctamente');
     }
 }
