@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStylistsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,13 @@ class CreateStylistsTable extends Migration
     public function up()
     {
         Schema::create('stylists', function (Blueprint $table) {
-            $table->string('rut')->unique();
-            $table->string('password');
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('phone');
+            $table->string('rut', 255)->unique();
+            $table->string('password', 255);
+            $table->string('name', 255);
+            $table->string('last_name', 255);
+            $table->string('email', 255)->unique();
+            $table->string('phone', 255);
             $table->boolean('status')->default(true);
-            $table->timestamps();
         });
     }
 
@@ -34,4 +33,4 @@ class CreateStylistsTable extends Migration
     {
         Schema::dropIfExists('stylists');
     }
-}
+};
