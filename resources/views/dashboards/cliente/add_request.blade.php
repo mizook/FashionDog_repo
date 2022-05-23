@@ -20,7 +20,7 @@
                             <div class="card-header" style="background-color: #ff828b">{{'Escoge la fecha y hora en que deseas recibir el servicio' }}</div>
 
                             <div class="card-body">
-                                <form id="createRequestForm" method="POST" action="{{ route('add.request.post', ['rut'=>Auth::user()->rut]) }}">
+                                <form id="createRequestForm" method="POST" action="{{ route('add.request.post') }}">
                                     @csrf
 
                                     <div class="row form-group">
@@ -76,7 +76,7 @@
     config = {
         mode: "range",
         minDate: new Date().fp_incr(1),
-        dateFormat: "d/m/Y"
+        dateFormat: "Y-m-d"
     }
 
     flatpickr("input[id=input_date]", config);

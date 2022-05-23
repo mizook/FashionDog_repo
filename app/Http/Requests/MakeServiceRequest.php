@@ -24,16 +24,14 @@ class MakeServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => ['required'],
-            'time' => ['required']
+            'input_date' => ['required']
         ];
     }
 
     public function messages()
     {
         return [
-            'date.required'  => 'Debes escoger una fecha.',
-            'time.required'  => 'Debes escoger una hora.'
+            'date.required'  => 'Debes escoger una fecha.'
         ];
     }
 }
