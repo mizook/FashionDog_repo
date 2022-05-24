@@ -67,8 +67,8 @@ Route::post('/admin/estilistas/cambiarEstado/{rut}', [AdminController::class, 's
 //Clientes
 Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name('edit.client');
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');
-Route::get('/cliente/request', [ClientController::class, 'add_requests_page'])->name('add.request');
-Route::post('/cliente/request', [ClientController::class, 'create_request'])->name('add.request.post');
+Route::get('/cliente/solicitud', [ClientController::class, 'add_requests_page'])->name('add.request');
+Route::post('/cliente/solicitud/{rut}', [ClientController::class, 'create_request'])->name('add.request.post');
 
 
 //Change password

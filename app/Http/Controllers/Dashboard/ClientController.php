@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Client;
-use App\Models\Request as requestModel;
+use App\Models\Request as RequestModel;
+use App\Models\ClientRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,18 +60,25 @@ class ClientController extends Controller
         return redirect('/cliente')->with('goodEdit', 'Datos actualizados satisfactoriamente');
     }
 
-    public function create_request(MakeServiceRequest $request)
+    public function create_request(MakeServiceRequest $request, $rut)
     {
         $request->validated();
 
         $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
 
-        $service_request = requestModel::create([
+        $service_request = RequestModel::create([
             'status' => "INGRESADA",
             'date' => $datetime
         ]);
 
         $service_request->save();
+
+        $client_service_request = ClientRequest::create([
+            'client_rut' => $rut,
+            'request_id' => $service_request->id
+        ]);
+
+        $client_service_request->save();
 
         return redirect('/cliente')->with('goodEdit', 'Solicitud enviada correctamente');
     }
