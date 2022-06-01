@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateClientRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
-            $table->id('id')->autoIncrement()->unique();
-            $table->string('status', 15);
-            $table->date('date');
-            $table->time('time');
+        Schema::create('client_requests', function (Blueprint $table) {
+            $table->string('client_rut');
+            $table->string('request_id');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('client_requests');
     }
-};
+}

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->string('stylist_rut', 255);
-            $table->string('request_id', 255);
-            $table->string('comment', 255)->nullable();
+        Schema::create('requests', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->string('status', 15);
+            $table->dateTime('date');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('requests');
     }
-};
+}

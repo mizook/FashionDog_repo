@@ -66,8 +66,6 @@ Route::post('/admin/estilistas/cambiarEstado/{rut}', [AdminController::class, 's
 Route::post('/admin', [AdminController::class, 'find_user'])->name('find.user');
 Route::post('/admin/changestatus/{stylist?}/{client?}', [AdminController::class, 'change_status_user'])->name('changestatus.user');
 
-
-
 //Clientes
 Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name('edit.client');
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');

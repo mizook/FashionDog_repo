@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Client;
+use App\Models\Request as RequestModel;
+use App\Models\ClientRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditClientRequest;
+use App\Http\Requests\MakeServiceRequest;
 
 class ClientController extends Controller
 {
@@ -23,6 +26,11 @@ class ClientController extends Controller
     public function show_edit_page()
     {
         return view('dashboards.cliente.editar');
+    }
+
+    public function add_requests_page()
+    {
+        return view('dashboards.cliente.add_request');
     }
 
     public function update_client(EditClientRequest $request, $rut)
@@ -50,5 +58,28 @@ class ClientController extends Controller
         $client->save();
 
         return redirect('/cliente')->with('goodEdit', 'Datos actualizados satisfactoriamente');
+    }
+
+    public function create_request(MakeServiceRequest $request, $rut)
+    {
+        $request->validated();
+
+        $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
+
+        $service_request = RequestModel::create([
+            'status' => "INGRESADA",
+            'date' => $datetime
+        ]);
+
+        $service_request->save();
+
+        $client_service_request = ClientRequest::create([
+            'client_rut' => $rut,
+            'request_id' => $service_request->id
+        ]);
+
+        $client_service_request->save();
+
+        return redirect('/cliente')->with('goodEdit', 'Solicitud enviada correctamente');
     }
 }

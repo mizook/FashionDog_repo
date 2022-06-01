@@ -26,7 +26,7 @@
 
                                         <div class="col-md-6">
                                             <input id="rut" type="text" class="form-control @error('rut') is-invalid @enderror"
-                                                name="rut" required autocomplete="rut" style="background-color: #F2D4CC" value={{Auth::user()->rut}} autofocus disabled>
+                                                name="rut" required autocomplete="rut" style="background-color: #F2D4CC" value="{{Auth::user()->rut}}" autofocus disabled>
 
                                             @error('rut')
                                                 <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
 
                                         <div class="col-md-6">
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                                name="name" required autocomplete="name" value={{Auth::user()->name}} autofocus>
+                                                name="name" required autocomplete="name" value="{{Auth::user()->name}}" autofocus>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
