@@ -71,6 +71,8 @@ Route::post('/admin/changestatus/{stylist?}/{client?}', [AdminController::class,
 //Clientes
 Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name('edit.client');
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');
+Route::get('/cliente/solicitud', [ClientController::class, 'add_requests_page'])->name('add.request');
+Route::post('/cliente/solicitud/{rut}', [ClientController::class, 'create_request'])->name('add.request.post');
 
 
 //Change password
