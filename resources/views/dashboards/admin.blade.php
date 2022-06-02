@@ -94,7 +94,7 @@
                                 }
                                 if(session()->get('client')->status == 1)
                                 {
-                                    echo 'desahabilitar a ';
+                                    echo 'deshabilitar a ';
                                     echo session()->get('client')->name;
                                 }
                             }

@@ -19,10 +19,19 @@
 <script>
     swal("¡Datos actualizados!", "Datos actualizados con éxito.", "success");
 </script>
+@elseif (session()->has('requestAdded'))
+<script>
+    swal("¡Solicitud realizada!", "Solicitud realizada con éxito.", "success");
+</script>
 @elseif (session()->has('clientError'))
 <script>
     swal("¡Error!", "¡El cliente no existe!", "error");
 </script>
+@elseif (session()->has('requestError'))
+<script>
+    swal("¡Error!", "!Ya tienes una solicitud para ese día!", "error");
+</script>
+
 @endif
 <!---Alerta de exito o fracaso--->
 

@@ -80,6 +80,6 @@ class ClientController extends Controller
 
         $client_service_request->save();
 
-        return redirect('/cliente')->with('goodEdit', 'Solicitud enviada correctamente');
+        return redirect('/cliente')->with('requestAdded', 'Solicitud enviada correctamente');
     }
 }
