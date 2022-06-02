@@ -66,6 +66,11 @@ class ClientController extends Controller
 
         $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
 
+        //AQUI VERIFICAMOS SI YA EXISTE UNA SOLICITUD PARA ESE DÍA
+        //EN CASO DE EXISTIR, NO CREAMOS LA SOLICITUD
+        //CODIGO
+        //CODIGO
+
         $service_request = RequestModel::create([
             'status' => "INGRESADA",
             'date' => $datetime
