@@ -40,6 +40,22 @@ class ClientController extends Controller
         return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData]);
     }
 
+    public function cancel_request(Request $request)
+    {
+        $message = "";
+        $clientRequest = RequestModel::where('id', $request->id)->FirstOrFail();
+
+        if ($clientRequest->status == 'INGRESADA') {
+            $clientRequest->status = 'ANULADA';
+            $message = "La solicitud fue anulada exitosamente";
+        } else {
+            $message = "La solicitud ya fue anulada";
+        }
+
+        $clientRequest->save();
+        return redirect('/cliente/manageRequests')->with('goodEditStatusRequest', $message);
+    }
+
     public function update_client(EditClientRequest $request, $rut)
     {
         $request->validated();

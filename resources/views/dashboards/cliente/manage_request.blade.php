@@ -30,9 +30,7 @@
                             <th scope="col" style="text-align: center">N°</th>
                             <th scope="col" style="text-align: center">Estado</th>
                             <th scope="col" style="text-align: center">Nombre estilista</th>
-                            <th scope="col" style="text-align: center">campo1</th>
-                            <th scope="col" style="text-align: center">campo2</th>
-                            <th scope="col" style="text-align: center">campo3</th>
+                            <th scope="col" style="text-align: center">ANULAR</th>
 
                         </tr>
                     </thead>
@@ -47,14 +45,16 @@
                                 <td style="text-align: center">{{$requestData->id}}</td>
                                 <td style="text-align: center">{{$requestData->status}}</td>
                                 <td style="text-align: center"></td>
-                                <td style="text-align: center">{{$requestData->client_rut}}</td>
                                 <td style="text-align: center">
-                                    @if (true)
-                                        Activo
-                                    @elseif(false)
-                                        No activo
-                                    @endif
-
+                                    <div class="container stylist-table-options">
+                                        <form action="/cliente/cancelRequest/{{ $requestData->id }}" method="POST" class="d-inline-block">
+                                            @csrf
+                                                <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238">
+                                                    <i class="fa fa-times mr-3" aria-hidden="true"></i>
+                                                    <h6 class="stylist-table-text">Anular solicitud</h6>
+                                                </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
