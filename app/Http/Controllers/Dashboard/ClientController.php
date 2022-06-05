@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditClientRequest;
 use App\Http\Requests\MakeServiceRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -31,6 +32,12 @@ class ClientController extends Controller
     public function add_requests_page()
     {
         return view('dashboards.cliente.add_request');
+    }
+
+    public function manage_requests_page()
+    {
+        $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
+        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData]);
     }
 
     public function update_client(EditClientRequest $request, $rut)
