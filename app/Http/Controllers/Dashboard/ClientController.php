@@ -70,6 +70,8 @@ class ClientController extends Controller
         //EN CASO DE EXISTIR, NO CREAMOS LA SOLICITUD
         //CODIGO
         //CODIGO
+        if (RequestModel::where('date', $datetime)->count() > 0)
+            return redirect('/cliente/solicitud')->with('dateError', 'La fecha que intentas escoger ya está agendada!');
 
         $service_request = RequestModel::create([
             'status' => "INGRESADA",

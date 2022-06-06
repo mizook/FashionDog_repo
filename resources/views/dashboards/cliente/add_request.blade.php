@@ -102,6 +102,10 @@
 <script>
     swal("¡Error!", "¡El cliente no existe!", "error");
 </script>
+@elseif (session()->has('dateError'))
+<script>
+    swal("¡Error!", "La fecha que intentas escoger ya está agendada!", "error");
+</script>
 @endif
 <!---Alerta de exito o fracaso--->
 
