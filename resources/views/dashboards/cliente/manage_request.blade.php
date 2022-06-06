@@ -6,18 +6,20 @@
 <body>
     @include('layouts/navbar')
 
-    @php
-        $totalRequests= DB::select('select COUNT(client_rut) from client_requests where client_rut = ?', [Auth::user()->rut]);
-        if(  $totalRequests == 0){
-            echo "NO TIENE NINGUNA SOLICITUD";
-        }else {
-            echo "SI TIENE SOLICITUD";
-        }
-    @endphp
+    @if ($totalRequests == 0)
+    <script>
+        swal("¡Sin solicitudes!", "Aun no ha ingresado ninguna solicitud de servicio.", "error");
+    </script>
+    @endif
+
+    @if (session()->has('goodEditStatusRequest'))
+        <script>
+            swal("¡Solicitud anulada!", "La solicitud ha sido anulada con éxito.", "success");
+        </script>
+    @endif
+
 
     <div class="content">
-        : fecha y hora de la solicitud, número de la solicitud, estado y nombre del
-        estilista. Si la solicitud no ha sido atendida el campo “nombre del estilista” estará vacío.
         <section class="p-3">
             <h1>Administrar Solicitudes</h1>
 
@@ -49,10 +51,18 @@
                                     <div class="container stylist-table-options">
                                         <form action="/cliente/cancelRequest/{{ $requestData->id }}" method="POST" class="d-inline-block">
                                             @csrf
-                                                <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238">
-                                                    <i class="fa fa-times mr-3" aria-hidden="true"></i>
-                                                    <h6 class="stylist-table-text">Anular solicitud</h6>
-                                                </button>
+                                            @if ($requestData->status == 'ANULADA')
+                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" disabled>
+                                                <i class="fa fa-times mr-3" aria-hidden="true"></i>
+                                                <h6 class="stylist-table-text">Anular solicitud</h6>
+                                            </button>
+                                            @else
+                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238">
+                                                <i class="fa fa-times mr-3" aria-hidden="true"></i>
+                                                <h6 class="stylist-table-text">Anular solicitud</h6>
+                                            </button>
+
+                                            @endif
                                         </form>
                                     </div>
                                 </td>

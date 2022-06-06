@@ -36,8 +36,9 @@ class ClientController extends Controller
 
     public function manage_requests_page()
     {
+        $totalRequests = ClientRequest::where('client_rut', Auth::user()->rut)->count();
         $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
-        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData]);
+        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData,'totalRequests' => $totalRequests]);
     }
 
     public function cancel_request(Request $request)
