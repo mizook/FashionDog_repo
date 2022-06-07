@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EditClientRequest;
 use App\Http\Requests\MakeServiceRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -31,6 +32,29 @@ class ClientController extends Controller
     public function add_requests_page()
     {
         return view('dashboards.cliente.add_request');
+    }
+
+    public function manage_requests_page()
+    {
+        $totalRequests = ClientRequest::where('client_rut', Auth::user()->rut)->count();
+        $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
+        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData,'totalRequests' => $totalRequests]);
+    }
+
+    public function cancel_request(Request $request)
+    {
+        $message = "";
+        $clientRequest = RequestModel::where('id', $request->id)->FirstOrFail();
+
+        if ($clientRequest->status == 'INGRESADA') {
+            $clientRequest->status = 'ANULADA';
+            $message = "La solicitud fue anulada exitosamente";
+        } else {
+            $message = "La solicitud ya fue anulada";
+        }
+
+        $clientRequest->save();
+        return redirect('/cliente/manageRequests')->with('goodEditStatusRequest', $message);
     }
 
     public function update_client(EditClientRequest $request, $rut)

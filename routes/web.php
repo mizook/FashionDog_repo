@@ -71,6 +71,8 @@ Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');
 Route::get('/cliente/solicitud', [ClientController::class, 'add_requests_page'])->name('add.request');
 Route::post('/cliente/solicitud/{rut}', [ClientController::class, 'create_request'])->name('add.request.post');
+Route::get('/cliente/manageRequests', [ClientController::class, 'manage_requests_page'])->name('manage.requests');
+Route::post('/cliente/cancelRequest/{id}', [ClientController::class, 'cancel_request'])->name('changeRequestStatus');
 
 
 //Change password

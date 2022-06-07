@@ -158,7 +158,7 @@
         <a href="{{ route('add.request') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-calendar mr-3" aria-hidden="true"></i>Solicitar Servicio
         </a>
-        <a href="{{ route('client.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+        <a href="{{ route('manage.requests') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-window-restore mr-3" aria-hidden="true"></i>Administrar Solicitudes
         </a>
         <a href="{{ route('edit.client') }}" class="list-group-item list-group-item-action sidebar-options">
