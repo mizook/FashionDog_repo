@@ -25,7 +25,7 @@
 
                                     <div class="row form-group">
                                         <label for="input_date" class ="col-md-4 col-form-label text-md-end">{{ __('Fecha') }}</label>
-                                        <div class="col-sm-6"> 
+                                        <div class="col-sm-6">
                                             <input id="input_date" type="datetime-local" class="form-control @error('input_date') is-invalid @enderror"
                                                 name="input_date" required>
 
@@ -39,7 +39,7 @@
 
                                     <div class="row form-group">
                                         <label for="input_time" class ="col-md-4 col-form-label text-md-end">{{ __('Hora') }}</label>
-                                        <div class="col-sm-6"> 
+                                        <div class="col-sm-6">
                                             <input id="input_time" type="datetime-local" class="form-control @error('input_date') is-invalid @enderror"
                                                 name="input_time" required>
 
@@ -78,8 +78,20 @@
         minDate: new Date().fp_incr(1),
         dateFormat: "Y-m-d",
         altInput: true,
-        altFormat: "d/m/Y"
+        altFormat: "d/m/Y",
+        locale: {
+        firstDayOfWeek: 1,
+        weekdays: {
+          shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+          longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        },
+        months: {
+          shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+          longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        },
+      },
     }
+
 
     flatpickr("input[id=input_date]", config);
 </script>
