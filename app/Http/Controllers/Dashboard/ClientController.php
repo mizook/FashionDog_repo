@@ -89,13 +89,11 @@ class ClientController extends Controller
         $request->validated();
 
         $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
-
-        //AQUI VERIFICAMOS SI YA EXISTE UNA SOLICITUD PARA ESE DÍA
-        //EN CASO DE EXISTIR, NO CREAMOS LA SOLICITUD
-        //CODIGO
-        //CODIGO
-        if (RequestModel::where('date', $datetime)->count() > 0)
+        
+        if (RequestModel::whereDate('date', $request->input_date)->count() > 0)
+        {
             return redirect('/cliente/solicitud')->with('dateError', 'La fecha que intentas escoger ya está agendada!');
+        }
 
         $service_request = RequestModel::create([
             'status' => "INGRESADA",
