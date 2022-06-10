@@ -46,7 +46,7 @@
                                             class="col-md-4 col-form-label text-md-end">{{ __('Hora') }}</label>
                                         <div class="col-sm-6">
                                             <input id="input_time" type="datetime-local"
-                                                class="form-control @error('input_date') is-invalid @enderror"
+                                                class="form-control @error('input_time') is-invalid @enderror"
                                                 name="input_time" required>
 
                                             @error('input_time')
