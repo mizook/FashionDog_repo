@@ -34,3 +34,7 @@ function DisableUserPopUp()
         }
       });
 }
+
+function show() {
+    alert('test');
+    }

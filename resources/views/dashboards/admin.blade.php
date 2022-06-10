@@ -62,7 +62,6 @@
         <div class="modal-content">
             <div class="modal-header pt-2 pb-2" style="background-color: #ff828b">
                 <h4 class="modal-title font-weight-bold" id="disableUserModalLabel">Habilitar/Deshabilitar Usuario</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form action="{{ route('changestatus.user', ['stylist' => session()->get('stylist'), 'client' => session()->get('client')]) }}" method="POST">
@@ -106,7 +105,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="reset " style="background-color: #FC6238" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <button type="button" style="background-color: #FC6238" class="btn btn-dark" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                    <!--<button type="button" style="background-color: #FC6238" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>-->
                     <button type="submit" style="background-color: #ff828b" class="btn btn-dark mr-5">
                         {{ __('OK') }}
                     </button>

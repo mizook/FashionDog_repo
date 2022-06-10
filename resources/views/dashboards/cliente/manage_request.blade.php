@@ -1,6 +1,7 @@
 <head>
     <title>FashionDog - Panel de Cliente</title>
     <link rel="icon" type="image/x-icon" href="../../../assets/FashionDogLogo.ico" />
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
@@ -49,7 +50,7 @@
                                 <td style="text-align: center"></td>
                                 <td style="text-align: center">
                                     <div class="container stylist-table-options">
-                                        <form action="/cliente/cancelRequest/{{ $requestData->id }}" method="POST" class="d-inline-block">
+                                        <form id="cancelRequestForm" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
                                             @csrf
                                             @if ($requestData->status == 'ANULADA')
                                             <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" disabled>
@@ -57,11 +58,10 @@
                                                 <h6 class="stylist-table-text">Anular solicitud</h6>
                                             </button>
                                             @else
-                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238">
+                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" onclick="ConfirmationPopUp('cancelRequestForm')">
                                                 <i class="fa fa-times mr-3" aria-hidden="true"></i>
                                                 <h6 class="stylist-table-text">Anular solicitud</h6>
                                             </button>
-
                                             @endif
                                         </form>
                                     </div>
