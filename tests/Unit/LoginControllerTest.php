@@ -28,9 +28,14 @@ class LoginControllerTest extends TestCase
             ]);
         }
 
-        $response = $this->actingAs($adminFounded)->get('/login')->assertRedirect('/');
-    }
+        $credenciales = [
+            'rutLogin' => "179771393",
+            'passwordLogin' => "1234567890"
+        ];
 
+        $this->json('POST', route('login'), $credenciales)
+            ->assertRedirect('/admin');
+    }
     /*@test*/
     public function test_client_logged_in()
     {
@@ -46,7 +51,14 @@ class LoginControllerTest extends TestCase
                 'password' => '1234567890'
             ]);
         }
-        $response = $this->actingAs($clientFounded)->get('/login')->assertRedirect('/');
+
+        $credenciales = [
+            'rutLogin' => "191120052",
+            'passwordLogin' => "1234567890"
+        ];
+
+        $this->json('POST', route('login'), $credenciales)
+            ->assertRedirect('/cliente');
     }
 
     /*@test*/
@@ -63,6 +75,13 @@ class LoginControllerTest extends TestCase
                 'phone' => '917772467'
             ]);
         }
-        $response = $this->actingAs($stylistFounded)->get('/login')->assertRedirect('/');
+
+        $credenciales = [
+            'rutLogin' => "209117645",
+            'passwordLogin' => "1234567890"
+        ];
+
+        $this->json('POST', route('login'), $credenciales)
+            ->assertRedirect('/estilista');
     }
 }
