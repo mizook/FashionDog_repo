@@ -12,11 +12,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function PHPUnit\Framework\assertEquals;
 
-class UserTest extends TestCase
+class HomePageTest extends TestCase
 {
 
     /** @test */
-    public function carga_pagina_inicio(): void
+    public function test_load_home_page(): void
     {
         $response = $this->get('/');
 
