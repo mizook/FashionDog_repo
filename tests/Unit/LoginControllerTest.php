@@ -18,70 +18,61 @@ use App\Models\Stylist;
 class LoginControllerTest extends TestCase
 {
     /*@test*/
-    public function test_admin_logged_in()
+    public function test_admin_can_login()
     {
-        $adminFounded = Administrator::where('rut', '179771393')->first();
-        if ($adminFounded === null) {
-            $adminFounded = Administrator::create([
-                'rut' => '179771393',
-                'password' => '1234567890'
-            ]);
-        }
+        // Usamos los datos del administrador Antonio para realizar el test
+        $adminFounded = Administrator::where('rut', '17977139K')->first();
+        if ($adminFounded == null) return false;
 
-        $credenciales = [
-            'rutLogin' => "179771393",
-            'passwordLogin' => "1234567890"
-        ];
+        $credentials = ['rutLogin' => '17977139K', 'passwordLogin' => 'fashionDog'];
 
-        $this->json('POST', route('login'), $credenciales)
+        $this->json('POST', route('login'), $credentials)
             ->assertRedirect('/admin');
     }
     /*@test*/
-    public function test_client_logged_in()
+    public function test_client_can_login()
     {
-        $clientFounded = Client::where('rut', '191120052')->first();
-        if ($clientFounded === null) {
-            $clientFounded = Client::create([
-                'rut' => '191120052',
-                'name' => 'Pedro',
-                'last_name' => 'Sanchez',
-                'email' => 'PedroSanchez@gmail.com',
-                'address' => 'Avenida Petronila #974',
-                'phone' => '973332265',
-                'password' => '1234567890'
-            ]);
-        }
+        Client::create([
+            'rut' => '191120052',
+            'name' => 'Pedro',
+            'last_name' => 'Sanchez',
+            'email' => 'PedroSanchez@gmail.com',
+            'address' => 'Avenida Petronila #974',
+            'phone' => '973332265',
+            'password' => '1234567890'
+        ]);
 
-        $credenciales = [
+        $credentials = [
             'rutLogin' => "191120052",
             'passwordLogin' => "1234567890"
         ];
 
-        $this->json('POST', route('login'), $credenciales)
+        $this->json('POST', route('login'), $credentials)
             ->assertRedirect('/cliente');
+
+        Client::where('rut', '191120052')->first()->delete();
     }
 
     /*@test*/
-    public function test_stylist_logged_in()
+    public function test_stylist_can_login()
     {
-        $stylistFounded = Stylist::where('rut', '209117645')->first();
-        if ($stylistFounded === null) {
-            $stylistFounded = Stylist::create([
-                'rut' => '209117645',
-                'password' => '1234567890',
-                'name' => 'Rigoberto',
-                'last_name' => 'Mora',
-                'email' => 'RigobertoMora@gmail.com',
-                'phone' => '917772467'
-            ]);
-        }
+        Stylist::create([
+            'rut' => '209117645',
+            'password' => '1234567890',
+            'name' => 'Rigoberto',
+            'last_name' => 'Mora',
+            'email' => 'RigobertoMora@gmail.com',
+            'phone' => '917772467'
+        ]);
 
-        $credenciales = [
+        $credentials = [
             'rutLogin' => "209117645",
             'passwordLogin' => "1234567890"
         ];
 
-        $this->json('POST', route('login'), $credenciales)
+        $this->json('POST', route('login'), $credentials)
             ->assertRedirect('/estilista');
+
+        Stylist::where('rut', '209117645')->first()->delete();
     }
 }

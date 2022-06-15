@@ -38,7 +38,7 @@ class ClientController extends Controller
     {
         $totalRequests = ClientRequest::where('client_rut', Auth::user()->rut)->count();
         $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
-        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData,'totalRequests' => $totalRequests]);
+        return view('dashboards.cliente.manage_request', ['clientRequestsData' => $clientRequestsData, 'totalRequests' => $totalRequests]);
     }
 
     public function cancel_request(Request $request)
@@ -89,9 +89,8 @@ class ClientController extends Controller
         $request->validated();
 
         $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
-        
-        if (RequestModel::whereDate('date', $request->input_date)->count() > 0)
-        {
+
+        if (RequestModel::whereDate('date', $request->input_date)->count() > 0) {
             return redirect('/cliente/solicitud')->with('dateError', 'La fecha que intentas escoger ya está agendada!');
         }
 

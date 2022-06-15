@@ -11,7 +11,8 @@ class ClientRequest extends Model
 
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $primaryKey = ['client_rut', 'request_id'];
+    //protected $primaryKey = ['client_rut', 'request_id'];
+    protected $primaryKey = 'client_rut';
     public $timestamps = false;
 
     protected $fillable = [

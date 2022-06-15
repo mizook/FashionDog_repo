@@ -16,7 +16,7 @@ class HomePageTest extends TestCase
 {
 
     /** @test */
-    public function test_load_home_page(): void
+    public function test_can_load_home_page(): void
     {
         $response = $this->get('/');
 
