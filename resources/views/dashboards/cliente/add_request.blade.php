@@ -126,7 +126,7 @@
         </script>
     @elseif (session()->has('dateError'))
         <script>
-            swal("¡Error!", "La fecha que intentas escoger ya está agendada!", "error");
+            swal("¡Error!", "¡Ya tienes una solicitud agendada para ese día!", "error");
         </script>
     @endif
     <!---Alerta de exito o fracaso--->
