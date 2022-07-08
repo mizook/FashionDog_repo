@@ -1,6 +1,7 @@
 <head>
     <title>FashionDog - Cambio de contraseña</title>
     <link rel="icon" type="image/x-icon" href="../assets/FashionDogLogo.ico" />
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header" style="background-color: #ff828b">{{'Cambiar contraseña' }}</div>
+                            <div class="card-header" style="background-color: #ff828b">
+                                <h5 style="color: white" class="pt-3">Cambiar contraseña</h5>
+                            </div>
                                 <div class="card-body">
                                     <form id="changePasswordForm" method="POST" action="{{ route('update.password', ['rut'=>Auth::user()->rut]) }}">
                                         @csrf

@@ -27,7 +27,7 @@
             <div class="container">
                 <table class="table table-sm table-bordered">
                     <thead style="background-color: #ff828b">
-                        <tr>
+                        <tr style="color: white">
                             <th scope="col" style="text-align: center">#</th>
                             <th scope="col" style="text-align: center">Fecha y hora</th>
                             <th scope="col" style="text-align: center">N°</th>
@@ -50,7 +50,7 @@
                                 <td style="text-align: center"></td>
                                 <td style="text-align: center">
                                     <div class="container stylist-table-options">
-                                        <form id="cancelRequestForm" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
+                                        <form id="cancelRequestForm_{{ $requestData->id }}" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
                                             @csrf
                                             @if ($requestData->status == 'ANULADA')
                                             <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" disabled>
@@ -58,7 +58,7 @@
                                                 <h6 class="stylist-table-text">Anular solicitud</h6>
                                             </button>
                                             @else
-                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" onclick="ConfirmationPopUp('cancelRequestForm')">
+                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" onclick="ConfirmationPopUp('cancelRequestForm_{{ $requestData->id }}')">
                                                 <i class="fa fa-times mr-3" aria-hidden="true"></i>
                                                 <h6 class="stylist-table-text">Anular solicitud</h6>
                                             </button>

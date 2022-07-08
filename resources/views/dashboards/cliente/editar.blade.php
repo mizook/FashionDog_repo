@@ -15,8 +15,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header" style="background-color: #ff828b">{{'Editar datos' }}</div>
-
+                            <div class="card-header" style="background-color: #ff828b">
+                                <h5 style="color: white" class="pt-3">Editar Datos</h1>
+                            </div>
                             <div class="card-body">
                                 <form id="editClientForm" method="POST" action="{{ route('update.client', ['rut'=>Auth::user()->rut]) }}">
                                     @csrf

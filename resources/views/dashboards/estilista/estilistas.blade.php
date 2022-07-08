@@ -19,7 +19,7 @@
             <div class="container">
                 <table class="table table-sm table-bordered">
                     <thead style="background-color: #ff828b">
-                        <tr>
+                        <tr style="color: white">
                             <th scope="col" style="text-align: center">#</th>
                             <th scope="col" style="text-align: center">RUT</th>
                             <th scope="col" style="text-align: center">Nombre</th>

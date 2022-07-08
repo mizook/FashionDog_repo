@@ -3,6 +3,7 @@
     <link rel="icon" type="image/x-icon" href="../../../assets/FashionDogLogo.ico" />
     <!-- flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
@@ -18,7 +19,8 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" style="background-color: #ff828b">
-                                {{ 'Escoge la fecha y hora en que deseas recibir el servicio' }}</div>
+                                <h5 style="color: white" class="pt-3">Escoge la fecha y hora en que deseas recibir el servicio</h1>
+                            </div>
 
                             <div class="card-body">
                                 <form id="createRequestForm" method="POST"
@@ -61,7 +63,8 @@
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-dark"
                                                 style="background-color: #ff828b"
-                                                onclick="ConfirmationPopUp('createRequestForm')">{{ __('Confirmar') }}</button>
+                                                onclick="ConfirmationPopUp('createRequestForm')">{{ __('Confirmar') }}
+                                            </button>
                                         </div>
                                     </div>
                                     <div>

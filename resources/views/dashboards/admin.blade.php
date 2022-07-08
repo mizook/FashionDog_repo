@@ -80,7 +80,7 @@
                                 }
                                 if(session()->get('stylist')->status == 1)
                                 {
-                                    echo 'desahabilitar a ';
+                                    echo 'deshabilitar a ';
                                     echo session()->get('stylist')->name;
                                 }
                             }

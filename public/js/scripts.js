@@ -1,6 +1,6 @@
 function ConfirmationPopUp(formName)
 {
-    const Form = document.getElementById(formName);
+    let Form = document.getElementById(formName);
     Form.addEventListener("click", function(event){event.preventDefault()})
 
     swal({
@@ -11,7 +11,11 @@ function ConfirmationPopUp(formName)
       .then((willDelete) => {
         if (willDelete) {
             Form.submit();
+            Form = null;
+            willDelete = false;
         }
+        Form = null;
+        willDelete = false;
       });
 }
 
