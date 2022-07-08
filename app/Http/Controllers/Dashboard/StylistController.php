@@ -14,6 +14,6 @@ class StylistController extends Controller
 
     public function show_dashboard()
     {
-        return view('dashboards.stylist');
+        return view('dashboards.stylist.stylist_dashboard');
     }
 }

@@ -25,19 +25,19 @@ class AdminController extends Controller
 
     public function show_dashboard()
     {
-        return view('dashboards.admin');
+        return view('dashboards.administrator.admin_dashboard');
     }
 
     public function show_stylists_page()
     {
         $stylists = DB::select('select * from stylists');
-        return view('dashboards.estilista.estilistas', ['stylists' => $stylists]);
+        return view('dashboards.administrator.stylists_page', ['stylists' => $stylists]);
     }
 
     public function show_edit_stylists_page($rut)
     {
         $stylist = Stylist::where('rut', $rut)->FirstOrFail();
-        return view('dashboards.estilista.editar')->with('stylist', $stylist);
+        return view('dashboards.administrator.edit_stylist')->with('stylist', $stylist);
     }
 
     public function create_stylist(RegisterStylistRequest $request)

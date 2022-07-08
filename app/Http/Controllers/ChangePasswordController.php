@@ -18,7 +18,7 @@ class ChangePasswordController extends Controller
 
     public function show_page()
     {
-        return view('dashboards.changePassword');
+        return view('auth.changePassword');
     }
     public function update_password(EditPasswordRequest $request, $rut)
     {

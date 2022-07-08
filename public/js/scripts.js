@@ -11,11 +11,7 @@ function ConfirmationPopUp(formName)
       .then((willDelete) => {
         if (willDelete) {
             Form.submit();
-            Form = null;
-            willDelete = false;
         }
-        Form = null;
-        willDelete = false;
       });
 }
 
