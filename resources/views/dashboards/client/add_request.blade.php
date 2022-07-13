@@ -80,6 +80,27 @@
 
         </section>
     </div>
+
+
+
+    <!---Alerta de exito o fracaso--->
+    @if (session()->has('goodEdit'))
+        <script>
+            swal("¡Datos actualizados!", "Datos actualizados con éxito.", "success");
+        </script>
+    @elseif (session()->has('clientError'))
+        <script>
+            swal("¡Error!", "¡El cliente no existe!", "error");
+        </script>
+    @elseif (session()->has('dateError'))
+        <script>
+            swal("¡Error!", "¡Ya tienes una solicitud agendada para ese día!", "error");
+        </script>
+    @endif
+    <!---Alerta de exito o fracaso--->
+
+
+
     <!-- flatpickr -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -118,22 +139,6 @@
 
         flatpickr("input[id=input_time]", config);
     </script>
-    <!---Alerta de exito o fracaso--->
-    @if (session()->has('goodEdit'))
-        <script>
-            swal("¡Datos actualizados!", "Datos actualizados con éxito.", "success");
-        </script>
-    @elseif (session()->has('clientError'))
-        <script>
-            swal("¡Error!", "¡El cliente no existe!", "error");
-        </script>
-    @elseif (session()->has('dateError'))
-        <script>
-            swal("¡Error!", "¡Ya tienes una solicitud agendada para ese día!", "error");
-        </script>
-    @endif
-    <!---Alerta de exito o fracaso--->
-
 
 </body>
 

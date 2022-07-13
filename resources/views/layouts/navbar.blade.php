@@ -26,6 +26,10 @@
     <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="js/scripts.js"></script>
 
+    <!-- flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
     <!-- Title -->
     <link rel="icon" type="image/x-icon" href="../assets/FashionDogLogo.ico" />
 
@@ -140,10 +144,9 @@
 @if (auth()->guard('stylist')->user())
 <div class="sidebar" style="width: 12.5%">
     <ul class="list-group list-group-flush" style="width: 100%">
-        <a href="{{ route('stylist.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+        <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#selectRequestsDateForm">
             <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar Solicitudes
-
-        </a>
+        </button>
         <a href="{{ route('stylist.dashboard') }}" class="list-group-item list-group-item-action disabled sidebar-options">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
         </a>
@@ -224,6 +227,65 @@
     </div>
 </div>
 
+<!-- Stylist filtrar solicitudes por fecha -->
+<div class="modal fade" id="selectRequestsDateForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="selectRequestsDateFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header pt-2 pb-2" style="background-color: #ff828b">
+                <h5 class="modal-title font-weight-bold" id="selectRequestsDateFormLabel">Escoge la fecha para filtrar la búsqueda de solicitudes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="container d-flex justify-content-center" style="margin-top: 5%">
+                    <img class="align-self-center mr-3 mb-4" src="/../assets/img/FashionDogLogo.png" style="width: 50px">
+                    <h3 class="font-weight-bold mt-2" style="text-align: center">Seleccione Fecha</h3>
+                </div>
+
+                <div class="card-body">
+                    <form id="selectRequestsDateForm" method="GET"
+                        action="{{ route('stylist.admin_requests') }}">
+                        @csrf
+
+                        <div class="row form-group">
+                            <label for="input_date"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Fecha') }}
+                            </label>
+                            <div class="col-sm-6">
+                                <input id="input_date" type="datetime-local"
+                                    class="form-control @error('input_date') is-invalid @enderror"
+                                    name="input_date" required
+                                    placeholder="Hoy...">
+
+                                @error('input_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-dark"
+                                    style="background-color: #ff828b">{{ __('Buscar') }}
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <h1></h1>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Abrir Modal de Buscar Usuario para deshabilitar/habilitar si hay algún error -->
@@ -233,5 +295,46 @@
     myModal.toggle()
 </script>
 @endif
+
+
+
+<!-- flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    config = {
+        mode: "single",
+        minDate: new Date().fp_incr(1),
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "d/m/Y",
+        locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+                shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+                shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+                longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                    'Octubre', 'Noviembre', 'Diciembre'
+                ],
+            },
+        },
+    }
+
+
+    flatpickr("input[id=input_date]", config);
+</script>
+<script>
+    config = {
+        noCalendar: true,
+        enableTime: true,
+        dateFormat: "H:i",
+        time_24hr: true
+    }
+
+    flatpickr("input[id=input_time]", config);
+</script>
 
 </html>
