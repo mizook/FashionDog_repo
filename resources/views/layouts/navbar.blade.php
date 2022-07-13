@@ -145,8 +145,11 @@
 <div class="sidebar" style="width: 12.5%">
     <ul class="list-group list-group-flush" style="width: 100%">
         <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#selectRequestsDateForm">
-            <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar Solicitudes
+            <i class="fa fa-plus-square mr-2" aria-hidden="true"></i> Realizar servicio
         </button>
+        <a href="{{ route('stylist.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+            <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar solicitudes
+        </a>
         <a href="{{ route('stylist.dashboard') }}" class="list-group-item list-group-item-action disabled sidebar-options">
             <i class="fa fa-cog mr-3" aria-hidden="true"></i>Configuracion
         </a>
@@ -246,7 +249,7 @@
 
                 <div class="card-body">
                     <form id="selectRequestsDateForm" method="GET"
-                        action="{{ route('stylist.admin_requests') }}">
+                        action="{{ route('stylist.take_request_page') }}">
                         @csrf
 
                         <div class="row form-group">

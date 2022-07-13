@@ -19,7 +19,7 @@
 
     <div class="content">
         <section class="p-3">
-            <h1>Administrar Solicitudes</h1>
+            <h1>Realizar servicio a Domicilio</h1>
 
             <div class="container">
                 <table class="table table-sm table-bordered">

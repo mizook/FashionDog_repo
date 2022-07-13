@@ -75,7 +75,7 @@ Route::get('/cliente/manageRequests', [ClientController::class, 'manage_requests
 Route::post('/cliente/cancelRequest/{id}', [ClientController::class, 'cancel_request'])->name('changeRequestStatus');
 
 //Estilistas
-Route::get('/estilista/solicitudes', [StylistController::class, 'show_admin_requests_page'])->name('stylist.admin_requests');
+Route::get('/estilista/solicitudes', [StylistController::class, 'show_take_requests_page'])->name('stylist.take_request_page');
 
 
 //Change password

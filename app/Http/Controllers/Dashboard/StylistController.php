@@ -18,7 +18,7 @@ class StylistController extends Controller
         return view('dashboards.stylist.stylist_dashboard');
     }
 
-    public function show_admin_requests_page(Request $request)
+    public function show_take_requests_page(Request $request)
     {
         if ($request->input_date == null) $request->input_date = date("m/d/Y");
 
