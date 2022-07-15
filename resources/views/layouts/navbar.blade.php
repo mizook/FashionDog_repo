@@ -125,7 +125,7 @@
         <button type="button" class="list-group-item list-group-item-action sidebar-options" style="padding-top: 5%" data-bs-toggle="modal" data-bs-target="#disableUserForm">
             <i class="fa fa-user mr-3" aria-hidden="true"></i>Habilitar Usuarios
         </button>
-        <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action sidebar-options">
+        <a href="{{ route('admin.manage_requests') }}" class="list-group-item list-group-item-action sidebar-options">
             <i class="fa fa-window-restore mr-2" aria-hidden="true"></i>Administrar Solicitudes
 
         </a>
