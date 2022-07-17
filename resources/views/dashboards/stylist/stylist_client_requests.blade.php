@@ -19,24 +19,24 @@
 
     <div class="content">
         <section class="p-3">
-            <h1>Realizar servicio a Domicilio</h1>
+            <h1>Realizar servicio a domicilio</h1>
 
             <div class="container">
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered" style="widht: 100%">
                     <thead style="background-color: #ff828b">
                         <tr style="color: white">
-                            <th scope="col" style="text-align: center">#</th>
-                            <th scope="col" style="text-align: center">RUT</th>
-                            <th scope="col" style="text-align: center">Nombre</th>
-                            <th scope="col" style="text-align: center">Apellido</th>
-                            <th scope="col" style="text-align: center">Email</th>
-                            <th scope="col" style="text-align: center">Dirección</th>
-                            <th scope="col" style="text-align: center">Teléfono</th>
+                            <th scope="col" style="text-align: center; width:9%;">#</th>
+                            <th scope="col" style="text-align: center; width:9%;">RUT</th>
+                            <th scope="col" style="text-align: center; width:9%;">Nombre</th>
+                            <th scope="col" style="text-align: center; width:9%;">Apellido</th>
+                            <th scope="col" style="text-align: center; width:9%;">Email</th>
+                            <th scope="col" style="text-align: center; width:9%;">Dirección</th>
+                            <th scope="col" style="text-align: center; width:9%;">Teléfono</th>
 
-                            <th scope="col" style="text-align: center">N° Solicitud</th>
-                            <th scope="col" style="text-align: center">Fecha y hora</th>
-                            <th scope="col" style="text-align: center">Estado</th>
-                            <th scope="col" style="text-align: center">Tomar Solicitud</th>
+                            <th scope="col" style="text-align: center; width:9%;">N° Solicitud</th>
+                            <th scope="col" style="text-align: center; width:9%;">Fecha y hora</th>
+                            <th scope="col" style="text-align: center; width:9%;">Estado</th>
+                            <th scope="col" style="text-align: center; width:10%;">Tomar Solicitud</th>
                         </tr>
                     </thead>
 
@@ -45,23 +45,24 @@
                         @foreach ($filter_requests as $requestData)
                                 @php $numero++ @endphp
                             <tr class="stylist-table">
-                                <th scope="row" style="text-align: center">{{ $numero }}</th>
-                                <td style="text-align: center">{{$requestData->rut}}</td>
-                                <td style="text-align: center">{{$requestData->name}}</td>
-                                <td style="text-align: center">{{$requestData->last_name}}</td>
-                                <td style="text-align: center">{{$requestData->email}}</td>
-                                <td style="text-align: center">{{$requestData->address}}</td>
-                                <td style="text-align: center">{{$requestData->phone}}</td>
+                                <th scope="row" style="text-align: center; font-size: 90%">{{ $numero }}</th>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->rut}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->name}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->last_name}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->email}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->address}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->phone}}</td>
 
-                                <td style="text-align: center">{{$requestData->id}}</td>
-                                <td style="text-align: center">{{$requestData->date}}</td>
-                                <td style="text-align: center">{{$requestData->status}}</td>
-                                <td style="text-align: center">
-                                    <div class="container stylist-table-options">
-                                        <form id="cancelRequestForm_{{ $requestData->id }}" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
+                                <td style="text-align: center; font-size: 90%">{{$requestData->id}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->date}}</td>
+                                <td style="text-align: center; font-size: 90%">{{$requestData->status}}</td>
+                                <td style="text-align: center; font-size: 90%">
+                                    <div class="container stylist-table-options pt-1 pl-3">
+                                        <form id="takeRequestForm_{{ $requestData->id }}" action="{{ route('stylist.takeRequest', ['requestDate'=>$requestData->date, 'requestId' => $requestData->id]) }}" method="POST" class="d-inline-block" >
                                             @csrf
-                                            <button type="submit" class="btn btn-success btn-block stylist-table-buttons d-flex" style="background-color: #4DD091" onclick="ConfirmationPopUp('cancelRequestForm_{{ $requestData->id }}')">
-                                                <i class="fa fa-check mr-3" aria-hidden="true"></i>
+                                            <button type="submit" class="btn btn-success btn-block stylist-table-buttons d-flex" style="background-color: #4DD091;"
+                                                onclick="ConfirmationPopUp('takeRequestForm_{{ $requestData->id }}')">
+                                                <i class="fa fa-check mr-1" aria-hidden="true"></i>
                                                 <h6 class="stylist-table-text">Tomar</h6>
                                             </button>
                                         </form>

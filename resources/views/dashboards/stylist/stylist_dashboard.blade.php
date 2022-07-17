@@ -15,6 +15,16 @@
 
     </div>
 
+
+@if (session()->has('requestTaken'))
+<script>
+    swal("¡Solicitud tomada!", "La solicitud ha sido tomada con éxito.", "success");
+</script>
+@endif
+
 </body>
+
+
+
 
 </html>

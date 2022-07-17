@@ -71,11 +71,14 @@ Route::get('/cliente/editar', [ClientController::class, 'show_edit_page'])->name
 Route::post('/cliente/editar/{rut}', [ClientController::class, 'update_client'])->name('update.client');
 Route::get('/cliente/solicitud', [ClientController::class, 'add_requests_page'])->name('add.request');
 Route::post('/cliente/solicitud/{rut}', [ClientController::class, 'create_request'])->name('add.request.post');
-Route::get('/cliente/manageRequests', [ClientController::class, 'manage_requests_page'])->name('manage.requests');
+Route::get('/cliente/solicitudes', [ClientController::class, 'manage_requests_page'])->name('manage.requests');
 Route::post('/cliente/cancelRequest/{id}', [ClientController::class, 'cancel_request'])->name('changeRequestStatus');
+Route::get('/cliente/solicitudes/comentario/{id}', [ClientController::class, 'show_comment_page'])->name('client.comment_page');
+Route::post('/cliente/solicitudes/comentario/{id}', [ClientController::class, 'comment'])->name('client.comment');
 
 //Estilistas
 Route::get('/estilista/solicitudes', [StylistController::class, 'show_take_requests_page'])->name('stylist.take_request_page');
+Route::post('/estilista/solicitudes/{requestDate}/{requestId}', [StylistController::class, 'take_request'])->name('stylist.takeRequest');
 
 
 //Change password

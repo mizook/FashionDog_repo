@@ -31,6 +31,15 @@
 <script>
     swal("¡Error!", "!Ya tienes una solicitud para ese día!", "error");
 </script>
+@elseif (session()->has('goodEditStatusRequest'))
+<script>
+    swal("¡Solicitud anulada!", "La solicitud ha sido anulada con éxito.", "success");
+</script>
+@elseif (session()->has('commentDone'))
+<script>
+    swal("¡Comentario añadido!", "Se ha comentado el servicio con éxito.", "success");
+</script>
+
 
 @endif
 <!---Alerta de exito o fracaso--->

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\Request as RequestModel;
+use Illuminate\Support\Facades\Auth;
 
 class StylistController extends Controller
 {
@@ -20,7 +23,9 @@ class StylistController extends Controller
 
     public function show_take_requests_page(Request $request)
     {
-        if ($request->input_date == null) $request->input_date = date("m/d/Y");
+        date_default_timezone_set('America/Santiago');
+
+        if ($request->input_date == null) $request->input_date = date("Y-m-d");
 
         $filter_requests = DB::table('clients')
             ->join('client_requests', 'clients.rut', '=', 'client_requests.client_rut')
@@ -29,14 +34,47 @@ class StylistController extends Controller
             ->where('requests.status', '=', 'INGRESADA')
             ->get();
 
+
         return view('dashboards.stylist.stylist_client_requests', ['filter_requests' => $filter_requests, 'total_requests' => $filter_requests->count()]);
     }
 
-    public function take_request()
+    public function take_request($requestDate, $requestId)
     {
-        //CONTINUAR AQUI EL CODIGO QUE FALTA
+        date_default_timezone_set('America/Santiago');
 
-        //CAMBIARLE EL ESTADO A LA SOLICITUD VERIFICANDO CON LA HORA ACTUAL DEL DIA
-        return;
+        $timestamp = strtotime($requestDate);
+        $date = date('Y-n-j', $timestamp); // YYYY-mm-dd
+        $time = date('H:i:s', $timestamp); // HH:mm:ss
+
+        //Día ya pasado
+        if (strtotime($date) < strtotime(date("Y-m-d"))) {
+            //dd('ATENDIDA CON RETRASO 1');
+            $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA CON RETRASO"]);
+        }
+
+        //Día futuro
+        if (strtotime($date) > strtotime(date("Y-m-d"))) {
+            //dd("ATENDIDA A TIEMPO 1");
+            $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA A TIEMPO"]);
+        }
+
+        //Mismo día
+        if (strtotime($date) == strtotime(date("Y-m-d")) && time() > strtotime($time)) {
+            //dd("ATENDIDA CON RETRASO 2");
+            $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA CON RETRASO"]);
+        }
+
+        //dd("ATENDIDA A TIEMPO 2");
+        $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA A TIEMPO"]);
+
+        //Creamos el servicio que relaciona el estilista y la request id, además de agregar un comentario
+        $new_service = Service::create([
+            'stylist_rut' => Auth::user()->rut,
+            'request_id' => $requestId,
+            'comment' => ''
+        ]);
+
+        $message = "";
+        return redirect('/estilista')->with('requestTaken', $message);
     }
 }

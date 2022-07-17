@@ -38,7 +38,16 @@ class ClientController extends Controller
     {
         $totalRequests = ClientRequest::where('client_rut', Auth::user()->rut)->count();
         $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
-        return view('dashboards.client.manage_request', ['clientRequestsData' => $clientRequestsData, 'totalRequests' => $totalRequests]);
+
+        $allData = DB::table('stylists')
+            ->join('services', 'stylists.rut', '=', 'services.stylist_rut')
+            ->join('client_requests', 'services.request_id', '=', 'client_requests.request_id')
+            ->where('client_requests.client_rut', '=', Auth::user()->rut)
+            ->get();
+
+        //dd($allData);
+
+        return view('dashboards.client.manage_request', ['clientRequestsData' => $clientRequestsData, 'totalRequests' => $totalRequests, 'allData' => $allData]);
     }
 
     public function cancel_request(Request $request)
@@ -54,7 +63,7 @@ class ClientController extends Controller
         }
 
         $clientRequest->save();
-        return redirect('/cliente/manageRequests')->with('goodEditStatusRequest', $message);
+        return redirect('/cliente')->with('goodEditStatusRequest', $message);
     }
 
     public function update_client(EditClientRequest $request, $rut)
@@ -109,5 +118,26 @@ class ClientController extends Controller
         $client_service_request->save();
 
         return redirect('/cliente')->with('requestAdded', 'Solicitud enviada correctamente');
+    }
+
+    public function show_comment_page($id)
+    {
+        //dd($id);
+        //dd($request_comment);
+        $request_comment = DB::select('select comment from services where request_id = ?', [$id]);
+
+        return view('dashboards.client.request_comment', ['id' => $id, 'request_comment' => $request_comment[0]->comment]);
+    }
+
+    public function comment(Request $request, $id)
+    {
+        //dd($request->new_comment);
+        DB::table('services')
+            ->where('request_id', $id)
+            ->update(['comment' => $request->new_comment]);
+
+        $message = "";
+
+        return redirect('/cliente')->with('commentDone', $message);
     }
 }

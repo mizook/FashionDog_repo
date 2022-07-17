@@ -307,7 +307,6 @@
 <script>
     config = {
         mode: "single",
-        minDate: new Date().fp_incr(1),
         dateFormat: "Y-m-d",
         altInput: true,
         altFormat: "d/m/Y",
