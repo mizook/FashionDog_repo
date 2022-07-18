@@ -21,6 +21,16 @@ class StylistController extends Controller
         return view('dashboards.stylist.stylist_dashboard');
     }
 
+    public function request_list_page()
+    {
+        $requestsDone = Service::where('stylist_rut', Auth::user()->rut)->count();
+        $stylistRequestsData = DB::select('select * from clients cl, requests rq, services s where rq.id=s.request_id and s.stylist_rut = ? and cl.rut=(select client_rut from client_requests where request_id=rq.id) order by id desc', [Auth::user()->rut]);
+
+        //dd($allData);
+
+        return view('dashboards.stylist.request_list', ['stylistRequestsData' => $stylistRequestsData, 'requestsDone' => $requestsDone]);
+    }
+
     public function show_take_requests_page(Request $request)
     {
         date_default_timezone_set('America/Santiago');

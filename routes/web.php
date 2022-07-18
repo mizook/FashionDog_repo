@@ -77,6 +77,7 @@ Route::get('/cliente/solicitudes/comentario/{id}', [ClientController::class, 'sh
 Route::post('/cliente/solicitudes/comentario/{id}', [ClientController::class, 'comment'])->name('client.comment');
 
 //Estilistas
+Route::get('/estilista/lista_servicios', [StylistController::class, 'request_list_page'])->name('list.services');
 Route::get('/estilista/solicitudes', [StylistController::class, 'show_take_requests_page'])->name('stylist.take_request_page');
 Route::post('/estilista/solicitudes/{requestDate}/{requestId}', [StylistController::class, 'take_request'])->name('stylist.takeRequest');
 
