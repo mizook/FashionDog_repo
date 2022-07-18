@@ -19,7 +19,9 @@
         </script>
     @endif
 
-
+    @php
+    $selectedId;
+    @endphp
     <div class="content">
         <section class="p-3">
             <h1>Administrar Solicitudes</h1>
@@ -44,6 +46,7 @@
                         @foreach ($clientRequestsData as $requestData)
                                 @php $clientDataPos++ @endphp
                                 @php $numero++ @endphp
+                                @php $actualId= $numero-1 @endphp
                             <tr class="stylist-table">
                                 <th scope="row" style="text-align: center">{{ $numero }}</th>
                                 <td style="text-align: center">{{$requestData->date}}</td>
@@ -51,9 +54,14 @@
                                 <td style="text-align: center">{{$requestData->status}}</td>
                                 <td style="text-align: center">{{$clientData[$clientDataPos]->name}}</td>
                                 <td style="text-align: center">
-                                        <button class="btn btn-warning" style="background-color: #FFD872" type="submit">
+
+
+                                    <form action="/admin/CRD/{{{$requestData->id}}}" method="GET">
+                                        @csrf
+                                        <button id="{{$numero-1}}" type="submit" class="btn btn-warning" style="background-color: #FFD872">
                                             <i class="fa fa-eye" aria-hidden="true"></i> Ver
                                         </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -66,4 +74,5 @@
         </section>
 
     </div>
+
 </body>

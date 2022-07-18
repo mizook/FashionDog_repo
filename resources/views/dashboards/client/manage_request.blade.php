@@ -40,14 +40,20 @@
 
                     <tbody style="background-color: white">
                         @php $numero = 0 @endphp
+                        @php $stylistData @endphp
                         @foreach ($clientRequestsData as $requestData)
                                 @php $numero++ @endphp
-                            <tr class="stylist-table">
+                                @php $stylistData =DB::select('select name,last_name from stylists inner join services on stylists.rut=services.stylist_rut where services.request_id=?',[$requestData->id]) @endphp
+                                <tr class="stylist-table">
                                 <th scope="row" style="text-align: center">{{ $numero }}</th>
                                 <td style="text-align: center">{{$requestData->date}}</td>
                                 <td style="text-align: center">{{$requestData->id}}</td>
                                 <td style="text-align: center">{{$requestData->status}}</td>
+                                @if (count($stylistData) == 0)
                                 <td style="text-align: center"></td>
+                                @else
+                                <td style="text-align: center">{{$stylistData[0]->name}} {{$stylistData[0]->last_name}}</td>
+                                @endif
                                 <td style="text-align: center">
                                     <div class="container stylist-table-options">
                                         <form id="cancelRequestForm_{{ $requestData->id }}" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >

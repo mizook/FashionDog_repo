@@ -60,6 +60,7 @@ Route::get('/cliente', [ClientController::class, 'show_dashboard'])->name('clien
 Route::get('/admin/estilistas', [AdminController::class, 'show_stylists_page'])->name('admin.stylists');
 Route::get('/admin/estilistas/editar/{rut}', [AdminController::class, 'show_edit_stylists_page'])->name('edit.stylist');
 Route::get('/admin/allClientRequests', [AdminController::class, 'manage_requests_page'])->name('admin.manage_requests');
+Route::get('/admin/CRD/{id}', [AdminController::class, 'show_all_data_page'])->name('allCRD'); // All client request data;
 
 Route::post('/admin/estilistas', [AdminController::class, 'create_stylist'])->name('store.stylist');
 Route::post('/admin/estilistas/editar/{rut}', [AdminController::class, 'update_stylist'])->name('update.stylist');

@@ -41,6 +41,25 @@ class AdminController extends Controller
         return view('dashboards.administrator.edit_stylist')->with('stylist', $stylist);
     }
 
+    public function show_all_data_page($id)
+    {
+        $dataId =$id;
+        $clientRequestData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where requests.id= ?', [$id]);
+        $clientData = DB::select('select * from client_requests inner join clients on client_requests.client_rut=clients.rut where client_requests.request_id= ?', [$id]);
+        $serviceData = DB::select('select * from services where request_id= ?', [$id]);
+
+        if(count($serviceData)!=0){
+
+            $stylistData = DB::select('select * from stylists where rut= ?', [$serviceData[0]->stylist_rut]);
+            return view('dashboards.administrator.client_request_data', ['clientRequestData' => $clientRequestData, 'dataId' => $dataId,'clientData' => $clientData,'serviceData' =>$serviceData,'stylistData' =>$stylistData]);
+
+        }else{
+            return view('dashboards.administrator.client_request_data', ['clientRequestData' => $clientRequestData, 'dataId' => $dataId,'clientData' => $clientData,'serviceData' =>$serviceData,'stylistData' =>'Service not taken']);
+
+        }
+    }
+
+
     public function manage_requests_page()
     {
         $totalRequests =DB::table('client_requests')->count();
