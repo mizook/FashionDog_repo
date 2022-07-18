@@ -57,7 +57,7 @@
                                     <td style="text-align: center; width: 15%">
                                         <p>
                                             @csrf
-                                            <button class="btn btn-primary" type="button" style="background-color: #4DD091;" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment"> 
+                                            <button class="btn btn-primary stylist-table-buttons" type="button" style="background-color: #4DD091;" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment"> 
                                                 <i class="fa fa-comment mr-1" aria-hidden="true"> Desplegar</i>
                                             </button>
                                         </p>
