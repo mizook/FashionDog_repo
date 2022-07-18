@@ -58,7 +58,7 @@
                                 <td style="text-align: center; width: 15%">
                                     <form id="requestComment_{{ $requestData->id }}" action="{{ route('client.comment_page', ['id' => $requestData->id]) }}" method="GET">
                                         @csrf
-                                        <button type="submit" class="btn btn-success stylist-table-buttons d-flex ml-4" style="background-color: #4DD091;">
+                                        <button type="submit" class="btn btn-success stylist-table-buttons d-flex ml-4" style="background-color: #4DD091">
                                             <i class="fa fa-comment mr-1" aria-hidden="true"></i>
                                             <h6 class="stylist-table-text">Comentario</h6>
                                         </button>
