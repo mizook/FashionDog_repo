@@ -45,7 +45,7 @@
                             <div class="card-body">
                                 @if (count($serviceData) == 0)
 
-                                <p style="font-size: 20px">Aun no se ha tomado por ningun estilista</p>
+                                <p style="font-size: 20px">Aun no se ha tomado por ningun estilista o fue anulada</p>
 
                                 @else
                                 <p style="font-size: 20px">Nombre: {{ $stylistData[0]->name }}
@@ -64,7 +64,7 @@
                         <div class="card-body">
                             @if (count($serviceData) == 0)
 
-                            <p style="font-size: 20px">Aun no se hace el servicio</p>
+                            <p style="font-size: 20px">Aun no se hace el servicio o fue anulada la solicitud</p>
                             @else
                             <p style="font-size: 20px">{{ $serviceData[0]->comment }}</p>
                             @endif
