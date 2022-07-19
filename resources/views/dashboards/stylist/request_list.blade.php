@@ -55,19 +55,20 @@
                                     <td style="text-align: center; width: 15%">{{$requestData->comment}}</td>
                                 @else
                                     <td style="text-align: center; width: 15%">
-                                        <p>
+                                        <div>
                                             @csrf
-                                            <button type="button" class="btn btn-primary stylist-table-buttons" style="background-color: #4DD091" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+                                            <button type="button" class="btn btn-success stylist-table-buttons" style="background-color: #4DD091" data-toggle="collapse" data-target="#collapseComment_{{ $requestData->id }}" aria-expanded="false" aria-controls="collapseComment">
                                                 <i class="fa fa-comment mr-1" aria-hidden="true"> Desplegar</i>
                                             </button>
-                                        </p>
-                                        <div class="collapse" id="collapseComment">
-                                            <div class="card card-body">
-                                                <div class="panel-heading text-justify">
-                                                    {{$requestData->comment}}
+                                            <div class="collapse" id="collapseComment_{{ $requestData->id }}">
+                                                <div class="card card-body">
+                                                    <div class="panel-heading text-justify">
+                                                        {{$requestData->comment}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </td>
                                 @endif
                             </tr>

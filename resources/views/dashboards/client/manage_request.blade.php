@@ -8,9 +8,9 @@
     @include('layouts/navbar')
 
     @if ($totalRequests == 0)
-    <script>
-        swal("¡Sin solicitudes!", "Aun no ha ingresado ninguna solicitud de servicio.", "error");
-    </script>
+        <script>
+            swal("¡Sin solicitudes!", "Aun no ha ingresado ninguna solicitud de servicio.", "error");
+        </script>
     @endif
 
     @if (session()->has('goodEditStatusRequest'))
@@ -47,7 +47,8 @@
                         $numero2 = 0
                         @endphp
                         @foreach ($clientRequestsData as $requestData)
-                                @php $numero++ @endphp
+                            @php $numero++ @endphp
+                            @php $stylistData =DB::select('select name,last_name from stylists inner join services on stylists.rut=services.stylist_rut where services.request_id=?',[$requestData->id]) @endphp
                             <tr class="stylist-table">
                                 <th scope="row" style="text-align: center; width: 5%">{{ $numero }}</th>
                                 <td style="text-align: center; width: 15%">{{$requestData->date}}</td>
@@ -71,7 +72,9 @@
                                 @endif
                                 <td style="text-align: center; width: 20%">
                                     <div class="container stylist-table-options">
-                                        <form id="cancelRequestForm_{{ $requestData->id }}" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
+                                        <form id="cancelRequestForm_{{ $requestData->id }}"
+                                            action="{{ route('changeRequestStatus', ['id' => $requestData->id]) }}"
+                                            method="POST" class="d-inline-block">
                                             @csrf
                                             @if ($requestData->status == 'INGRESADA')
                                             <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" onclick="ConfirmationPopUp('cancelRequestForm_{{ $requestData->id }}')">
