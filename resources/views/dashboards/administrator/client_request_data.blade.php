@@ -45,6 +45,7 @@
                             <div class="card-body">
                                 @if (count($serviceData) == 0)
 
+                                <p style="font-size: 20px">[MENSAJE DEL SISTEMA]</p>
                                 <p style="font-size: 20px">Aun no se ha tomado por ningun estilista o fue anulada</p>
 
                                 @else
@@ -64,7 +65,8 @@
                         <div class="card-body">
                             @if (count($serviceData) == 0)
 
-                            <p style="font-size: 20px">Aun no se hace el servicio o fue anulada la solicitud</p>
+                            <p style="font-size: 20px">[MENSAJE DEL SISTEMA]</p>
+                            <p style="font-size: 20px">Aun no se hace el servicio, fue anulada la solicitud o no se ha hecho un comentario</p>
                             @else
                             <p style="font-size: 20px">{{ $serviceData[0]->comment }}</p>
                             @endif
