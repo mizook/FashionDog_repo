@@ -9,7 +9,7 @@
 
     @if ($requestsDone == 0)
     <script>
-        swal("¡No hay servicios realizados!", "Aun no se ha realizado ningún servicio.", "error");
+        swal("¡No hay servicios realizados!", "Aún no se ha realizado ningún servicio.", "error");
     </script>
     @endif
 

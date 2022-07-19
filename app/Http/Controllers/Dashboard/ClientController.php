@@ -123,8 +123,6 @@ class ClientController extends Controller
 
     public function show_comment_page($id)
     {
-        //dd($id);
-        //dd($request_comment);
         $request_comment = DB::select('select comment from services where request_id = ?', [$id]);
 
         return view('dashboards.client.request_comment', ['id' => $id, 'request_comment' => $request_comment[0]->comment]);
@@ -132,7 +130,6 @@ class ClientController extends Controller
 
     public function comment(Request $request, $id)
     {
-        //dd($request->new_comment);
         DB::table('services')
             ->where('request_id', $id)
             ->update(['comment' => $request->new_comment]);

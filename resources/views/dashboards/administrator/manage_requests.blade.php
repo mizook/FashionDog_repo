@@ -33,7 +33,7 @@
                             <th scope="col" style="text-align: center">#</th>
                             <th scope="col" style="text-align: center">Fecha y hora</th>
                             <th scope="col" style="text-align: center">N°</th>
-                            <th scope="col" style="text-align: center">Estado</th>
+                            <th scope="col" style="text-align: center">Estado de la solicitud</th>
                             <th scope="col" style="text-align: center">Nombre del cliente</th>
                             <th scope="col" style="text-align: center">VER</th>
 
@@ -56,7 +56,7 @@
                                 <td style="text-align: center">
 
 
-                                    <form action="/admin/CRD/{{{$requestData->id}}}" method="GET">
+                                    <form action="/admin/administrar_solicitudes/{{{$requestData->id}}}" method="GET">
                                         @csrf
                                         <button id="{{$numero-1}}" type="submit" class="btn btn-warning" style="background-color: #FFD872">
                                             <i class="fa fa-eye" aria-hidden="true"></i> Ver
