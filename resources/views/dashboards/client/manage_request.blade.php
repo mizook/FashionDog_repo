@@ -8,9 +8,9 @@
     @include('layouts/navbar')
 
     @if ($totalRequests == 0)
-    <script>
-        swal("¡Sin solicitudes!", "Aun no ha ingresado ninguna solicitud de servicio.", "error");
-    </script>
+        <script>
+            swal("¡Sin solicitudes!", "Aun no ha ingresado ninguna solicitud de servicio.", "error");
+        </script>
     @endif
 
     @if (session()->has('goodEditStatusRequest'))
@@ -42,32 +42,40 @@
                         @php $numero = 0 @endphp
                         @php $stylistData @endphp
                         @foreach ($clientRequestsData as $requestData)
-                                @php $numero++ @endphp
-                                @php $stylistData =DB::select('select name,last_name from stylists inner join services on stylists.rut=services.stylist_rut where services.request_id=?',[$requestData->id]) @endphp
-                                <tr class="stylist-table">
+                            @php $numero++ @endphp
+                            @php $stylistData =DB::select('select name,last_name from stylists inner join services on stylists.rut=services.stylist_rut where services.request_id=?',[$requestData->id]) @endphp
+                            <tr class="stylist-table">
                                 <th scope="row" style="text-align: center">{{ $numero }}</th>
-                                <td style="text-align: center">{{$requestData->date}}</td>
-                                <td style="text-align: center">{{$requestData->id}}</td>
-                                <td style="text-align: center">{{$requestData->status}}</td>
+                                <td style="text-align: center">{{ $requestData->date }}</td>
+                                <td style="text-align: center">{{ $requestData->id }}</td>
+                                <td style="text-align: center">{{ $requestData->status }}</td>
                                 @if (count($stylistData) == 0)
-                                <td style="text-align: center"></td>
+                                    <td style="text-align: center"></td>
                                 @else
-                                <td style="text-align: center">{{$stylistData[0]->name}} {{$stylistData[0]->last_name}}</td>
+                                    <td style="text-align: center">{{ $stylistData[0]->name }}
+                                        {{ $stylistData[0]->last_name }}</td>
                                 @endif
                                 <td style="text-align: center">
                                     <div class="container stylist-table-options">
-                                        <form id="cancelRequestForm_{{ $requestData->id }}" action="{{ route('changeRequestStatus', ['id'=>$requestData->id]) }}" method="POST" class="d-inline-block" >
+                                        <form id="cancelRequestForm_{{ $requestData->id }}"
+                                            action="{{ route('changeRequestStatus', ['id' => $requestData->id]) }}"
+                                            method="POST" class="d-inline-block">
                                             @csrf
-                                            @if ($requestData->status == 'ANULADA')
-                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" disabled>
-                                                <i class="fa fa-times mr-3" aria-hidden="true"></i>
-                                                <h6 class="stylist-table-text">Anular solicitud</h6>
-                                            </button>
+                                            @if ($requestData->status == 'ANULADA' || $requestData->status == 'ATENDIDA A TIEMPO' || $requestData->status == 'ATENDIDA CON RETRASO')
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-block stylist-table-buttons d-flex"
+                                                    style="background-color: #FC6238" disabled>
+                                                    <i class="fa fa-times mr-3" aria-hidden="true"></i>
+                                                    <h6 class="stylist-table-text">Anular solicitud</h6>
+                                                </button>
                                             @else
-                                            <button type="submit" class="btn btn-danger btn-block stylist-table-buttons d-flex" style="background-color: #FC6238" onclick="ConfirmationPopUp('cancelRequestForm_{{ $requestData->id }}')">
-                                                <i class="fa fa-times mr-3" aria-hidden="true"></i>
-                                                <h6 class="stylist-table-text">Anular solicitud</h6>
-                                            </button>
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-block stylist-table-buttons d-flex"
+                                                    style="background-color: #FC6238"
+                                                    onclick="ConfirmationPopUp('cancelRequestForm_{{ $requestData->id }}')">
+                                                    <i class="fa fa-times mr-3" aria-hidden="true"></i>
+                                                    <h6 class="stylist-table-text">Anular solicitud</h6>
+                                                </button>
                                             @endif
                                         </form>
                                     </div>

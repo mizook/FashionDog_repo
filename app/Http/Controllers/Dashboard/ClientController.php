@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Client;
+use App\Models\Service;
 use App\Models\Request as RequestModel;
 use App\Models\ClientRequest;
 use App\Http\Controllers\Controller;
