@@ -57,25 +57,27 @@ class StylistController extends Controller
         $time = date('H:i:s', $timestamp); // HH:mm:ss
 
         //Día ya pasado
-        if (strtotime($date) < strtotime(date("Y-m-d"))) {
+        if (strtotime($date) < strtotime(date("Y-n-j"))) {
             //dd('ATENDIDA CON RETRASO 1');
             $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA CON RETRASO"]);
         }
 
         //Día futuro
-        if (strtotime($date) > strtotime(date("Y-m-d"))) {
+        if (strtotime($date) > strtotime(date("Y-n-j"))) {
             //dd("ATENDIDA A TIEMPO 1");
             $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA A TIEMPO"]);
         }
 
         //Mismo día
-        if (strtotime($date) == strtotime(date("Y-m-d")) && time() > strtotime($time)) {
+        if (strtotime($date) == strtotime(date("Y-n-j")) && time() > strtotime($time)) {
             //dd("ATENDIDA CON RETRASO 2");
             $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA CON RETRASO"]);
         }
 
-        //dd("ATENDIDA A TIEMPO 2");
-        $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA A TIEMPO"]);
+        if (strtotime($date) == strtotime(date("Y-n-j")) && time() < strtotime($time)) {
+            //dd("ATENDIDA A TIEMPO 2");
+            $request = DB::table('requests')->where('id', $requestId)->update(['status' => "ATENDIDA A TIEMPO"]);
+        }
 
         //Creamos el servicio que relaciona el estilista y la request id, además de agregar un comentario
         $new_service = Service::create([
