@@ -37,7 +37,7 @@ class ClientController extends Controller
     public function manage_requests_page()
     {
         $totalRequests = ClientRequest::where('client_rut', Auth::user()->rut)->count();
-        $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by id desc', [Auth::user()->rut]);
+        $clientRequestsData = DB::select('select * from client_requests inner join requests on client_requests.request_id=requests.id where client_requests.client_rut = ? order by requests.date desc', [Auth::user()->rut]);
 
         $allData = DB::table('stylists')
             ->join('services', 'stylists.rut', '=', 'services.stylist_rut')

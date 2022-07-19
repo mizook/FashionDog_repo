@@ -51,6 +51,10 @@
 <script>
     swal("¡El usuario no existe!", "El RUT ingresado no existe en sistema o no es un cliente o estilista.", "error");
 </script>
+@elseif (session()->has('goodAddStylist'))
+<script>
+    swal("¡Estilista agregado!", "El estilista se creó con éxito.", "success");
+</script>
 @endif
 
 

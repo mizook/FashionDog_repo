@@ -55,7 +55,7 @@ class AdminController extends Controller
 
         $stylist->save();
 
-        return redirect('/admin/estilistas')->with('goodAddStylist', 'El estilista fue creado exitosamente');
+        return redirect('/admin')->with('goodAddStylist', 'El estilista fue creado exitosamente');
     }
 
     public function update_stylist(EditStylistRequest $request, $rut)

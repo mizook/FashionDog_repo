@@ -24,7 +24,7 @@ class StylistController extends Controller
     public function request_list_page()
     {
         $requestsDone = Service::where('stylist_rut', Auth::user()->rut)->count();
-        $stylistRequestsData = DB::select('select * from clients cl, requests rq, services s where rq.id=s.request_id and s.stylist_rut = ? and cl.rut=(select client_rut from client_requests where request_id=rq.id) order by id desc', [Auth::user()->rut]);
+        $stylistRequestsData = DB::select('select * from clients cl, requests rq, services s where rq.id=s.request_id and s.stylist_rut = ? and cl.rut=(select client_rut from client_requests where request_id=rq.id) order by rq.date desc', [Auth::user()->rut]);
 
         //dd($allData);
 
