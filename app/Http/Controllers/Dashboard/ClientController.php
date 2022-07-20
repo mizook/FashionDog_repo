@@ -100,7 +100,18 @@ class ClientController extends Controller
 
         $datetime = date('Y-m-d H:i:s', strtotime("$request->input_date $request->input_time"));
 
-        if (RequestModel::whereDate('date', $request->input_date)->count() > 0) {
+
+        $requestExist = DB::table('requests')
+            ->join('client_requests', 'request_id', '=', 'requests.id')
+            ->where('client_rut', '=', $rut)
+            ->where('status', '=', 'INGRESADA')
+            ->whereDate('date', $request->input_date)
+            ->get();
+
+
+        //dd($requestExist);
+
+        if ($requestExist->count() > 0) {
             return redirect('/cliente/solicitud')->with('dateError', 'La fecha que intentas escoger ya está agendada!');
         }
 
